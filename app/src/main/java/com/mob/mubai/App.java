@@ -22,8 +22,8 @@ public class App extends MultiDexApplication {
     }
 
     /*
-  * 获取Application唯一实例
-  */
+     * 获取Application唯一实例
+     */
     public static Context getInstance() {
         return mContext;
     }

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.mob.mubai.base.utils.ActivityControl;
+import com.mob.mubai.base.utils.AppManager;
 
 import butterknife.ButterKnife;
 
@@ -24,7 +24,7 @@ public abstract class BaseActivity<T extends BasePresenter>extends AppCompatActi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
-        ActivityControl.addActivity(this);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initView();
         initData();
@@ -48,6 +48,6 @@ public abstract class BaseActivity<T extends BasePresenter>extends AppCompatActi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityControl.removeActivity(this);
+        AppManager.getAppManager().removeActivity(this);
     }
 }
