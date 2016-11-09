@@ -1,22 +1,102 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
         applicationId "com.mob.mubai"
-        minSdkVersion 14
-        targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    //直接写在gradle不安全 这里在混淆文件中写入
+    signingConfigs{
+        release{
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+        debug{
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+        preview{
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
     }
 
     buildTypes {
+        debug{
+            manifestPlaceholders = [app_label:"@string/app_name_debug"]
+
+            applicationIdSuffix ".debug" // 增加APP ID的后缀
+
+            minifyEnabled false //混淆处理
+
+            shrinkResources false  //去除无用资源
+
+            debuggable true  // 保留debug信息
+
+            signingConfig signingConfigs.debug //签名
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' // 混淆配置
+        }
+
         release {
-            minifyEnabled false
+            manifestPlaceholders = [app_label:"@string/app_name_release"]
+
+            minifyEnabled true
+
+            shrinkResources false
+
+            debuggable false
+
+            signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+
+        preview{
+            manifestPlaceholders = [app_label:"@string/app_name_preview"]
+
+            applicationIdSuffix ".preview"
+
+            debuggable true
+
+            minifyEnabled true
+
+            shrinkResources true
+
+            signingConfig signingConfigs.preview
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors{
+        lzg{}
+        zjy{}
+        lzw{}
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -31,5 +111,6 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.0-rc2'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:design:24.2.1'
 }
 
