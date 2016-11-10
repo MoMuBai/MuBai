@@ -6,7 +6,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by yifuhua on 16/4/25.
+ * Created by mubai on 2016/11/8.
+ * MD5加密
+ *
  */
 public class MD5Util {
 
@@ -16,7 +18,7 @@ public class MD5Util {
      *
      * */
     public static String getMD5Str(String str) {
-        str = str.replace(" ", "+");
+        str = str.replace(" ", "+");//PHP的空格是转换为+
         MessageDigest messageDigest = null;// MD5转换器
         try {
             messageDigest = MessageDigest.getInstance("MD5");

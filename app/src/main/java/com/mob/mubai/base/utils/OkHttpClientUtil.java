@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Types;
+import com.mob.mubai.base.helps.CloseHelper;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -32,7 +33,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * reated by yifuhua on 16/4/25.
+ * Created by mubai on 2016/11/8.
+ * OKHttp请求
+ * 包括get、post、文件上传
+ *
  */
 public class OkHttpClientUtil {
     private static OkHttpClientUtil mInstance;

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by mubai on 2016/9/12.
- * 封装SP读取方法
+ * Created by mubai on 2016/11/8.
+ * SP读取方法
  */
 public final class SpUtils {
 

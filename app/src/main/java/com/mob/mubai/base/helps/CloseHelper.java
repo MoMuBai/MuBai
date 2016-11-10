@@ -1,10 +1,10 @@
-package com.mob.mubai.base.utils;
+package com.mob.mubai.base.helps;
 
 import java.io.Closeable;
 import java.io.IOException;
 
 /**
- *reated by yifuhua on 16/4/25.
+ *Created by mubai on 2016/11/8.
  */
 public class CloseHelper {
     public static final void close(Closeable closeable) {
