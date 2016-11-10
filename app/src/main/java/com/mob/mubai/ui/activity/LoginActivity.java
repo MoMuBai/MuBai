@@ -32,7 +32,7 @@ import io.rong.imlib.RongIMClient;
  * Created by mubai on 2016/11/7.
  */
 
-public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
+public class LoginActivity extends BaseActivity<LoginContract.Presenter,LoginContract.Model> implements LoginContract.View {
 
     @Bind(R.id.et_name)
     EditText etName;

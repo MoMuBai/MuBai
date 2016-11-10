@@ -1,5 +1,8 @@
 package com.mob.mubai.ui.contract;
 
+import android.view.View;
+
+import com.mob.mubai.base.BaseModel;
 import com.mob.mubai.base.BasePresenter;
 import com.mob.mubai.base.BaseView;
 
@@ -9,12 +12,16 @@ import com.mob.mubai.base.BaseView;
 
 public interface LoginContract {
 
-
+    interface Model extends BaseModel{
+    }
     interface View extends BaseView{
         void showInfo();
     }
 
-    interface Presenter extends BasePresenter{
+    abstract class Presenter extends BasePresenter<Model,View>{
+        @Override
+        public void onStart() {
 
+        }
     }
 }

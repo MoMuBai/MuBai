@@ -8,7 +8,7 @@ import com.mob.mubai.base.utils.UserManager;
  * Created by mubai on 2016/11/3.
  */
 
-public class LoginPresenter implements LoginContract.Presenter {
+public class LoginPresenter extends LoginContract.Presenter {
 
     private UserManager mUserManager;
     private PasswordValidator mPasswordValidator;
@@ -20,7 +20,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     public void login(String name, String pass){
         if (name == null || name.length() == 0) return;
-        if (mPasswordValidator.verifyPassword(pass)) return;  //<==
+        if (mPasswordValidator.verifyPassword(pass)) return;
         mUserManager.performLogin(name,pass);
     }
 }
