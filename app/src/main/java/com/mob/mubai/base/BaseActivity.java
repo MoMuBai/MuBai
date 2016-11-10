@@ -31,7 +31,11 @@ public abstract class BaseActivity<T extends BasePresenter>extends AppCompatActi
         AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initView();
-        initData();
+        try {
+            initData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected abstract int getLayout();
@@ -40,7 +44,7 @@ public abstract class BaseActivity<T extends BasePresenter>extends AppCompatActi
     protected abstract void initView();
 
 
-    protected abstract void initData();
+    protected abstract void initData() throws Exception;
 
 
     protected void startIntent(Class<Activity> cls){

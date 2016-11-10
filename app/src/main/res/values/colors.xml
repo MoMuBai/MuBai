@@ -3,4 +3,65 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--标题、重要文字字体颜色-->
+    <color name="mainText">#333333</color>
+    <!--按钮字体颜色-->
+    <!--提示、失效、辅助字体颜色-->
+    <color name="tiSText">#999999</color>
+    <!--首页导航字体颜色-->
+    <color name="tabText">#666666</color>
+
+    <!--首页导航颜色-->
+    <color name="mainBar">#FAFAFA</color>
+    <!--主色-->
+    <color name="firstColor">#4aa7f5</color>
+    <!--APP灰色-->
+    <color name="appGary">#F1F1F1</color>
+    <!--卡片资料、大模块背景色-->
+    <color name="bgColor">#FFFFFF</color>
+    <!--灰色2-->
+    <color name="grayColor">#D8D8D8</color>
+    <!--紫色-->
+    <!--客户详情购房进度ListView颜色-->
+
+
+    <!--删除背景-->
+    <color name="deleteColor">#F6564A</color>
+
+    <color name="graybit">#999999</color>
+    <color name="bulebit">#4FC3F3</color>
+    <color name="yellowbit">#FE722D</color>
+    <color name="purple">#EE82EE</color>
+
+    <!--黄色-->
+    <color name="yellowColor">#FFC000</color>
+    <color name="buleOut">#6FCCF3</color>
+
+    <!--进度条进度-->
+    <color name="progressbar">#4ADEC3</color>
+
+    <!--编辑页面颜色-->
+    <color name="editTx">#D8D8D8</color>
+    <color name="editinput">#999999</color>
+
+    <!--红色-->
+    <color name="red">#F6564A</color>
+
+    <!--white-->
+    <color name="white">#FFFFFF</color>
+
+    <!--列表2px分割线用色-->
+    <!--有色分割线用色-->
+    <!--驻场分割线用色-->
+    <color name="dividerColor">#E9E9E9</color>
+
+    <!--点击状态改变颜色-->
+    <color name="clickColor">#DBECFC</color>
+
+    <!-- 下拉刷新时，颜色值 -->
+
+    <!--下拉选择背景板-->
+
+
 </resources>

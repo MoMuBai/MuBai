@@ -12,10 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
+import com.mob.mubai.base.utils.AppManager;
 import com.mob.mubai.base.utils.To;
+import com.mob.mubai.view.dialog.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +46,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.rl)
     RelativeLayout rl;
     private List<String> data;
+    private int backPressTimes;
 
     @Override
     protected int getLayout() {
@@ -80,35 +84,33 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
+    /**
+     * 点击返回键的事件
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (KeyEvent.KEYCODE_BACK == event.getKeyCode()) {
-
-
-            final AlertDialog.Builder alterDialog = new AlertDialog.Builder(this);
-            alterDialog.setMessage("确定退出应用？");
-            alterDialog.setCancelable(true);
-
-            alterDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+    public void onBackPressed() {
+        if (backPressTimes == 0) {
+            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+            backPressTimes = 1;
+            new Thread() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (RongIM.getInstance() != null)
-                        RongIM.getInstance().disconnect(true);
-                        Process.killProcess(Process.myPid());
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        backPressTimes = 0;
+                    }
                 }
-            });
-            alterDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            alterDialog.show();
+            }.start();
+            return;
+        } else {
+            if (RongIM.getInstance() != null)
+                RongIM.getInstance().disconnect(true);
+            AppManager.getAppManager().finishAllActivity();
+            Process.killProcess(Process.myPid());
         }
-
-        return false;
+        super.onBackPressed();
     }
-
 }

@@ -44,16 +44,16 @@
         "source": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_ic_picture.xml"
     },
     {
+        "merged": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_ic_phone.xml",
+        "source": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_ic_phone.xml"
+    },
+    {
         "merged": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_selector_grid_camera_mask.xml",
         "source": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_selector_grid_camera_mask.xml"
     },
     {
         "merged": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_ic_admin_selector.xml",
         "source": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_ic_admin_selector.xml"
-    },
-    {
-        "merged": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_ic_phone.xml",
-        "source": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_ic_phone.xml"
     },
     {
         "merged": "E:\\mubai\\project\\MuBai\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_an_voice_sent.xml",

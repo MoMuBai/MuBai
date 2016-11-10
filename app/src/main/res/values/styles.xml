@@ -8,4 +8,18 @@
         <item name="colorAccent">#0195ff</item>
     </style>
 
+    <!--分割线style-->
+    <style name="divierStyle_nomargin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/dividerColor</item>
+    </style>
+
+    <!--自定义Dialog的Style-->
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
 </resources>
