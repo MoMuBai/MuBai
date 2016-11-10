@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -23,7 +24,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.list_view)
     ListView listView;
     @Bind(R.id.activity_main)
-    RelativeLayout activityMain;
+    LinearLayout activityMain;
     private List<String> data;
 
     @Override
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity {
                 startIntent(LoginActivity.class);
                 break;
             case 2:
-                To.d("沐白"+pos);
+                startIntent(IMActivity.class);
                 break;
             case 3:
                 To.d("沐白"+pos);

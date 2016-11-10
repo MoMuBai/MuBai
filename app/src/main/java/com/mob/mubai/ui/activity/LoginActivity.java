@@ -1,17 +1,33 @@
 package com.mob.mubai.ui.activity;
 
-import android.os.Bundle;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.util.Log;
 import android.widget.EditText;
 
+import com.mob.mubai.App;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
+import com.mob.mubai.base.utils.L;
+import com.mob.mubai.base.utils.OkHttpClientUtil;
+import com.mob.mubai.base.utils.SpUtils;
 import com.mob.mubai.ui.contract.LoginContract;
+import com.squareup.okhttp.Request;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 
 /**
  * Created by mubai on 2016/11/7.
@@ -29,6 +45,8 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     TextInputLayout textInputPass;
     @Bind(R.id.float_btn)
     FloatingActionButton floatBtn;
+    private String BASE_URL = "http://webim.demo.rong.io/";
+    private String token;
 
     @Override
     protected int getLayout() {
@@ -56,6 +74,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
                 textInputName.setError("用户名不能少于6位");
             }else {
                 textInputName.setError("");
+                login();
             }
         });
     }
@@ -63,6 +82,98 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     @Override
     public void showInfo() {
 
+    }
+
+    /**
+     * 用户登录，用户登录成功，获得 cookie，将cookie 保存
+     */
+    private void login() {
+        Map<String, String> requestParameter = new HashMap<String, String>();
+
+        requestParameter.put("email", "yang115@qq.com");
+        requestParameter.put("password", "123456");
+
+        OkHttpClientUtil.postAsyn(BASE_URL+"email_login", new OkHttpClientUtil.ResultCallback<String>() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                L.d(TAG, "onResponse() called with: response = [" + response + "]");
+                getToken();
+            }
+        },requestParameter);
+    }
+
+    /**
+     * 获得token
+     */
+    private void getToken() {
+        OkHttpClientUtil.getAsyn(BASE_URL + "token", new OkHttpClientUtil.ResultCallback<String>() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                token = response;
+                L.d("LoginActivity",token);
+                connect(token);
+                SpUtils.putString(LoginActivity.this,"token","token");
+            }
+        });
+    }
+
+
+    /**
+     * 建立与融云服务器的连接
+     *
+     * @param token
+     */
+    private void connect(String token) {
+
+        if (getApplicationInfo().packageName.equals(App.getCurProcessName(getApplicationContext()))) {
+
+            /**
+             * IMKit SDK调用第二步,建立与服务器的连接
+             */
+            RongIM.connect(token, new RongIMClient.ConnectCallback() {
+
+                /**
+                 * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
+                 */
+                @Override
+                public void onTokenIncorrect() {
+                    L.d("LoginActivity", "--onTokenIncorrect");
+                    startActivity(new Intent(LoginActivity.this, IMActivity.class));
+
+                }
+
+                /**
+                 * 连接融云成功
+                 * @param userid 当前 token
+                 */
+                @Override
+                public void onSuccess(String userid) {
+                    L.d("LoginActivity", "--onSuccess" + userid);
+                    startActivity(new Intent(LoginActivity.this, IMActivity.class));
+                    finish();
+                }
+
+                /**
+                 * 连接融云失败
+                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
+                 */
+                @Override
+                public void onError(RongIMClient.ErrorCode errorCode) {
+
+                    L.d("LoginActivity", "--onError" + errorCode);
+                }
+            });
+        }
     }
 
 }

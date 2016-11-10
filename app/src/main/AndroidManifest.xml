@@ -19,6 +19,39 @@
         <activity android:name=".ui.activity.SeekBarActivity" />
         <activity android:name=".ui.activity.ThirdActivity" />
         <activity android:name=".ui.activity.LoginActivity"/>
+        <activity android:name=".ui.activity.IMActivity"/>
+
+        <!--会话界面-->
+        <activity android:name=".ui.activity.ConversationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.mob.mubai"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <!--会话列表-->
+        <activity
+            android:name=".ui.activity.ConversationListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.mob.mubai"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

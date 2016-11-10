@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <include layout="@layout/actionbar"/>
+
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_name"
@@ -18,7 +21,6 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/text_input_name"
         android:id="@+id/text_input_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -31,12 +33,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
         android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:id="@+id/float_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>
