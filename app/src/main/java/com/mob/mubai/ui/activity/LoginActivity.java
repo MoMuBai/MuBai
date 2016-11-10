@@ -1,13 +1,14 @@
 package com.mob.mubai.ui.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.util.Log;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mob.mubai.App;
 import com.mob.mubai.R;
@@ -18,14 +19,12 @@ import com.mob.mubai.base.utils.SpUtils;
 import com.mob.mubai.ui.contract.LoginContract;
 import com.squareup.okhttp.Request;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 
@@ -45,6 +44,16 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     TextInputLayout textInputPass;
     @Bind(R.id.float_btn)
     FloatingActionButton floatBtn;
+    @Bind(R.id.img1)
+    ImageView img1;
+    @Bind(R.id.txt1)
+    TextView txt1;
+    @Bind(R.id.back)
+    RelativeLayout back;
+    @Bind(R.id.img2)
+    TextView img2;
+    @Bind(R.id.rl)
+    RelativeLayout rl;
     private String BASE_URL = "http://webim.demo.rong.io/";
     private String token;
 
@@ -64,15 +73,15 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         floatBtn.setOnClickListener(v -> {
             String userName = textInputName.getEditText().getText().toString();
             String passWord = textInputPass.getEditText().getText().toString();
-            if (userName.length()<=0 || passWord.length() <=0){
-                Snackbar.make(floatBtn,"需要用户名和密码",Snackbar.LENGTH_SHORT)
-                        .setAction("返回",v1 -> {
+            if (userName.length() <= 0 || passWord.length() <= 0) {
+                Snackbar.make(floatBtn, "需要用户名和密码", Snackbar.LENGTH_SHORT)
+                        .setAction("返回", v1 -> {
                             finish();
                         }).show();
             }
-            if (userName.length()<6){
+            if (userName.length() < 6) {
                 textInputName.setError("用户名不能少于6位");
-            }else {
+            } else {
                 textInputName.setError("");
                 login();
             }
@@ -84,6 +93,11 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
 
     }
 
+    @OnClick(R.id.back)
+    void back(){
+        finish();
+    }
+
     /**
      * 用户登录，用户登录成功，获得 cookie，将cookie 保存
      */
@@ -93,7 +107,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         requestParameter.put("email", "yang115@qq.com");
         requestParameter.put("password", "123456");
 
-        OkHttpClientUtil.postAsyn(BASE_URL+"email_login", new OkHttpClientUtil.ResultCallback<String>() {
+        OkHttpClientUtil.postAsyn(BASE_URL + "email_login", new OkHttpClientUtil.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
 
@@ -104,7 +118,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
                 L.d(TAG, "onResponse() called with: response = [" + response + "]");
                 getToken();
             }
-        },requestParameter);
+        }, requestParameter);
     }
 
     /**
@@ -120,9 +134,9 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
             @Override
             public void onResponse(String response) {
                 token = response;
-                L.d("LoginActivity",token);
+                L.d("LoginActivity", token);
                 connect(token);
-                SpUtils.putString(LoginActivity.this,"token","token");
+                SpUtils.putString(LoginActivity.this, "token", "token");
             }
         });
     }
@@ -148,8 +162,6 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
                 @Override
                 public void onTokenIncorrect() {
                     L.d("LoginActivity", "--onTokenIncorrect");
-                    startActivity(new Intent(LoginActivity.this, IMActivity.class));
-
                 }
 
                 /**
@@ -175,5 +187,4 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
             });
         }
     }
-
 }

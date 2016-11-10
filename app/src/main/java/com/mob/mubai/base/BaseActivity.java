@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.RelativeLayout;
 
+import com.mob.mubai.R;
 import com.mob.mubai.base.utils.AppManager;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by mubai on 2016/11/7.
@@ -50,4 +54,6 @@ public abstract class BaseActivity<T extends BasePresenter>extends AppCompatActi
         super.onDestroy();
         AppManager.getAppManager().removeActivity(this);
     }
+
+
 }
