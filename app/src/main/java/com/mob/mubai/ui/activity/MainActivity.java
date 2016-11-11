@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity {
                 startIntent(LoginActivity.class);
                 break;
             case 2:
-                To.d("OtherActivity");
+                startIntent(ReflectionActivity.class);
                 break;
             default:
                 break;
