@@ -1,4 +1,4 @@
-package com.mob.mubai.base.hide;
+package com.mob.mubai.data.bean;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

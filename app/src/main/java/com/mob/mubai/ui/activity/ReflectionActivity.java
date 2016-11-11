@@ -1,16 +1,12 @@
 package com.mob.mubai.ui.activity;
 
-import android.app.ActivityManager;
-
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
-import com.mob.mubai.base.hide.SystemProperties;
 import com.mob.mubai.base.utils.L;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Created by mubai on 2016/11/11.

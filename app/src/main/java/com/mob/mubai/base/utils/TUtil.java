@@ -1,6 +1,7 @@
 package com.mob.mubai.base.utils;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * Created by mubai on 2016/11/10.

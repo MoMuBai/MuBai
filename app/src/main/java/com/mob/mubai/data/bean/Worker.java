@@ -1,4 +1,4 @@
-package com.mob.mubai.base.hide;
+package com.mob.mubai.data.bean;
 
 import com.mob.mubai.base.utils.L;
 
