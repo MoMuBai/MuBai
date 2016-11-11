@@ -39,13 +39,8 @@ public abstract class BaseActivity<T extends BasePresenter,V extends BaseModel>e
         mModel = TUtil.getT(this, 1);
 
         if (this instanceof BaseView) mPresenter.setVM(this, mModel);
+        initData();
 
-        initView();
-        try {
-            initData();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     protected abstract int getLayout();
@@ -54,7 +49,7 @@ public abstract class BaseActivity<T extends BasePresenter,V extends BaseModel>e
     protected abstract void initView();
 
 
-    protected abstract void initData() throws Exception;
+    protected abstract void initData();
 
 
     protected void startIntent(Class<Activity> cls){

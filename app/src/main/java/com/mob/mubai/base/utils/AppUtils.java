@@ -40,7 +40,7 @@ import java.util.UUID;
  */
 public final class AppUtils {
 
-    private static Float version = 1.1f;
+    private static Float version = 1.0f;
 
     /**
      * 使状态栏透明
@@ -63,13 +63,18 @@ public final class AppUtils {
      *
      *
      * */
-    public static boolean checkIsUpdate() throws Exception{
+    public static boolean checkIsUpdate(){
         //TODO 需要进行网络请求获取版本号
-        if (version > Float.parseFloat(AppUtils.getVersionName())){
-            return true;
-        }else {
-            return false;
+        try {
+            if (version > Float.parseFloat(AppUtils.getVersionName())){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     /**

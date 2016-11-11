@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity {
         data = new ArrayList<>();
         data.add(0, "SeekBarActivity");
         data.add(1, "LoginActivity");
-        data.add(2, "OtherActivity");
+        data.add(2, "ReflectionActivity");
         listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data));
     }
 
