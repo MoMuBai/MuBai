@@ -19,11 +19,11 @@ import butterknife.OnClick;
  * Created by mubai on 2016/11/7.
  */
 
-public abstract class BaseActivity<T extends BasePresenter,V extends BaseModel>extends AppCompatActivity{
+public abstract class BaseActivity<T extends BasePresenter,M extends BaseModel>extends AppCompatActivity{
 
     public T mPresenter;
 
-    public V mModel;
+    public M mModel;
 
     protected String TAG = getClass().getName();
 
@@ -34,11 +34,14 @@ public abstract class BaseActivity<T extends BasePresenter,V extends BaseModel>e
         AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
 
-        mPresenter = TUtil.getT(this, 0);
+        mPresenter = TUtil.getT(this,0);
 
-        mModel = TUtil.getT(this, 1);
+        mModel = TUtil.getT(this,1);
 
-        if (this instanceof BaseView) mPresenter.setVM(this, mModel);
+        if (this instanceof BaseView) mPresenter.setVM(mModel,this);
+
+        initView();
+
         initData();
 
     }
@@ -61,7 +64,7 @@ public abstract class BaseActivity<T extends BasePresenter,V extends BaseModel>e
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) mPresenter.onDestroy();
+        if (mPresenter != null) mPresenter.onDestory();
         AppManager.getAppManager().removeActivity(this);
     }
 

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mob.mubai.App;
 import com.mob.mubai.R;
@@ -17,6 +18,8 @@ import com.mob.mubai.base.utils.L;
 import com.mob.mubai.base.utils.OkHttpClientUtil;
 import com.mob.mubai.base.utils.SpUtils;
 import com.mob.mubai.ui.contract.LoginContract;
+import com.mob.mubai.ui.model.LoginModel;
+import com.mob.mubai.ui.presenter.LoginPresenter;
 import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
@@ -32,7 +35,7 @@ import io.rong.imlib.RongIMClient;
  * Created by mubai on 2016/11/7.
  */
 
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity<LoginPresenter,LoginModel> implements LoginContract.View{
 
     @Bind(R.id.et_name)
     EditText etName;
@@ -70,6 +73,7 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     protected void initData() {
+        mPresenter.setData();
         floatBtn.setOnClickListener(v -> {
             String userName = textInputName.getEditText().getText().toString();
             String passWord = textInputPass.getEditText().getText().toString();
@@ -181,5 +185,11 @@ public class LoginActivity extends BaseActivity{
                 }
             });
         }
+    }
+
+
+    @Override
+    public void showInfo(String data) {
+        Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
     }
 }

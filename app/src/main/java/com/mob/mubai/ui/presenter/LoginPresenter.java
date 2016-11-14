@@ -23,4 +23,9 @@ public class LoginPresenter extends LoginContract.Presenter {
         if (mPasswordValidator.verifyPassword(pass)) return;
         mUserManager.performLogin(name,pass);
     }
+
+    @Override
+    public void setData() {
+        mView.showInfo(mModel.getData());
+    }
 }

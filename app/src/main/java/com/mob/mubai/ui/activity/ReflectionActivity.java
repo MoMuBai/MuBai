@@ -32,7 +32,7 @@ public class ReflectionActivity extends BaseActivity {
     }
 
     private void getReflection() {
-        String className = "com.mob.mubai.base.hide.Worker";
+        String className = "com.mob.mubai.data.bean";
         try {
 
             Class c_1 = Class.forName(className);

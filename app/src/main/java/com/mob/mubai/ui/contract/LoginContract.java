@@ -13,14 +13,18 @@ import com.mob.mubai.base.BaseView;
 public interface LoginContract {
 
     interface Model extends BaseModel{
+        String getData();
     }
     interface View extends BaseView{
-        void showInfo();
+        void showInfo(String data);
     }
 
     abstract class Presenter extends BasePresenter<Model,View>{
+
+        public abstract void setData();
+
         @Override
-        public void onStart() {
+        protected void onStart() {
 
         }
     }

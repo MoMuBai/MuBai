@@ -5,21 +5,22 @@ import android.content.Context;
 /**
  * Created by mubai on 2016/11/3.
  */
+public abstract class BasePresenter<M,V> {
 
-public abstract class BasePresenter<M,T> {
-    public Context context;
     public M mModel;
-    public T mView;
 
-    public void setVM(T v, M m) {
-        this.mView = v;
+    public V mView;
+
+    public void setVM(M m,V v){
         this.mModel = m;
-        this.onStart();
+        this.mView = v;
+        onStart();
     }
 
-    public abstract void onStart();
+    protected abstract void onStart();
 
-    public void onDestroy() {
+
+    public static void onDestory(){
+
     }
-
 }
