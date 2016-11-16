@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mob.mubai">
+          package="com.mob.mubai">
 
     <application
         android:name=".App"
@@ -11,29 +11,30 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.LoginActivity"/>
-        <activity android:name=".ui.activity.SeekBarActivity" />
-        <activity android:name=".ui.activity.ThirdActivity" />
+        <activity android:name=".ui.activity.SeekBarActivity"/>
+        <activity android:name=".ui.activity.ThirdActivity"/>
         <activity android:name=".ui.activity.IMActivity"/>
         <activity android:name=".ui.activity.ReflectionActivity"/>
+        <activity android:name=".ui.activity.BannerActivity"/>
 
         <!--会话界面-->
         <activity android:name=".ui.activity.ConversationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
                 <data
                     android:host="com.mob.mubai"
                     android:pathPrefix="/conversation/"
-                    android:scheme="rong" />
+                    android:scheme="rong"/>
             </intent-filter>
         </activity>
 
@@ -44,14 +45,14 @@
             android:windowSoftInputMode="stateHidden|adjustResize">
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
                 <data
                     android:host="com.mob.mubai"
                     android:pathPrefix="/conversationlist"
-                    android:scheme="rong" />
+                    android:scheme="rong"/>
             </intent-filter>
         </activity>
     </application>

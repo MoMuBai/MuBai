@@ -31,86 +31,90 @@ import io.rong.imkit.RongIM;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.list_view)
-    ListView listView;
-    @Bind(R.id.activity_main)
-    LinearLayout activityMain;
-    @Bind(R.id.img1)
-    ImageView img1;
-    @Bind(R.id.txt1)
-    TextView txt1;
-    @Bind(R.id.back)
-    RelativeLayout back;
-    @Bind(R.id.img2)
-    TextView img2;
-    @Bind(R.id.rl)
-    RelativeLayout rl;
-    private List<String> data;
-    private int backPressTimes;
+        @Bind(R.id.list_view)
+        ListView listView;
+        @Bind(R.id.activity_main)
+        LinearLayout activityMain;
+        @Bind(R.id.img1)
+        ImageView img1;
+        @Bind(R.id.txt1)
+        TextView txt1;
+        @Bind(R.id.back)
+        RelativeLayout back;
+        @Bind(R.id.img2)
+        TextView img2;
+        @Bind(R.id.rl)
+        RelativeLayout rl;
+        private List<String> data;
+        private int backPressTimes;
 
-    @Override
-    protected int getLayout() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    protected void initView() {
-        img1.setVisibility(View.GONE);
-    }
-
-    @Override
-    protected void initData() {
-        data = new ArrayList<>();
-        data.add(0, "SeekBarActivity");
-        data.add(1, "LoginActivity");
-        data.add(2, "ReflectionActivity");
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data));
-    }
-
-    @OnItemClick(R.id.list_view)
-    void itemClick(int pos) {
-        switch (pos) {
-            case 0:
-                startIntent(SeekBarActivity.class);
-                break;
-            case 1:
-                startIntent(LoginActivity.class);
-                break;
-            case 2:
-                startIntent(ReflectionActivity.class);
-                break;
-            default:
-                break;
+        @Override
+        protected int getLayout() {
+                return R.layout.activity_main;
         }
-    }
 
-    /**
-     * 点击返回键的事件
-     */
-    @Override
-    public void onBackPressed() {
-        if (backPressTimes == 0) {
-            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
-            backPressTimes = 1;
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } finally {
-                        backPressTimes = 0;
-                    }
+        @Override
+        protected void initView() {
+                img1.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected void initData() {
+                data = new ArrayList<>();
+                data.add(0, "SeekBarActivity");
+                data.add(1, "LoginActivity");
+                data.add(2, "ReflectionActivity");
+                data.add(3, "BannerActivity");
+                listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data));
+        }
+
+        @OnItemClick(R.id.list_view)
+        void itemClick(int pos) {
+                switch (pos) {
+                        case 0:
+                                startIntent(SeekBarActivity.class);
+                                break;
+                        case 1:
+                                startIntent(LoginActivity.class);
+                                break;
+                        case 2:
+                                startIntent(ReflectionActivity.class);
+                                break;
+                        case 3:
+                                startIntent(BannerActivity.class);
+                                break;
+                        default:
+                                break;
                 }
-            }.start();
-            return;
-        } else {
-            if (RongIM.getInstance() != null)
-                RongIM.getInstance().disconnect(true);
-            AppManager.getAppManager().finishAllActivity();
-            Process.killProcess(Process.myPid());
         }
-        super.onBackPressed();
-    }
+
+        /**
+         * 点击返回键的事件
+         */
+        @Override
+        public void onBackPressed() {
+                if (backPressTimes == 0) {
+                        Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+                        backPressTimes = 1;
+                        new Thread() {
+                                @Override
+                                public void run() {
+                                        try {
+                                                Thread.sleep(2000);
+                                        } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                        } finally {
+                                                backPressTimes = 0;
+                                        }
+                                }
+                        }.start();
+                        return;
+                } else {
+                        if (RongIM.getInstance() != null)
+                                RongIM.getInstance().disconnect(true);
+                        AppManager.getAppManager().finishAllActivity();
+                        Process.killProcess(Process.myPid());
+                }
+                super.onBackPressed();
+        }
 }

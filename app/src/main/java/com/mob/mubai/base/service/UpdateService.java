@@ -217,8 +217,8 @@ public class UpdateService extends Service {
 
         @Override
         protected Boolean doInBackground(Integer... params) {
-            int totalSize = params[0]; // 下载总大小
-            int downloadCount = 0; // 已下载大小
+            float totalSize = params[0]; // 下载总大小
+            float downloadCount = 0; // 已下载大小
             int updateProgress = 0; // 更新进度
             int updateStep = 5; // 更新进度步进
 
@@ -230,7 +230,7 @@ public class UpdateService extends Service {
                     // 计算已下载到的大小
                     downloadCount += readsize;
                     // 先计算已下载的百分比，然后跟上次比较是否有增加，有则更新通知进度
-                    int now = downloadCount * 100 / totalSize;
+                    int now = (int) (downloadCount * 100 / totalSize);
                     if (updateProgress < now) {
                         updateProgress = now;
                         Log.d("UpdateService", "update: " + updateProgress + "%");
