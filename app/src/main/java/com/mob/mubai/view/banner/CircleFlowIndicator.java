@@ -153,7 +153,6 @@ public class CircleFlowIndicator extends View implements FlowIndicator,
                 if (viewFlow != null) {
                         count = viewFlow.getViewsCount();
                 }
-
                 //this is the amount the first circle should be offset to make the entire thing centered
                 float centeringOffset = 0;
 
@@ -162,10 +161,11 @@ public class CircleFlowIndicator extends View implements FlowIndicator,
                 // Draw stroked circles
                 for (int iLoop = 0; iLoop < count; iLoop++) {
                         mPaintInactive.setStyle(Style.STROKE);//空心矩形框
-                        mPaintInactive.setStrokeWidth(4f);
+                        mPaintInactive.setStrokeWidth(5f);
                         float x = leftPadding + radius + (iLoop * circleSeparation) + centeringOffset;
                         float y = getPaddingTop() + radius;
-                        canvas.drawRect(x - 15, y - 15, x + 5, y + 5, mPaintInactive);
+                        RectF oval = new RectF(x - 15, y - 15, x + 5, y + 5);// 设置个新的长方形
+                        canvas.drawRoundRect(oval, 5, 5, mPaintInactive);
 //                        canvas.drawCircle(leftPadding + radius
 //                                            + (iLoop * circleSeparation) + centeringOffset,
 //                                  getPaddingTop() + radius, radius, mPaintInactive);
@@ -178,12 +178,11 @@ public class CircleFlowIndicator extends View implements FlowIndicator,
                 // The flow width has been upadated yet. Draw the default position
 //                canvas.drawCircle(leftPadding + radius + cx + centeringOffset, getPaddingTop()
 //                          + radius, radius + activeRadius, mPaintActive);
-//                canvas.drawRect(60, 90, 160, 100, mPaintActive);// 长方形
                 mPaintInactive.setStyle(Style.FILL);
                 float cooX = leftPadding + radius + cx + centeringOffset;
                 float cooY = getPaddingTop() + radius;
-                Log.d("CircleFlowIndicator", "cooX:" + cooX);
-                canvas.drawRect(cooX - 15, cooY - 15, cooX + 5, cooY + 5, mPaintActive);
+                RectF oval = new RectF(cooX - 17.5f, cooY - 17, cooX + 7.5f, cooY + 7.5f);// 设置个新的长方形
+                canvas.drawRoundRect(oval, 5, 5, mPaintActive);
         }
 
         /*
