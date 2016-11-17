@@ -23,6 +23,7 @@
         <activity android:name=".ui.activity.IMActivity"/>
         <activity android:name=".ui.activity.ReflectionActivity"/>
         <activity android:name=".ui.activity.BannerActivity"/>
+        <activity android:name=".ui.activity.RecyclerActivity"/>
 
         <!--会话界面-->
         <activity android:name=".ui.activity.ConversationActivity">

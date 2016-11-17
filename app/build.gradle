@@ -122,5 +122,6 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile project(':IMKit')
     compile(name: 'refreshAndLoad', ext: 'aar')
+    compile 'com.android.support:recyclerview-v7:25.0.0'
 }
 

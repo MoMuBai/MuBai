@@ -65,6 +65,7 @@ public class MainActivity extends BaseActivity {
                 data.add(1, "LoginActivity");
                 data.add(2, "ReflectionActivity");
                 data.add(3, "BannerActivity");
+                data.add(4, "RecyclerActivity");
                 listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data));
         }
 
@@ -82,6 +83,9 @@ public class MainActivity extends BaseActivity {
                                 break;
                         case 3:
                                 startIntent(BannerActivity.class);
+                                break;
+                        case 4:
+                                startIntent(RecyclerActivity.class);
                                 break;
                         default:
                                 break;
