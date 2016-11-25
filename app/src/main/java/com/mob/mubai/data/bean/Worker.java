@@ -3,7 +3,7 @@ package com.mob.mubai.data.bean;
 import com.mob.mubai.base.utils.L;
 
 /**
- * Created by mubai on 2016/11/11.
+ * Created by lzw on 2016/11/11.
  */
 
 public class Worker {

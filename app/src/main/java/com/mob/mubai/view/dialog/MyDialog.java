@@ -12,7 +12,7 @@ import com.mob.mubai.base.listeners.DialogOkBtnListener;
 
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  * Dialog
  */
 public final class MyDialog extends Dialog {

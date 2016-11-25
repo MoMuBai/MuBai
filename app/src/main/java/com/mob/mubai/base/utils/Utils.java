@@ -6,7 +6,7 @@ import android.util.TypedValue;
 import android.view.WindowManager;
 
 /**
- * Created by MJJ on 2015/7/25.
+ * Created by lzw on 2015/7/25.
  */
 public class Utils {
 

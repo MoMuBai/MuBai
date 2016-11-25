@@ -35,7 +35,7 @@ import java.util.UUID;
 
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  * App常用的方法
  */
 public final class AppUtils {

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  * 极光推送Receiver
  */
 

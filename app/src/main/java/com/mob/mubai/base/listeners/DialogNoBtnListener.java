@@ -1,7 +1,7 @@
 package com.mob.mubai.base.listeners;
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  * 对话框回调接口
  */
 public interface DialogNoBtnListener {

@@ -6,7 +6,7 @@ import android.os.Environment;
 
 
 /**
- * Created by mubai on 2016/11/8.
+ * Created by lzw on 2016/11/8.
  * 应用程序配置类：用于保存用户相关信息及设置
  */
 public final class AppConfig {

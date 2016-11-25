@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  */
 public class TUtil {
 

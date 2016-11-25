@@ -3,7 +3,7 @@ package com.mob.mubai.base;
 import android.content.Context;
 
 /**
- * Created by mubai on 2016/11/3.
+ * Created by lzw on 2016/11/3.
  */
 public abstract class BasePresenter<M,V> {
 

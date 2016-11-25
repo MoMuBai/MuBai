@@ -8,7 +8,7 @@ import com.jingchen.pulltorefresh.PullToRefreshLayout.OnPullListener;
 
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  */
 public final class MyPullListener implements OnPullListener {
 

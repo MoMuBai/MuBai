@@ -1,7 +1,7 @@
 package com.mob.mubai.data.model;
 
 /**
- * Created by mubai on 2016/11/3.
+ * Created by lzw on 2016/11/3.
  */
 
 public class PasswordValidator {

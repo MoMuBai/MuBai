@@ -1,7 +1,7 @@
 package com.mob.mubai.base.utils;
 
 /**
- * Created by mubai on 2016/11/3.
+ * Created by lzw on 2016/11/3.
  */
 
 public class UserManager {

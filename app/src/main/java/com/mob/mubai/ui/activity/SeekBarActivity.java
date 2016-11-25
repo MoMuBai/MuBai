@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by mubai on 2016/11/4.
+ * Created by lzw on 2016/11/4.
  */
 
 public class SeekBarActivity extends BaseActivity {

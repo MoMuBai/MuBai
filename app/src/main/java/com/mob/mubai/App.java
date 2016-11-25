@@ -12,7 +12,7 @@ import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 
 /**
- * Created by mubai on 2016/11/4.
+ * Created by lzw on 2016/11/4.
  */
 
 public class App extends Application {

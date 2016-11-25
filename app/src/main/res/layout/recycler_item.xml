@@ -1,38 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mob.mubai.view.SlidingButtonView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_marginBottom="1dp"
-    android:background="@android:color/white">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?selectableItemBackground"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="5dp">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"/>
 
-        <TextView
-            android:id="@+id/tv_delete"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/layout_content"
-            android:background="@color/red"
-            android:gravity="center"
-            android:text="删 除"
-            android:textColor="#DDFFFFFF"/>
-
-        <RelativeLayout
-            android:id="@+id/layout_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:textColor="#DD000000"
-                android:textSize="50dp"/>
-        </RelativeLayout>
-
-    </RelativeLayout>
-</com.mob.mubai.view.SlidingButtonView>
+</LinearLayout>

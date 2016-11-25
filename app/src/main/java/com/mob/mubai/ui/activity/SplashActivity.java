@@ -13,7 +13,7 @@ import com.mob.mubai.view.dialog.MyDialog;
 import butterknife.Bind;
 
 /**
- * Created by mubai on 2016/11/10.
+ * Created by lzw on 2016/11/10.
  * 闪屏
  */
 

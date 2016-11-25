@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import java.util.Stack;
 
 /**
- * Created by mubai on 2016/11/8.
+ * Created by lzw on 2016/11/8.
  */
 
 public class AppManager {

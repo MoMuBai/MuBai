@@ -4,7 +4,7 @@ import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
 
 /**
- * Created by mubai on 2016/11/9.
+ * Created by lzw on 2016/11/9.
  */
 
 public class ConversationListActivity extends BaseActivity {

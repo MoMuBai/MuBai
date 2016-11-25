@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by mubai on 2016/11/7.
+ * Created by lzw on 2016/11/7.
  */
 
 public abstract class BaseActivity<T extends BasePresenter,M extends BaseModel>extends AppCompatActivity{

@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Created by mubai on 2016/11/11.
+ * Created by lzw on 2016/11/11.
  * Android中Java反射技术的使用示例
  * 在Java中描述字节码文件(xxx.class)的类叫Class
  * 反射的过程可视为剖析Class的过程

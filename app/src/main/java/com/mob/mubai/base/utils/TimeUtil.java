@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by mubai on 2016/11/8.
+ * Created by lzw on 2016/11/8.
  */
 public final class TimeUtil {
 
