@@ -5,22 +5,24 @@ import android.content.Context;
 /**
  * Created by lzw on 2016/11/3.
  */
-public abstract class BasePresenter<M,V> {
+public abstract class BasePresenter<M, V> {
 
-    public M mModel;
+        public M mModel;
 
-    public V mView;
+        public V mView;
 
-    public void setVM(M m,V v){
-        this.mModel = m;
-        this.mView = v;
-        onStart();
-    }
+        public RxManager mRxManager = new RxManager();
 
-    protected abstract void onStart();
+        public void setVM(M m, V v) {
+                this.mModel = m;
+                this.mView = v;
+                onStart();
+        }
+
+        protected abstract void onStart();
 
 
-    public static void onDestory(){
-
-    }
+        public void onDestory() {
+                mRxManager.clear();
+        }
 }
