@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 android {
-    compileSdkVersion 22
-    buildToolsVersion "24.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.mob.mubai"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -14,20 +14,20 @@ android {
     }
 
     //直接写在gradle不安全 这里在混淆文件中写入
-    signingConfigs{
-        release{
+    signingConfigs {
+        release {
             storeFile file(RELEASE_STORE_FILE)
             storePassword RELEASE_STORE_PASSWORD
             keyAlias RELEASE_KEY_ALIAS
             keyPassword RELEASE_KEY_PASSWORD
         }
-        debug{
+        debug {
             storeFile file(RELEASE_STORE_FILE)
             storePassword RELEASE_STORE_PASSWORD
             keyAlias RELEASE_KEY_ALIAS
             keyPassword RELEASE_KEY_PASSWORD
         }
-        preview{
+        preview {
             storeFile file(RELEASE_STORE_FILE)
             storePassword RELEASE_STORE_PASSWORD
             keyAlias RELEASE_KEY_ALIAS
@@ -36,8 +36,8 @@ android {
     }
 
     buildTypes {
-        debug{
-            manifestPlaceholders = [app_label:"@string/app_name_debug"]
+        debug {
+            manifestPlaceholders = [app_label: "@string/app_name_debug"]
 
             applicationIdSuffix ".debug" // 增加APP ID的后缀
 
@@ -49,11 +49,12 @@ android {
 
             signingConfig signingConfigs.debug //签名
 
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' // 混淆配置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 混淆配置
         }
 
         release {
-            manifestPlaceholders = [app_label:"@string/app_name_release"]
+            manifestPlaceholders = [app_label: "@string/app_name_release"]
 
             minifyEnabled true
 
@@ -67,8 +68,8 @@ android {
         }
 
 
-        preview{
-            manifestPlaceholders = [app_label:"@string/app_name_preview"]
+        preview {
+            manifestPlaceholders = [app_label: "@string/app_name_preview"]
 
             applicationIdSuffix ".preview"
 
@@ -84,10 +85,10 @@ android {
         }
     }
 
-    productFlavors{
-        lzg{}
-        zjy{}
-        lzw{}
+    productFlavors {
+        lzg {}
+        zjy {}
+        lzw {}
 
         productFlavors.all { flavor ->
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
@@ -110,21 +111,21 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:support-v4:22.2.1'
-    testCompile 'junit:junit:4.12'
-    compile 'org.mockito:mockito-core:2.2.9'
-    testCompile 'org.robolectric:robolectric:3.0-rc3'
-    compile 'com.android.support:multidex:1.0.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:design:22.2.1'
-    compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    testCompile "junit:junit:$rootProject.junitVersion"
+    compile "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testCompile "org.robolectric:robolectric:$rootProject.robolectricVersion"
+    compile "com.android.support:multidex:$rootProject.multidexVersion"
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    compile "com.google.code.gson:gson:$rootProject.gsonVersion"
+    compile "com.squareup.okhttp:okhttp:$rootProject.okhttpVersion"
     compile project(':IMKit')
     compile(name: 'refreshAndLoad', ext: 'aar')
-    compile 'com.android.support:recyclerview-v7:22.0.0'
-    compile 'com.yanzhenjie:recyclerview-swipe:1.0.2'
-    compile 'io.reactivex:rxjava:1.2.3'
-    compile 'io.reactivex:rxandroid:1.2.1'
+    compile "com.yanzhenjie:recyclerview-swipe:$rootProject.yanzhenjieRecyclerviewSwipeVersion"
+    compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
+    compile "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
 }
 
