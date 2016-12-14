@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.mob.mubai.base.exception.LocalFileHandler;
 import com.mob.mubai.base.utils.L;
 import com.mob.mubai.base.utils.SpUtils;
 
@@ -28,6 +29,10 @@ public class App extends Application {
         mContext = getApplicationContext();
 
         SpUtils.init(this);
+
+
+        //配置程序异常退出处理
+        Thread.setDefaultUncaughtExceptionHandler(new LocalFileHandler(this));
         /**
          *
          * OnCreate 会被多个进程重入，这段保护代码，确保只有您需要使用 RongIM 的进程和 Push 进程执行了 init。

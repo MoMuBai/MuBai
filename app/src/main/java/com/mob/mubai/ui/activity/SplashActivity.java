@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
 import com.mob.mubai.base.service.UpdateService;
-import com.mob.mubai.base.utils.AppUtils;
+import com.mob.mubai.base.utils.AppUtil;
 import com.mob.mubai.view.dialog.MyDialog;
 
 import butterknife.Bind;
@@ -43,7 +43,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    if (AppUtils.checkIsUpdate()) {
+                    if (AppUtil.checkIsUpdate()) {
                         showDialog();
                     } else {
                         startMain();

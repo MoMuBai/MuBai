@@ -1,6 +1,9 @@
 package com.mob.mubai.base.utils;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -12,6 +15,11 @@ import java.util.regex.Pattern;
  */
 
 public class IsNetUtil {
+
+        private IsNetUtil() {
+        /* cannot be instantiated */
+                throw new UnsupportedOperationException("cannot be instantiated");
+        }
 
         /**
          * 判断网址是否有效
@@ -81,5 +89,18 @@ public class IsNetUtil {
                 } else {
                         return false;
                 }
+        }
+
+
+        /**
+         * 打开网络设置界面
+         */
+        public static void openSetting(Activity activity) {
+                Intent intent = new Intent("/");
+                ComponentName cm = new ComponentName("com.android.settings",
+                          "com.android.settings.WirelessSettings");
+                intent.setComponent(cm);
+                intent.setAction("android.intent.action.VIEW");
+                activity.startActivityForResult(intent, 0);
         }
 }

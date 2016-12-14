@@ -127,5 +127,7 @@ dependencies {
     compile "com.yanzhenjie:recyclerview-swipe:$rootProject.yanzhenjieRecyclerviewSwipeVersion"
     compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
     compile "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.facebook.fresco:fresco:0.14.1'
 }
 
