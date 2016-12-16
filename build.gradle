@@ -40,5 +40,6 @@ ext {
     okhttpVersion = "2.0.0"
     rxjavaVersion = "1.2.3"
     rxandroidVersion = "1.2.1"
+    retrofit2Version = '2.1.0'
     yanzhenjieRecyclerviewSwipeVersion = "1.0.2"
 }

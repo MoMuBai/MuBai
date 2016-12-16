@@ -16,6 +16,7 @@ import com.mob.mubai.base.BaseActivity;
 import com.mob.mubai.base.utils.L;
 import com.mob.mubai.base.utils.OkHttpClientUtil;
 import com.mob.mubai.base.utils.SpUtils;
+import com.mob.mubai.data.bean.LoginValue;
 import com.mob.mubai.ui.contract.LoginContract;
 import com.mob.mubai.ui.model.LoginModel;
 import com.mob.mubai.ui.presenter.LoginPresenter;
@@ -33,7 +34,7 @@ import io.rong.imlib.RongIMClient;
  * Created by lzw on 2016/11/7.
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> implements LoginContract.View {
 
         @Bind(R.id.et_name)
         EditText etName;
@@ -84,7 +85,8 @@ public class LoginActivity extends BaseActivity {
                                 textInputName.setError("用户名不能少于6位");
                         } else {
                                 textInputName.setError("");
-                                login();
+                                myLogin();
+                                mPresenter.login(userName, passWord);
                         }
                 });
         }
@@ -94,10 +96,20 @@ public class LoginActivity extends BaseActivity {
                 finish();
         }
 
+        @Override
+        public void showData(String data) {
+
+        }
+
+        @Override
+        public void login(LoginValue loginValue) {
+
+        }
+
         /**
          * 用户登录，用户登录成功，获得 cookie，将cookie 保存
          */
-        private void login() {
+        private void myLogin() {
                 Map<String, String> requestParameter = new HashMap<String, String>();
 
                 requestParameter.put("email", "yang115@qq.com");

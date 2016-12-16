@@ -1,8 +1,14 @@
 package com.mob.mubai.ui.presenter;
 
+import com.mob.mubai.base.helps.DataResultFunc;
 import com.mob.mubai.base.utils.UserManager;
+import com.mob.mubai.data.DataResult;
+import com.mob.mubai.data.bean.LoginValue;
 import com.mob.mubai.data.model.PasswordValidator;
 import com.mob.mubai.ui.contract.LoginContract;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by lzw on 2016/11/25.
@@ -21,6 +27,17 @@ public class LoginPresenter extends LoginContract.Presenter {
         @Override
         public void setData() {
                 mView.showData(mModel.getData());
+        }
+
+        @Override
+        public void login(String name, String pass) {
+                mRxManager.add(mModel.login(name, pass)
+                          .map(new DataResultFunc<LoginValue>())
+                          .subscribeOn(Schedulers.io())
+                          .observeOn(AndroidSchedulers.mainThread())
+                          .subscribe(loginValue -> {
+                                  mView.login(loginValue);
+                          }));
         }
 
         public void login_1(String name, String pass) {
