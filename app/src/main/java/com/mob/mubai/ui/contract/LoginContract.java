@@ -6,6 +6,8 @@ import com.mob.mubai.base.BaseView;
 import com.mob.mubai.data.DataResult;
 import com.mob.mubai.data.bean.LoginValue;
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -17,12 +19,17 @@ public interface LoginContract {
                 String getData();
 
                 Observable<DataResult<LoginValue>> login(String name, String pass);
+
+                LoginValue getLoginValue(String name, String pass);
+
         }
 
         interface View extends BaseView {
                 void showData(String data);
 
                 void login(LoginValue info);
+
+                void showJackson();
         }
 
         abstract class Presenter extends BasePresenter<Model, View> {
@@ -30,6 +37,10 @@ public interface LoginContract {
                 public abstract void setData();
 
                 public abstract void login(String name, String pass);
+
+                public abstract void getJsonFromObject(String name, String pass);
+
+                public abstract void getObjectFromJson();
 
                 @Override
                 protected void onStart() {

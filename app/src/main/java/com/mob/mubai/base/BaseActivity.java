@@ -19,54 +19,54 @@ import butterknife.OnClick;
  * Created by lzw on 2016/11/7.
  */
 
-public abstract class BaseActivity<T extends BasePresenter,M extends BaseModel>extends AppCompatActivity{
+public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel> extends AppCompatActivity {
 
-    public T mPresenter;
+        public T mPresenter;
 
-    public M mModel;
+        public M mModel;
 
-    protected String TAG = getClass().getName();
+        protected String TAG = getClass().getName();
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayout());
-        AppManager.getAppManager().addActivity(this);
-        ButterKnife.bind(this);
+        @Override
+        protected void onCreate(@Nullable Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(getLayout());
+                AppManager.getAppManager().addActivity(this);
+                ButterKnife.bind(this);
 
-        mPresenter = TUtil.getT(this,0);
+                mPresenter = TUtil.getT(this, 0);
 
-        mModel = TUtil.getT(this,1);
+                mModel = TUtil.getT(this, 1);
 
-        if (this instanceof BaseView) mPresenter.setVM(mModel,this);
+                if (this instanceof BaseView) mPresenter.setVM(mModel, this);
 
-        initView();
+                initView();
 
-        initData();
+                initData();
 
-    }
+        }
 
-    protected abstract int getLayout();
-
-
-    protected abstract void initView();
+        protected abstract int getLayout();
 
 
-    protected abstract void initData();
+        protected abstract void initView();
 
 
-    protected void startIntent(Class<Activity> cls){
-        Intent intent = new Intent();
-        intent.setClass(this,cls);
-        startActivity(intent);
-    }
+        protected abstract void initData();
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) mPresenter.onDestory();
-        AppManager.getAppManager().removeActivity(this);
-    }
+
+        protected void startIntent(Class<Activity> cls) {
+                Intent intent = new Intent();
+                intent.setClass(this, cls);
+                startActivity(intent);
+        }
+
+        @Override
+        protected void onDestroy() {
+                super.onDestroy();
+                if (mPresenter != null) mPresenter.onDestory();
+                AppManager.getAppManager().removeActivity(this);
+        }
 
 
 }

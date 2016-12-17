@@ -8,6 +8,6 @@ import com.mob.mubai.C;
  */
 
 public final class ApiUrl {
-        static final String LoginUrl = C.BaseUrl + "r=register/VerifyPhone";
+        public static final String LoginUrl = C.BaseUrl + "r=register/VerifyPhone";
 
 }

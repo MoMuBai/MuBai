@@ -106,6 +106,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
 
         }
 
+        @Override
+        public void showJackson() {
+
+        }
+
         /**
          * 用户登录，用户登录成功，获得 cookie，将cookie 保存
          */

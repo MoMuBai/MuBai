@@ -6,7 +6,7 @@ package com.mob.mubai.base.utils;
 
 public class UserManager {
 
-    public void performLogin(String name, String pass){
+        public void performLogin(String name, String pass) {
 
-    }
+        }
 }

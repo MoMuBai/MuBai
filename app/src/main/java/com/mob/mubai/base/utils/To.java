@@ -12,37 +12,37 @@ import com.mob.mubai.App;
 public final class To {
 
 
-    private static boolean isToast = true;
+        private static boolean isToast = true;
 
-    private static long oneTime=0;
+        private static long oneTime = 0;
 
-    private static long twoTime=0;
+        private static long twoTime = 0;
 
-    private static Toast toast = null;
+        private static Toast toast = null;
 
-    private static String oldMsg;
+        private static String oldMsg;
 
 
-    public static void d(String msg){
-        if (isToast) {
-            if (toast == null) {
-                toast = Toast.makeText(App.getInstance(), msg, Toast.LENGTH_SHORT);
-                toast.show();
-                oneTime = System.currentTimeMillis();
-            } else {
-                twoTime = System.currentTimeMillis();
-                if (msg.equals(oldMsg)) {
-                    if (twoTime - oneTime > Toast.LENGTH_SHORT) {
-                        toast.show();
-                    }
-                } else {
-                    oldMsg = msg;
-                    toast.setText(msg);
-                    toast.show();
+        public static void d(String msg) {
+                if (isToast) {
+                        if (toast == null) {
+                                toast = Toast.makeText(App.getInstance(), msg, Toast.LENGTH_SHORT);
+                                toast.show();
+                                oneTime = System.currentTimeMillis();
+                        } else {
+                                twoTime = System.currentTimeMillis();
+                                if (msg.equals(oldMsg)) {
+                                        if (twoTime - oneTime > Toast.LENGTH_SHORT) {
+                                                toast.show();
+                                        }
+                                } else {
+                                        oldMsg = msg;
+                                        toast.setText(msg);
+                                        toast.show();
+                                }
+                        }
+                        oneTime = twoTime;
                 }
-            }
-            oneTime = twoTime;
         }
-    }
 
 }
