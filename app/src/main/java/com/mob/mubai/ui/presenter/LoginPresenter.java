@@ -1,7 +1,5 @@
 package com.mob.mubai.ui.presenter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mob.mubai.base.helps.DataResultFunc;
 import com.mob.mubai.base.utils.L;
 import com.mob.mubai.base.utils.UserManager;
@@ -49,42 +47,42 @@ public class LoginPresenter extends LoginContract.Presenter {
 
         @Override
         public void getJsonFromObject(String name, String pass) {
-
-                /**
-                 * ObjectMapper是JSON操作的核心，Jackson的所有JSON操作都是在ObjectMapper中实现。
-                 * ObjectMapper有多个JSON序列化的方法，可以把JSON字符串保存File、OutputStream等不同的介质中。
-                 * writeValue(File arg0, Object arg1)把arg1转成json序列，并保存到arg0文件中。
-                 * writeValue(OutputStream arg0, Object arg1)把arg1转成json序列，并保存到arg0输出流中。
-                 * writeValueAsBytes(Object arg0)把arg0转成json序列，并把结果输出成字节数组。
-                 * writeValueAsString(Object arg0)把arg0转成json序列，并把结果输出成字符串。
-                 */
-                ObjectMapper mapper = new ObjectMapper();
-                try {
-                        String json = mapper.writeValueAsString(mModel.getLoginValue(name, pass));//类转Json
-                        List<LoginValue> loginValues = new ArrayList<>();
-                        loginValues.add(mModel.getLoginValue(name, pass));
-                        String jsonList = mapper.writeValueAsString(loginValues);//List转Json
-                        L.d(json);
-                        L.d(jsonList);
-                } catch (JsonProcessingException e) {
-                        e.printStackTrace();
-                }
+//
+//                /**
+//                 * ObjectMapper是JSON操作的核心，Jackson的所有JSON操作都是在ObjectMapper中实现。
+//                 * ObjectMapper有多个JSON序列化的方法，可以把JSON字符串保存File、OutputStream等不同的介质中。
+//                 * writeValue(File arg0, Object arg1)把arg1转成json序列，并保存到arg0文件中。
+//                 * writeValue(OutputStream arg0, Object arg1)把arg1转成json序列，并保存到arg0输出流中。
+//                 * writeValueAsBytes(Object arg0)把arg0转成json序列，并把结果输出成字节数组。
+//                 * writeValueAsString(Object arg0)把arg0转成json序列，并把结果输出成字符串。
+//                 */
+//                ObjectMapper mapper = new ObjectMapper();
+//                try {
+//                        String json = mapper.writeValueAsString(mModel.getLoginValue(name, pass));//类转Json
+//                        List<LoginValue> loginValues = new ArrayList<>();
+//                        loginValues.add(mModel.getLoginValue(name, pass));
+//                        String jsonList = mapper.writeValueAsString(loginValues);//List转Json
+//                        L.d(json);
+//                        L.d(jsonList);
+//                } catch (JsonProcessingException e) {
+//                        e.printStackTrace();
+//                }
 
         }
 
         @Override
         public void getObjectFromJson() {
-                String json = "{\"name\":\"沐白\",\"age\":23,\"birthday\":1993,\"email\":\"mubai@sina.com\"}";
-                /**
-                 * ObjectMapper支持从byte[]、File、InputStream、字符串等数据的JSON反序列化。
-                 */
-                ObjectMapper mapper = new ObjectMapper();
-                try {
-                        LoginValue user = mapper.readValue(json, LoginValue.class);
-                        L.d(user.getEmail());
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
+//                String json = "{\"name\":\"沐白\",\"age\":23,\"birthday\":1993,\"email\":\"mubai@sina.com\"}";
+//                /**
+//                 * ObjectMapper支持从byte[]、File、InputStream、字符串等数据的JSON反序列化。
+//                 */
+//                ObjectMapper mapper = new ObjectMapper();
+//                try {
+//                        LoginValue user = mapper.readValue(json, LoginValue.class);
+//                        L.d(user.getEmail());
+//                } catch (IOException e) {
+//                        e.printStackTrace();
+//                }
         }
 
         public void login_1(String name, String pass) {

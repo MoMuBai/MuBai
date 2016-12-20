@@ -11,12 +11,12 @@ import android.widget.Toast;
 
 import com.mob.mubai.R;
 import com.mob.mubai.ui.activity.SeekBarActivity;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.List;
 
-import io.rong.imageloader.core.DisplayImageOptions;
-import io.rong.imageloader.core.ImageLoader;
-import io.rong.imageloader.core.ImageLoaderConfiguration;
 
 /**
  * Created by lzw on 16/11/16.

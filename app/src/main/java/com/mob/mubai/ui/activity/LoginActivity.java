@@ -27,14 +27,12 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
 
 /**
  * Created by lzw on 2016/11/7.
  */
 
-public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> implements LoginContract.View {
+public class LoginActivity extends BaseActivity{
 
         @Bind(R.id.et_name)
         EditText etName;
@@ -86,7 +84,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
                         } else {
                                 textInputName.setError("");
                                 myLogin();
-                                mPresenter.login(userName, passWord);
                         }
                 });
         }
@@ -96,20 +93,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
                 finish();
         }
 
-        @Override
-        public void showData(String data) {
-
-        }
-
-        @Override
-        public void login(LoginValue loginValue) {
-
-        }
-
-        @Override
-        public void showJackson() {
-
-        }
 
         /**
          * 用户登录，用户登录成功，获得 cookie，将cookie 保存
@@ -148,55 +131,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
                         public void onResponse(String response) {
                                 token = response;
                                 L.d("LoginActivity", token);
-                                connect(token);
                                 SpUtils.putString(LoginActivity.this, "token", "token");
                         }
                 });
-        }
-
-
-        /**
-         * 建立与融云服务器的连接
-         *
-         * @param token
-         */
-        private void connect(String token) {
-
-                if (getApplicationInfo().packageName.equals(App.getCurProcessName(getApplicationContext()))) {
-
-                        /**
-                         * IMKit SDK调用第二步,建立与服务器的连接
-                         */
-                        RongIM.connect(token, new RongIMClient.ConnectCallback() {
-
-                                /**
-                                 * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
-                                 */
-                                @Override
-                                public void onTokenIncorrect() {
-                                        L.d("LoginActivity", "--onTokenIncorrect");
-                                }
-
-                                /**
-                                 * 连接融云成功
-                                 * @param userid 当前 token
-                                 */
-                                @Override
-                                public void onSuccess(String userid) {
-                                        L.d("LoginActivity", "--onSuccess" + userid);
-                                        startActivity(new Intent(LoginActivity.this, IMActivity.class));
-                                        finish();
-                                }
-
-                                /**
-                                 * 连接融云失败
-                                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
-                                 */
-                                @Override
-                                public void onError(RongIMClient.ErrorCode errorCode) {
-                                        L.d("LoginActivity", "--onError" + errorCode);
-                                }
-                        });
-                }
         }
 }

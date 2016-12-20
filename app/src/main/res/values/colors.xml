@@ -63,6 +63,7 @@
 
     <!--下拉选择背景板-->
 
+    <color name="bg_hui">#F2F2F4</color>
 
     <color name="red_normal">#FF0000</color>
     <color name="red_pressed">#FF6666</color>

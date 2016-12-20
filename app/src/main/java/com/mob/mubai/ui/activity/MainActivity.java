@@ -27,7 +27,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
-import io.rong.imkit.RongIM;
 
 public class MainActivity extends BaseActivity {
 
@@ -114,8 +113,6 @@ public class MainActivity extends BaseActivity {
                         }.start();
                         return;
                 } else {
-                        if (RongIM.getInstance() != null)
-                                RongIM.getInstance().disconnect(true);
                         AppManager.getAppManager().finishAllActivity();
                         Process.killProcess(Process.myPid());
                 }

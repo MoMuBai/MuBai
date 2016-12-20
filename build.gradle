@@ -23,14 +23,13 @@ task clean(type: Delete) {
 }
 ext {
 
-    compileSdkVersion = 22
-    buildToolsVersion = "24.0.1"
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.1"
     minSdkVersion = 16
-    targetSdkVersion = 24
+    targetSdkVersion = 25
     versionCode = 1
     versionName = "1.0"
 
-    supportLibraryVersion = "22.2.1"
     junitVersion = "4.12"
     mockitoVersion = "2.2.9"
     robolectricVersion = "3.0-rc3"

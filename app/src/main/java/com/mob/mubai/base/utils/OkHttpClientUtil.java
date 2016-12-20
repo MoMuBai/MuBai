@@ -28,9 +28,15 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.FileNameMap;
 import java.net.URLConnection;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.CertificateFactory;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 /**
  * Created by lzw on 2016/11/8.
@@ -60,6 +66,37 @@ public class OkHttpClientUtil {
 
         private static final class InstanceHolder {
                 private static final OkHttpClientUtil instance = new OkHttpClientUtil();
+        }
+
+        //https请求方法
+        public void setCertificates(InputStream... certificates) {
+                try {
+                        CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+                        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+                        keyStore.load(null);
+                        int index = 0;
+                        for (InputStream certificate : certificates) {
+                                String certificateAlias = Integer.toString(index++);
+                                keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(certificate));
+
+                                try {
+                                        if (certificate != null)
+                                                certificate.close();
+                                } catch (IOException e) {
+                                }
+                        }
+
+                        SSLContext sslContext = SSLContext.getInstance("TLS");
+                        TrustManagerFactory trustManagerFactory =
+                                  TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                        trustManagerFactory.init(keyStore);
+
+                        sslContext.init(null, trustManagerFactory.getTrustManagers(), new SecureRandom());
+                        mOkHttpClient.setSslSocketFactory(sslContext.getSocketFactory());
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+
         }
 
         /**

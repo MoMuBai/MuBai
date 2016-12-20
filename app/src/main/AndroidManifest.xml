@@ -5,7 +5,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/mubai"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -19,43 +19,9 @@
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.LoginActivity"/>
         <activity android:name=".ui.activity.SeekBarActivity"/>
-        <activity android:name=".ui.activity.ThirdActivity"/>
-        <activity android:name=".ui.activity.IMActivity"/>
         <activity android:name=".ui.activity.ReflectionActivity"/>
         <activity android:name=".ui.activity.BannerActivity"/>
         <activity android:name=".ui.activity.RecyclerActivity"/>
-
-        <!--会话界面-->
-        <activity android:name=".ui.activity.ConversationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-
-                <data
-                    android:host="com.mob.mubai"
-                    android:pathPrefix="/conversation/"
-                    android:scheme="rong"/>
-            </intent-filter>
-        </activity>
-
-        <!--会话列表-->
-        <activity
-            android:name=".ui.activity.ConversationListActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-
-                <data
-                    android:host="com.mob.mubai"
-                    android:pathPrefix="/conversationlist"
-                    android:scheme="rong"/>
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
