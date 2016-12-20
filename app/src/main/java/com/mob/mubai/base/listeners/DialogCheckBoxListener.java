@@ -6,7 +6,7 @@ package com.mob.mubai.base.listeners;
 
 public interface DialogCheckBoxListener {
 
-    void checkBox(int pos);
+        void checkBox(int pos);
 
-    void cancel(int pos);
+        void cancel(int pos);
 }

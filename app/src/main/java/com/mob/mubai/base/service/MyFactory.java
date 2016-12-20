@@ -8,9 +8,11 @@ public class MyFactory {
 
         private static MyService myService;
 
+        private static Object object = new Object();
+
         public static MyService getMyService() {
                 if (null == myService) {
-                        synchronized (MyFactory.class) {
+                        synchronized (object) {
                                 if (null == myService) {
                                         myService = new MyClient().getMyService();
                                 }

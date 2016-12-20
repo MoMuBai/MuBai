@@ -10,10 +10,10 @@ import android.util.Log;
  * 极光推送Receiver
  */
 
-public class JPushReceiver extends BroadcastReceiver{
+public class JPushReceiver extends BroadcastReceiver {
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Log.d("LLLLLLLLLLL", "JPushInterface0" + intent.getAction());
-    }
+        @Override
+        public void onReceive(Context context, Intent intent) {
+                Log.d("LLLLLLLLLLL", "JPushInterface0" + intent.getAction());
+        }
 }

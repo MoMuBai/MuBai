@@ -6,6 +6,6 @@ package com.mob.mubai.base.listeners;
  */
 public interface DialogOkBtnListener {
 
-    // 无参: 传空
-    void DealSom(String s);
+        // 无参: 传空
+        void DealSom(String s);
 }

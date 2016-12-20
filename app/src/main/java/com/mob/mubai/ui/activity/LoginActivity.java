@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * Created by lzw on 2016/11/7.
  */
 
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity {
 
         @Bind(R.id.et_name)
         EditText etName;

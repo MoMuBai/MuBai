@@ -5,6 +5,6 @@ package com.mob.mubai.base.listeners;
  */
 
 public interface TeamCheckListener {
-    void checkRole(String userId);
+        void checkRole(String userId);
 
 }

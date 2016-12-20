@@ -20,6 +20,6 @@ package com.mob.mubai.base.listeners;
  */
 public interface OnItemClickListener {
 
-    void onItemClick(int position);
+        void onItemClick(int position);
 
 }

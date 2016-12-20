@@ -9,5 +9,5 @@ import android.widget.AdapterView;
  */
 public interface PopListClickListener {
 
-    void myOnClick(AdapterView<?> parent, View view, int position, long id);
+        void myOnClick(AdapterView<?> parent, View view, int position, long id);
 }
