@@ -133,6 +133,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.facebook.fresco:fresco:0.14.1'
     compile 'com.alibaba:fastjson:1.2.22'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.nineoldandroids:library:2.4.0'
 }
 

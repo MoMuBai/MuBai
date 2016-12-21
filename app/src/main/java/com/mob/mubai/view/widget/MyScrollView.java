@@ -1,4 +1,4 @@
-package com.mob.mubai.view;
+package com.mob.mubai.view.widget;
 
 import android.content.Context;
 import android.graphics.Rect;

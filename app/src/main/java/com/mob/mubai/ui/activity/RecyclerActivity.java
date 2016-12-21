@@ -1,6 +1,5 @@
 package com.mob.mubai.ui.activity;
 
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
@@ -15,7 +14,7 @@ import com.mob.mubai.ui.adapter.MenuViewTypeAdapter;
 import com.mob.mubai.ui.contract.RecyclerContract;
 import com.mob.mubai.ui.model.RecyclerModel;
 import com.mob.mubai.ui.presenter.RecyclerPresenter;
-import com.mob.mubai.view.ListViewDecoration;
+import com.mob.mubai.view.widget.ListViewDecoration;
 import com.yanzhenjie.recyclerview.swipe.Closeable;
 import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by lzw on 16/11/17.

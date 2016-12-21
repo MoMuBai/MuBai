@@ -31,7 +31,7 @@ public final class MyDialog extends Dialog {
         public static class Builder {
 
                 private Context context;
-                private DialogOkBtnListener listener;
+                private DialogOkBtnListener okBtnListener;
                 private DialogNoBtnListener noBtnListener;
                 private TextView tv_ok, tv_cancle, tv_title;
                 private String title;
@@ -42,7 +42,7 @@ public final class MyDialog extends Dialog {
                 }
 
                 public Builder setOkButton(DialogOkBtnListener listener) {
-                        this.listener = listener;
+                        this.okBtnListener = listener;
                         return this;
                 }
 
@@ -60,11 +60,11 @@ public final class MyDialog extends Dialog {
                         tv_title = (TextView) view.findViewById(R.id.tv_title);
                         tv_title.setText(title);
 
-                        if (listener != null) {
+                        if (okBtnListener != null) {
                                 tv_ok.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                                listener.DealSom("");
+                                                okBtnListener.DealSom("");
                                         }
                                 });
                         }
