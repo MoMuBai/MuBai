@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -106,7 +107,7 @@ public class LoginActivity extends BaseActivity {
                 OkHttpClientUtil.postAsyn(BASE_URL + "email_login", new OkHttpClientUtil.ResultCallback<String>() {
                         @Override
                         public void onError(Request request, Exception e) {
-
+                                L.d(TAG, "e:" + e);
                         }
 
                         @Override
@@ -124,13 +125,13 @@ public class LoginActivity extends BaseActivity {
                 OkHttpClientUtil.getAsyn(BASE_URL + "token", new OkHttpClientUtil.ResultCallback<String>() {
                         @Override
                         public void onError(Request request, Exception e) {
-
+                                L.d(TAG, "e:" + e);
                         }
 
                         @Override
                         public void onResponse(String response) {
                                 token = response;
-                                L.d("LoginActivity", token);
+                                L.d(TAG, token);
                                 SpUtils.putString(LoginActivity.this, "token", "token");
                         }
                 });

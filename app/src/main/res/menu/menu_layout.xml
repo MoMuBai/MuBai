@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/g1">
+        <item
+            android:id="@+id/seekBar"
+            android:icon="@drawable/mubai"
+            android:title="SeekBarActivity"/>
+    </group>
+    <group android:id="@+id/g2">
+        <item
+            android:id="@+id/login"
+            android:icon="@drawable/mubai"
+            android:title="LoginActivity"/>
+    </group>
+    <group android:id="@+id/g3">
+        <item
+            android:id="@+id/reflection"
+            android:icon="@drawable/mubai"
+            android:title="ReflectionActivity"/>
+    </group>
+    <group android:id="@+id/g4">
+        <item
+            android:id="@+id/banner"
+            android:icon="@drawable/mubai"
+            android:title="BannerActivity"/>
+    </group>
+    <group android:id="@+id/g5">
+        <item
+            android:id="@+id/recycler"
+            android:icon="@drawable/mubai"
+            android:title="RecyclerActivity"/>
+    </group>
+</menu>

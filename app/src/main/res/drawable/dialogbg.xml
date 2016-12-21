@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Dialog背景 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 圆角 -->
-    <corners android:radius="8dp" />
+    <corners android:radius="8dp"/>
 
-    <solid android:color="@color/bgColor" />
+    <solid android:color="@color/bgColor"/>
 
     <size
         android:width="300dp"
-        android:height="100dp" />
+        android:height="100dp"/>
 </shape>

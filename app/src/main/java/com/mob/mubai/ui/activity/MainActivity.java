@@ -1,51 +1,38 @@
 package com.mob.mubai.ui.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Process;
-import android.view.KeyEvent;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
 import com.mob.mubai.base.utils.AppManager;
-import com.mob.mubai.base.utils.To;
-import com.mob.mubai.view.dialog.MyDialog;
+import com.mob.mubai.ui.adapter.MainAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnItemClick;
 
 public class MainActivity extends BaseActivity {
 
-        @Bind(R.id.list_view)
-        ListView listView;
-        @Bind(R.id.activity_main)
-        LinearLayout activityMain;
-        @Bind(R.id.img1)
-        ImageView img1;
-        @Bind(R.id.txt1)
-        TextView txt1;
-        @Bind(R.id.back)
-        RelativeLayout back;
-        @Bind(R.id.img2)
-        TextView img2;
-        @Bind(R.id.rl)
-        RelativeLayout rl;
-        private List<String> data;
+
+        @Bind(R.id.view_pager)
+        ViewPager viewPager;
+        @Bind(R.id.tab_layout)
+        TabLayout tabLayout;
+        @Bind(R.id.navigation_view)
+        NavigationView navigationView;
+        private MainAdapter mainAdapter;
         private int backPressTimes;
+
 
         @Override
         protected int getLayout() {
@@ -54,41 +41,40 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected void initView() {
-                img1.setVisibility(View.GONE);
+                navigationView.setItemIconTintList(null);
+                navigationView.setNavigationItemSelectedListener(item -> {
+                        switch (item.getGroupId()) {
+                                case R.id.g1:
+                                        startIntent(SeekBarActivity.class);
+                                        break;
+                                case R.id.g2:
+                                        startIntent(LoginActivity.class);
+                                        break;
+                                case R.id.g3:
+                                        startIntent(ReflectionActivity.class);
+                                        break;
+                                case R.id.g4:
+                                        startIntent(BannerActivity.class);
+                                        break;
+                                case R.id.g5:
+                                        startIntent(RecyclerActivity.class);
+                                        break;
+                                default:
+                                        break;
+                        }
+                        return true;
+                });
         }
 
         @Override
         protected void initData() {
-                data = new ArrayList<>();
-                data.add(0, "SeekBarActivity");
-                data.add(1, "LoginActivity");
-                data.add(2, "ReflectionActivity");
-                data.add(3, "BannerActivity");
-                data.add(4, "RecyclerActivity");
-                listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data));
+                initTab();
         }
 
-        @OnItemClick(R.id.list_view)
-        void itemClick(int pos) {
-                switch (pos) {
-                        case 0:
-                                startIntent(SeekBarActivity.class);
-                                break;
-                        case 1:
-                                startIntent(LoginActivity.class);
-                                break;
-                        case 2:
-                                startIntent(ReflectionActivity.class);
-                                break;
-                        case 3:
-                                startIntent(BannerActivity.class);
-                                break;
-                        case 4:
-                                startIntent(RecyclerActivity.class);
-                                break;
-                        default:
-                                break;
-                }
+        private void initTab() {
+                mainAdapter = new MainAdapter(getSupportFragmentManager());
+                viewPager.setAdapter(mainAdapter);
+                tabLayout.setupWithViewPager(viewPager);
         }
 
         /**
@@ -118,4 +104,5 @@ public class MainActivity extends BaseActivity {
                 }
                 super.onBackPressed();
         }
+
 }
