@@ -3,11 +3,11 @@ package com.mob.mubai.ui.activity;
 import android.os.Bundle;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mob.mubai.R;
@@ -15,21 +15,24 @@ import com.mob.mubai.base.BaseActivity;
 import com.mob.mubai.base.utils.AppManager;
 import com.mob.mubai.ui.adapter.MainAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
-
-        @Bind(R.id.view_pager)
-        ViewPager viewPager;
-        @Bind(R.id.tab_layout)
-        TabLayout tabLayout;
         @Bind(R.id.navigation_view)
         NavigationView navigationView;
+        @Bind(R.id.view_pager)
+        ViewPager viewPager;
+        @Bind(R.id.tab1)
+        TextView tab1;
+        @Bind(R.id.tab2)
+        TextView tab2;
+        @Bind(R.id.tab3)
+        TextView tab3;
+        @Bind(R.id.tab4)
+        TextView tab4;
         private MainAdapter mainAdapter;
         private int backPressTimes;
 
@@ -59,6 +62,9 @@ public class MainActivity extends BaseActivity {
                                 case R.id.g5:
                                         startIntent(RecyclerActivity.class);
                                         break;
+                                case R.id.g6:
+                                        startIntent(GlideActivity.class);
+                                        break;
                                 default:
                                         break;
                         }
@@ -74,7 +80,12 @@ public class MainActivity extends BaseActivity {
         private void initTab() {
                 mainAdapter = new MainAdapter(getSupportFragmentManager());
                 viewPager.setAdapter(mainAdapter);
-                tabLayout.setupWithViewPager(viewPager);
+                viewPager.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                                return false;
+                        }
+                });
         }
 
         /**
@@ -105,4 +116,24 @@ public class MainActivity extends BaseActivity {
                 super.onBackPressed();
         }
 
+
+        @OnClick({R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4})
+        void onTabClick(View view) {
+                switch (view.getId()) {
+                        case R.id.tab1:
+                                viewPager.setCurrentItem(0);
+                                break;
+                        case R.id.tab2:
+                                viewPager.setCurrentItem(1);
+                                break;
+                        case R.id.tab3:
+                                viewPager.setCurrentItem(2);
+                                break;
+                        case R.id.tab4:
+                                viewPager.setCurrentItem(3);
+                                break;
+                        default:
+                                break;
+                }
+        }
 }

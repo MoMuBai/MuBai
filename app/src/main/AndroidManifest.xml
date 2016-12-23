@@ -24,6 +24,7 @@
         <activity android:name=".ui.activity.ReflectionActivity"/>
         <activity android:name=".ui.activity.BannerActivity"/>
         <activity android:name=".ui.activity.RecyclerActivity"/>
+        <activity android:name=".ui.activity.GlideActivity"/>
     </application>
 
 </manifest>
