@@ -29,7 +29,26 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
 import java.util.List;
 
 /**
- * Created by lzw on 2016/7/22.
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  林志文
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/12/22
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
  */
 public class MenuViewTypeAdapter extends SwipeMenuAdapter<MenuViewTypeAdapter.DefaultViewHolder> {
         public static final int VIEW_TYPE_MENU_NONE = 1;

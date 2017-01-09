@@ -15,8 +15,28 @@ import java.util.List;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+
 /**
- * Created by lzw on 2016/11/25.
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  林志文
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/11/25
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
  */
 
 public class LoginPresenter extends LoginContract.Presenter {

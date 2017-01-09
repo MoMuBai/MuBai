@@ -1,16 +1,15 @@
-package com.mob.mubai.ui.model;
+package com.mob.mubai.ui.contract;
 
-import com.mob.mubai.base.service.MyFactory;
+import com.mob.mubai.base.BaseModel;
+import com.mob.mubai.base.BasePresenter;
+import com.mob.mubai.base.BaseView;
 import com.mob.mubai.data.DataResult;
 import com.mob.mubai.data.bean.LoginValue;
-import com.mob.mubai.ui.contract.LoginContract;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import rx.Observable;
 
 /**
+ *
  * //////////////////////////////////////////////////////////////////////////////
  * //
  * //      ┏┛ ┻━━━━━┛ ┻┓
@@ -20,7 +19,7 @@ import rx.Observable;
  * //      ┃　　　　　　 ┃
  * //      ┃　　　┻　　　┃               @Author  林志文
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2016/11/25
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/12/21
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -31,23 +30,24 @@ import rx.Observable;
  * //          ┗━┻━┛   ┗━┻━┛
  * //
  * /////////////////////////////////////////////////////////////////////////////
+ *
  */
-public class LoginModel implements LoginContract.Model {
-        @Override
-        public String getData() {
-                return "MuBai";
+public interface SeekBarContract {
+        interface Model extends BaseModel {
+                String getShow();
         }
 
-        @Override
-        public Observable<DataResult<LoginValue>> login(String name, String pass) {
-                return MyFactory.getMyService().login(name, pass);
+        interface View extends BaseView {
+                void show(String str);
         }
 
-        @Override
-        public LoginValue getLoginValue(String name, String pass) {
-                LoginValue loginValue = new LoginValue();
-                loginValue.setId("0");
-                loginValue.setName(name);
-                return loginValue;
+        abstract class Presenter extends BasePresenter<Model, View> {
+
+                public abstract void myPost();
+
+                @Override
+                protected void onStart() {
+
+                }
         }
 }

@@ -8,6 +8,13 @@
         <item name="colorAccent">#0195ff</item>
     </style>
 
+    <!-- Application theme. -->
+    <style name="MuBaiTheme" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <!-- 去掉顶部的阴影 -->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <!--分割线style-->
     <style name="divierStyle_nomargin">
         <item name="android:layout_width">match_parent</item>

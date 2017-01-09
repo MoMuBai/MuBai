@@ -18,13 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity"/>
-        <activity android:name=".ui.activity.LoginActivity"/>
-        <activity android:name=".ui.activity.SeekBarActivity"/>
-        <activity android:name=".ui.activity.ReflectionActivity"/>
-        <activity android:name=".ui.activity.BannerActivity"/>
-        <activity android:name=".ui.activity.RecyclerActivity"/>
-        <activity android:name=".ui.activity.GlideActivity"/>
+        <activity android:name=".ui.activity.MainActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.activity.LoginActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.activity.SeekBarActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.activity.ReflectionActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.activity.BannerActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.activity.RecyclerActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.activity.GlideActivity"
+                  android:theme="@style/MuBaiTheme"/>
     </application>
 
 </manifest>

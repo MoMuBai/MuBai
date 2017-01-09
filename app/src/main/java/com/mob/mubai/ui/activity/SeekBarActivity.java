@@ -14,17 +14,39 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
+import com.mob.mubai.base.utils.To;
+import com.mob.mubai.ui.contract.SeekBarContract;
+import com.mob.mubai.ui.model.SeekBarModel;
+import com.mob.mubai.ui.presenter.SeekBarPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by lzw on 2016/11/4.
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  林志文
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/11/4
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc  SeekBar
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
  */
 
-public class SeekBarActivity extends BaseActivity {
-
+public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel> implements SeekBarContract.View {
 
         @Bind(R.id.img1)
         ImageView img1;
@@ -55,25 +77,16 @@ public class SeekBarActivity extends BaseActivity {
 
         @Override
         protected void initData() {
-                myPost();
-        }
-
-        private void myPost() {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("dataType", 20);
-                jsonObject.put("dataValue", "Base64编码的字符");
-                JSONObject jsonObject1 = new JSONObject();
-                jsonObject1.put("image", jsonObject);
-                JSONArray jsonArray = new JSONArray();
-                jsonArray.add(jsonObject1);
-                JSONObject jsonObject2 = new JSONObject();
-                jsonObject2.put("inputs", jsonArray);
-                String str = new Gson().toJson(jsonObject2);
-                Log.d("SeekBarActivity", str);
+                mPresenter.myPost();
         }
 
         @OnClick(R.id.back)
         void back() {
                 finish();
+        }
+
+        @Override
+        public void show(String str) {
+                To.d(str);
         }
 }

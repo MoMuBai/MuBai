@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
 import com.mob.mubai.base.listeners.OnItemClickListener;
+import com.mob.mubai.base.utils.To;
 import com.mob.mubai.data.bean.ViewTypeBean;
 import com.mob.mubai.ui.adapter.MenuViewTypeAdapter;
 import com.mob.mubai.ui.contract.RecyclerContract;
@@ -28,7 +29,28 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * Created by lzw on 16/11/17.
+ *
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  林志文
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/11/17
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
+ *
  */
 
 public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerModel> implements RecyclerContract.View {
@@ -37,7 +59,9 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
         @Bind(R.id.recycler_view)
         SwipeMenuRecyclerView recyclerView;
 
-        private List<ViewTypeBean> mViewTypeBeanList;
+        private MenuViewTypeAdapter menuAdapter;
+
+        private SwipeMenuRecyclerView swipeMenuRecyclerView;
 
         @Override
         protected int getLayout() {
@@ -50,45 +74,18 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
         }
 
         private void initRecycler() {
-                // 这里只是模拟数据，模拟Item的ViewType，根据ViewType决定显示什么菜单，到时候你可以根据你的数据来决定ViewType。
-                mViewTypeBeanList = new ArrayList<>();
-                for (int i = 0, j = 0; i < 30; i++, j++) {
-                        ViewTypeBean viewTypeBean = new ViewTypeBean();
-                        if (j == 0) {
-                                viewTypeBean.setViewType(MenuViewTypeAdapter.VIEW_TYPE_MENU_NONE);
-                                viewTypeBean.setContent("我没有菜单");
-                        } else if (j == 1) {
-                                viewTypeBean.setViewType(MenuViewTypeAdapter.VIEW_TYPE_MENU_SINGLE);
-                                viewTypeBean.setContent("我有1个菜单");
-                        } else if (j == 2) {
-                                viewTypeBean.setViewType(MenuViewTypeAdapter.VIEW_TYPE_MENU_MULTI);
-                                viewTypeBean.setContent("我有2个菜单");
-                        } else if (j == 3) {
-                                viewTypeBean.setViewType(MenuViewTypeAdapter.VIEW_TYPE_MENU_LEFT);
-                                viewTypeBean.setContent("我的左边有菜单，右边没有");
-                                j = -1;
-                        }
-                        mViewTypeBeanList.add(viewTypeBean);
-                }
-
-                SwipeMenuRecyclerView swipeMenuRecyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recycler_view);
+                swipeMenuRecyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recycler_view);
                 swipeMenuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
                 swipeMenuRecyclerView.setHasFixedSize(true);
                 swipeMenuRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 swipeMenuRecyclerView.addItemDecoration(new ListViewDecoration());
-
                 swipeMenuRecyclerView.setSwipeMenuCreator(swipeMenuCreator);
                 swipeMenuRecyclerView.setSwipeMenuItemClickListener(menuItemClickListener);
-
-                MenuViewTypeAdapter menuAdapter = new MenuViewTypeAdapter(mViewTypeBeanList);
-                menuAdapter.setOnItemClickListener(onItemClickListener);
-
-                swipeMenuRecyclerView.setAdapter(menuAdapter);
         }
 
         @Override
         protected void initData() {
-
+                mPresenter.getData();
         }
 
         /**
@@ -162,9 +159,9 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
                         closeable.smoothCloseMenu();// 关闭被点击的菜单。
 
                         if (direction == SwipeMenuRecyclerView.RIGHT_DIRECTION) {
-                                Toast.makeText(RecyclerActivity.this, "list第" + adapterPosition + "; 右侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+                                To.d("list第" + adapterPosition + "; 右侧菜单第" + menuPosition);
                         } else if (direction == SwipeMenuRecyclerView.LEFT_DIRECTION) {
-                                Toast.makeText(RecyclerActivity.this, "list第" + adapterPosition + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+                                To.d("list第" + adapterPosition + "; 左侧菜单第" + menuPosition);
                         }
                 }
         };
@@ -177,4 +174,10 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
                 return true;
         }
 
+        @Override
+        public void showData(List<ViewTypeBean> viewTypeBeanList) {
+                menuAdapter = new MenuViewTypeAdapter(viewTypeBeanList);
+                menuAdapter.setOnItemClickListener(onItemClickListener);
+                swipeMenuRecyclerView.setAdapter(menuAdapter);
+        }
 }

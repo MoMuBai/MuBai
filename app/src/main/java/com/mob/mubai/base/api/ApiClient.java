@@ -1,12 +1,9 @@
-package com.mob.mubai.ui.fragment;
+package com.mob.mubai.base.api;
 
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.mob.mubai.R;
-import com.mob.mubai.base.BaseFragment;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -18,7 +15,7 @@ import com.mob.mubai.base.BaseFragment;
  * //      ┃　　　　　　 ┃
  * //      ┃　　　┻　　　┃               @Author  林志文
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2016/12/21
+ * //      ┗━┓　　　┏━━━┛               @Date  2017/1/9
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -30,31 +27,17 @@ import com.mob.mubai.base.BaseFragment;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class Fragment2 extends BaseFragment {
+public class ApiClient {
+        private static ApiService apiService;
 
-
-        public static Fragment getFragment() {
-                Fragment f = new Fragment2();
-                return f;
-        }
-
-        @Override
-        protected View getLayout(LayoutInflater inflater, ViewGroup container) {
-                return inflater.inflate(R.layout.activity_im, container, false);
-        }
-
-        @Override
-        protected void initView(View view) {
-
-        }
-
-        @Override
-        protected void initData() {
-
-        }
-
-        @Override
-        protected void lazyLoad() {
-
+        public static ApiService getService() {
+                Retrofit retrofit = new Retrofit.Builder()
+                          .baseUrl("url")
+                          .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                          .addConverterFactory(ScalarsConverterFactory.create())
+                          .addConverterFactory(GsonConverterFactory.create())
+                          .build();
+                apiService = retrofit.create(ApiService.class);
+                return apiService;
         }
 }
