@@ -30,10 +30,4 @@
             android:icon="@drawable/mubai"
             android:title="RecyclerActivity"/>
     </group>
-    <group android:id="@+id/g6">
-        <item
-            android:id="@+id/glide"
-            android:icon="@drawable/mubai"
-            android:title="GlideActivity"/>
-    </group>
 </menu>

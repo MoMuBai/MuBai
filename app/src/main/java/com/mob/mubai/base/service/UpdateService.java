@@ -20,7 +20,7 @@ import android.widget.RemoteViews;
 
 
 import com.mob.mubai.R;
-import com.mob.mubai.ui.activity.MainActivity;
+import com.mob.mubai.ui.main.MainActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
