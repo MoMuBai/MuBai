@@ -22,5 +22,9 @@ package com.mob.mubai.ui.main;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class MainPresenter {
+public class MainPresenter extends MainContract.Presenter {
+        @Override
+        public void getData() {
+
+        }
 }

@@ -1,5 +1,6 @@
 package com.mob.mubai.ui.main;
 
+import android.content.Intent;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
@@ -21,7 +22,7 @@ import com.mob.mubai.ui.test.activity.SeekBarActivity;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<MainPresenter, MainModel> implements MainContract.View {
         @Bind(R.id.navigation_view)
         NavigationView navigationView;
         @Bind(R.id.view_pager)
@@ -47,21 +48,27 @@ public class MainActivity extends BaseActivity {
         protected void initView() {
                 navigationView.setItemIconTintList(null);
                 navigationView.setNavigationItemSelectedListener(item -> {
+                        Intent intent = new Intent();
                         switch (item.getGroupId()) {
                                 case R.id.g1:
-                                        startIntent(SeekBarActivity.class);
+                                        intent.setClass(mContext, SeekBarActivity.class);
+                                        startActivity(intent);
                                         break;
                                 case R.id.g2:
-                                        startIntent(LoginActivity.class);
+                                        intent.setClass(mContext, LoginActivity.class);
+                                        startActivity(intent);
                                         break;
                                 case R.id.g3:
-                                        startIntent(ReflectionActivity.class);
+                                        intent.setClass(mContext, ReflectionActivity.class);
+                                        startActivity(intent);
                                         break;
                                 case R.id.g4:
-                                        startIntent(BannerActivity.class);
+                                        intent.setClass(mContext, BannerActivity.class);
+                                        startActivity(intent);
                                         break;
                                 case R.id.g5:
-                                        startIntent(RecyclerActivity.class);
+                                        intent.setClass(mContext, RecyclerActivity.class);
+                                        startActivity(intent);
                                         break;
                                 default:
                                         break;
@@ -70,9 +77,30 @@ public class MainActivity extends BaseActivity {
                 });
         }
 
+
         @Override
         protected void initData() {
                 initTab();
+        }
+
+        @Override
+        public void showStart() {
+
+        }
+
+        @Override
+        public void showNoData(String msg) {
+
+        }
+
+        @Override
+        public void showError(String msg) {
+
+        }
+
+        @Override
+        public void showStop() {
+
         }
 
         private void initTab() {
@@ -134,4 +162,5 @@ public class MainActivity extends BaseActivity {
                                 break;
                 }
         }
+
 }

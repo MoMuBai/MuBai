@@ -5,4 +5,11 @@ package com.mob.mubai.base;
  */
 
 public interface BaseView {
+        void showStart();
+
+        void showNoData(String msg);
+
+        void showError(String msg);
+
+        void showStop();
 }

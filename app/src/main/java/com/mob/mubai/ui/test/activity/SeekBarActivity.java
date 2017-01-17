@@ -89,4 +89,24 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
         public void show() {
 
         }
+
+        @Override
+        public void showStart() {
+
+        }
+
+        @Override
+        public void showNoData(String msg) {
+
+        }
+
+        @Override
+        public void showError(String msg) {
+
+        }
+
+        @Override
+        public void showStop() {
+
+        }
 }

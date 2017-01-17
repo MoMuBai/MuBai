@@ -179,4 +179,24 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
                 menuAdapter.setOnItemClickListener(onItemClickListener);
                 swipeMenuRecyclerView.setAdapter(menuAdapter);
         }
+
+        @Override
+        public void showStart() {
+
+        }
+
+        @Override
+        public void showNoData(String msg) {
+
+        }
+
+        @Override
+        public void showError(String msg) {
+
+        }
+
+        @Override
+        public void showStop() {
+
+        }
 }

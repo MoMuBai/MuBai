@@ -1,6 +1,7 @@
 package com.mob.mubai.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
+import com.mob.mubai.App;
 import com.mob.mubai.R;
 import com.mob.mubai.base.utils.AppManager;
 import com.mob.mubai.base.utils.TUtil;
@@ -29,6 +31,8 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
 
         protected String TAG = getClass().getName();
 
+        public Context mContext;
+
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -42,6 +46,8 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
                 mPresenter = TUtil.getT(this, 0);
 
                 mModel = TUtil.getT(this, 1);
+
+                mContext = App.getInstance();
 
                 if (this instanceof BaseView) mPresenter.setVM(mModel, this);
 
@@ -59,12 +65,6 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
 
         protected abstract void initData();
 
-
-        protected void startIntent(Class<Activity> cls) {
-                Intent intent = new Intent();
-                intent.setClass(this, cls);
-                startActivity(intent);
-        }
 
         @Override
         protected void onDestroy() {

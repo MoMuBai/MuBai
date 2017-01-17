@@ -41,8 +41,7 @@ public class SplashActivity extends BaseActivity {
 
         @Bind(R.id.iv_splash)
         ImageView ivSplash;
-        @Bind(R.id.iv_snack_bar)
-        ImageView ivSnackBar;
+
 
         private MyDialog myDialog;
 
@@ -91,7 +90,8 @@ public class SplashActivity extends BaseActivity {
         }
 
         private void startMain() {
-                startIntent(MainActivity.class);
+                Intent intent = new Intent(mContext, MainActivity.class);
+                startActivity(intent);
                 finish();
         }
 }
