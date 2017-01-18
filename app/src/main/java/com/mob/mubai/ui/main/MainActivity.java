@@ -15,13 +15,37 @@ import com.mob.mubai.base.BaseActivity;
 import com.mob.mubai.base.utils.AppManager;
 import com.mob.mubai.ui.login.LoginActivity;
 import com.mob.mubai.ui.test.activity.BannerActivity;
+import com.mob.mubai.ui.test.activity.PinnedHeadListActivity;
 import com.mob.mubai.ui.test.activity.RecyclerActivity;
 import com.mob.mubai.ui.test.activity.ReflectionActivity;
 import com.mob.mubai.ui.test.activity.SeekBarActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
+/**
+ *
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  lzw
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2017/1/18
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
+ *
+ */
 public class MainActivity extends BaseActivity<MainPresenter, MainModel> implements MainContract.View {
         @Bind(R.id.navigation_view)
         NavigationView navigationView;
@@ -51,23 +75,27 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                         Intent intent = new Intent();
                         switch (item.getGroupId()) {
                                 case R.id.g1:
-                                        intent.setClass(mContext, SeekBarActivity.class);
+                                        intent.setClass(mActivity, SeekBarActivity.class);
                                         startActivity(intent);
                                         break;
                                 case R.id.g2:
-                                        intent.setClass(mContext, LoginActivity.class);
+                                        intent.setClass(mActivity, LoginActivity.class);
                                         startActivity(intent);
                                         break;
                                 case R.id.g3:
-                                        intent.setClass(mContext, ReflectionActivity.class);
+                                        intent.setClass(mActivity, ReflectionActivity.class);
                                         startActivity(intent);
                                         break;
                                 case R.id.g4:
-                                        intent.setClass(mContext, BannerActivity.class);
+                                        intent.setClass(mActivity, BannerActivity.class);
                                         startActivity(intent);
                                         break;
                                 case R.id.g5:
-                                        intent.setClass(mContext, RecyclerActivity.class);
+                                        intent.setClass(mActivity, RecyclerActivity.class);
+                                        startActivity(intent);
+                                        break;
+                                case R.id.g6:
+                                        intent.setClass(mActivity, PinnedHeadListActivity.class);
                                         startActivity(intent);
                                         break;
                                 default:

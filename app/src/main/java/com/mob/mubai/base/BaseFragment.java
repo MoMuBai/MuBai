@@ -1,5 +1,7 @@
 package com.mob.mubai.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.mob.mubai.App;
 import com.mob.mubai.R;
 import com.mob.mubai.base.utils.AppManager;
 import com.mob.mubai.base.utils.TUtil;
@@ -21,7 +24,26 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 
 /**
- * Created by lzw on 2016/12/20.
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  lzw
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/12/20
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
  */
 public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel> extends Fragment {
 
@@ -34,6 +56,10 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
         public LoadingDialog dialog;
 
         protected boolean isVisible;
+
+        public Context mContext;
+
+        public Activity mActivity;
 
 
         @Nullable
@@ -77,6 +103,7 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
                 setLoadingDialog();
                 mPresenter = TUtil.getT(this, 0);
                 mModel = TUtil.getT(this, 1);
+                mContext = App.getInstance();
                 if (this instanceof BaseView) mPresenter.setVM(this, mModel);
                 initView(view);
         }
@@ -85,6 +112,7 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
                 super.onActivityCreated(savedInstanceState);
                 initData();
+                mActivity = getActivity();
         }
 
 

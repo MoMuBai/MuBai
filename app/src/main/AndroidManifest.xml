@@ -30,6 +30,8 @@
                   android:theme="@style/MuBaiTheme"/>
         <activity android:name=".ui.test.activity.BannerActivity"
                   android:theme="@style/MuBaiTheme"/>
+        <activity android:name=".ui.test.activity.PinnedHeadListActivity"
+                  android:theme="@style/MuBaiTheme"/>
     </application>
 
 </manifest>

@@ -30,4 +30,10 @@
             android:icon="@drawable/mubai"
             android:title="RecyclerActivity"/>
     </group>
+    <group android:id="@+id/g6">
+        <item
+            android:id="@+id/pinnedHead"
+            android:icon="@drawable/mubai"
+            android:title="PinnedHeadActivity"/>
+    </group>
 </menu>

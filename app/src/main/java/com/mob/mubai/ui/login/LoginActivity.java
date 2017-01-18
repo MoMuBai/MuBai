@@ -143,7 +143,7 @@ public class LoginActivity extends BaseActivity {
                         public void onResponse(String response) {
                                 token = response;
                                 L.d(TAG, token);
-                                SpUtils.putString(LoginActivity.this, "token", "token");
+                                SpUtils.putString(mContext, "token", "token");
                         }
                 });
         }

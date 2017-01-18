@@ -33,6 +33,8 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
 
         public Context mContext;
 
+        public Activity mActivity;
+
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
                 mModel = TUtil.getT(this, 1);
 
                 mContext = App.getInstance();
+
+                mActivity = this;
 
                 if (this instanceof BaseView) mPresenter.setVM(mModel, this);
 
