@@ -27,8 +27,18 @@ import android.widget.Toast;
  */
 public final class To {
 
+        private static boolean isToast = true;
+
+        private static long oneTime = 0;
+
+        private static long twoTime = 0;
+
+        private static String oldMsg;
+
         private static Context mContext;
+
         private static Toast mToast;
+
 
         private To() {
         /* cannot be instantiated */
@@ -37,27 +47,28 @@ public final class To {
 
         public static void init(Context context) {
                 mContext = context;
-                mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
         }
 
-        public static boolean isShow = true;
 
-
-        public static void showShort(CharSequence message) {
-                if (isShow) {
-                        mToast.setText(message);
-                        mToast.show();
+        public static void d(String msg) {
+                if (isToast) {
+                        if (mToast == null) {
+                                mToast = Toast.makeText(mContext, msg, Toast.LENGTH_SHORT);
+                                mToast.show();
+                                oneTime = System.currentTimeMillis();
+                        } else {
+                                twoTime = System.currentTimeMillis();
+                                if (msg.equals(oldMsg)) {
+                                        if (twoTime - oneTime > Toast.LENGTH_SHORT) {
+                                                mToast.show();
+                                        }
+                                } else {
+                                        oldMsg = msg;
+                                        mToast.setText(msg);
+                                        mToast.show();
+                                }
+                        }
+                        oneTime = twoTime;
                 }
         }
-
-
-        public static void showLong(CharSequence message) {
-                if (isShow) {
-                        mToast.setDuration(Toast.LENGTH_LONG);
-                        mToast.setText(message);
-                        mToast.show();
-                }
-        }
-
-
 }

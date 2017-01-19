@@ -12,15 +12,19 @@ import java.util.logging.Logger;
  */
 public final class L {
 
-        private static boolean isLog = AppConfig.isPrintLog;
-        private static final String TAG = "lzg_debug";
+        private static boolean isLog;
+        private static L log;
+        private static final String TAG = "lzw";
 
-        public static void setLog(boolean isLog) {
-                L.isLog = isLog;
+        private L(boolean isPrintLog) {
+                isLog = isPrintLog;
         }
 
-        public static boolean getIsLog() {
-                return isLog;
+        public static L setL(boolean isPrintLog) {
+                if (null == log) {
+                        log = new L(isPrintLog);
+                }
+                return log;
         }
 
         public static void d(String tag, String msg) {

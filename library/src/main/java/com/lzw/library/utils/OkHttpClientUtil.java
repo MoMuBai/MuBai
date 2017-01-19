@@ -50,7 +50,7 @@ public class OkHttpClientUtil {
         private Gson mGson;
 
 
-        private static final String TAG = "OkHttpClientManager";
+        private static final String TAG = "OkHttpClientUtil";
 
         private OkHttpClientUtil() {
                 mOkHttpClient = new OkHttpClient();

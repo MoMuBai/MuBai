@@ -10,7 +10,7 @@
         android:layout_height="300dip"
         android:orientation="vertical">
 
-        <com.mob.mubai.view.banner.ViewFlow
+        <com.mb.mubai.view.banner.ViewFlow
             android:id="@+id/viewflow"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
@@ -22,7 +22,7 @@
             android:gravity="center"
             android:padding="3dip">
 
-            <com.mob.mubai.view.banner.CircleFlowIndicator
+            <com.mb.mubai.view.banner.CircleFlowIndicator
                 android:id="@+id/viewflowindic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
