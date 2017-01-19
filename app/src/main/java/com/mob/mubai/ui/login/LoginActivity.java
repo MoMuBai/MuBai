@@ -9,11 +9,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzw.library.utils.L;
+import com.lzw.library.utils.OkHttpClientUtil;
+import com.lzw.library.utils.SpUtils;
+import com.mob.mubai.App;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
-import com.mob.mubai.base.utils.L;
-import com.mob.mubai.base.utils.OkHttpClientUtil;
-import com.mob.mubai.base.utils.SpUtils;
 import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
@@ -144,7 +145,7 @@ public class LoginActivity extends BaseActivity {
                         public void onResponse(String response) {
                                 token = response;
                                 L.d(TAG, token);
-                                SpUtils.putString(LoginActivity.this, "token", "token");
+                                SpUtils.setSharedStringData(App.getInstance(), "token", "token");
                         }
                 });
         }

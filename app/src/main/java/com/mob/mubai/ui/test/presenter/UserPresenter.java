@@ -3,7 +3,8 @@ package com.mob.mubai.ui.test.presenter;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.mob.mubai.base.utils.To;
+import com.lzw.library.utils.To;
+
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -30,6 +31,6 @@ import com.mob.mubai.base.utils.To;
 public class UserPresenter extends BaseObservable {
         @Bindable
         public void onClickListener() {
-                To.d("HH");
+                To.showShort("HH");
         }
 }

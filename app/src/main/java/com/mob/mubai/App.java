@@ -4,12 +4,10 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
-import android.support.multidex.MultiDexApplication;
 
-import com.mob.mubai.base.exception.LocalFileHandler;
-import com.mob.mubai.base.utils.L;
-import com.mob.mubai.base.utils.OkHttpClientUtil;
-import com.mob.mubai.base.utils.SpUtils;
+
+import com.lzw.library.utils.OkHttpClientUtil;
+import com.lzw.library.utils.SpUtils;
 
 import java.io.IOException;
 

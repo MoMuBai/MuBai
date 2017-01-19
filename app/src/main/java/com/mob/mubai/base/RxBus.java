@@ -3,7 +3,7 @@ package com.mob.mubai.base;
 import android.support.annotation.NonNull;
 
 
-import com.mob.mubai.base.utils.L;
+import com.lzw.library.utils.L;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,9 +17,28 @@ import rx.subjects.PublishSubject;
 import rx.subjects.Subject;
 
 /**
- * 用RxJava实现的EventBus
- * <p>
- * Created by lzw on 2016/9/12.
+ *
+ * //////////////////////////////////////////////////////////////////////////////
+ * //
+ * //      ┏┛ ┻━━━━━┛ ┻┓
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　━　　　┃
+ * //      ┃　┗┛　  ┗┛　┃
+ * //      ┃　　　　　　 ┃
+ * //      ┃　　　┻　　　┃               @Author  lzw
+ * //      ┃　　　　　　 ┃
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/9/12
+ * //        ┃　　　┃   神兽保佑
+ * //        ┃　　　┃   代码无BUG！      @Desc  用RxJava实现的EventBus
+ * //        ┃　　　┗━━━━━━━━━┓
+ * //        ┃　　　　　　　    ┣━━━┛
+ * //        ┃　　　　         ┏┛
+ * //        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛
+ * //          ┃ ┫ ┫   ┃ ┫ ┫
+ * //          ┗━┻━┛   ┗━┻━┛
+ * //
+ * /////////////////////////////////////////////////////////////////////////////
+ *
  */
 public final class RxBus {
         private static RxBus instance;

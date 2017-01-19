@@ -7,9 +7,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
+import com.lzw.library.utils.To;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
-import com.mob.mubai.base.utils.To;
 import com.mob.mubai.ui.test.contract.SeekBarContract;
 import com.mob.mubai.ui.test.model.SeekBarModel;
 import com.mob.mubai.ui.test.presenter.SeekBarPresenter;
@@ -82,7 +82,7 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
 
         @Override
         public void show(String str) {
-                To.d(str);
+                To.showShort(str);
         }
 
         @Override

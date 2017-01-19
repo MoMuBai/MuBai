@@ -10,10 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
+import com.lzw.library.utils.AppManager;
+import com.lzw.library.utils.TUtil;
 import com.mob.mubai.App;
 import com.mob.mubai.R;
-import com.mob.mubai.base.utils.AppManager;
-import com.mob.mubai.base.utils.TUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

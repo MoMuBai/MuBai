@@ -9,7 +9,6 @@ import android.telephony.TelephonyManager;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import com.mob.mubai.App;
 
 import java.util.UUID;
 
@@ -46,10 +45,10 @@ public final class AppUtil {
         /**
          * 检查是否版本更新
          */
-        public static boolean checkIsUpdate() {
+        public static boolean checkIsUpdate(Context context) {
                 //TODO 需要进行网络请求获取版本号
                 try {
-                        if (version > Float.parseFloat(AppUtil.getVersionName(App.getInstance()))) {
+                        if (version > Float.parseFloat(AppUtil.getVersionName(context))) {
                                 return true;
                         } else {
                                 return false;
@@ -117,12 +116,12 @@ public final class AppUtil {
         /**
          * 获取唯一设备号
          */
-        public static String getDeviceId() {
-                TelephonyManager tm = (TelephonyManager) App.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
+        public static String getDeviceId(Context context) {
+                TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
                 final String tmDevice, tmSerial, tmPhone, androidId;
                 tmDevice = "" + tm.getDeviceId();
                 tmSerial = "" + tm.getSimSerialNumber();
-                androidId = "" + android.provider.Settings.Secure.getString(App.getInstance().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+                androidId = "" + android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
                 UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
                 String uniqueId = deviceUuid.toString();
                 return uniqueId;

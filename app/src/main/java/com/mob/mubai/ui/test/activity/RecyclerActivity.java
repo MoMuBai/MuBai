@@ -6,10 +6,10 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.lzw.library.listener.OnItemClickListener;
+import com.lzw.library.utils.To;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
-import com.mob.mubai.base.listeners.OnItemClickListener;
-import com.mob.mubai.base.utils.To;
 import com.mob.mubai.data.bean.ViewTypeBean;
 import com.mob.mubai.ui.test.adapter.MenuViewTypeAdapter;
 import com.mob.mubai.ui.test.contract.RecyclerContract;
@@ -158,9 +158,9 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
                         closeable.smoothCloseMenu();// 关闭被点击的菜单。
 
                         if (direction == SwipeMenuRecyclerView.RIGHT_DIRECTION) {
-                                To.d("list第" + adapterPosition + "; 右侧菜单第" + menuPosition);
+                                To.showShort("list第" + adapterPosition + "; 右侧菜单第" + menuPosition);
                         } else if (direction == SwipeMenuRecyclerView.LEFT_DIRECTION) {
-                                To.d("list第" + adapterPosition + "; 左侧菜单第" + menuPosition);
+                                To.showShort("list第" + adapterPosition + "; 左侧菜单第" + menuPosition);
                         }
                 }
         };

@@ -2,9 +2,9 @@ package com.lzw.library.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
- *
  * //////////////////////////////////////////////////////////////////////////////
  * //
  * //      ┏┛ ┻━━━━━┛ ┻┓
@@ -25,112 +25,158 @@ import android.content.SharedPreferences;
  * //          ┗━┻━┛   ┗━┻━┛
  * //
  * /////////////////////////////////////////////////////////////////////////////
- *
  */
 public final class SpUtils {
-
-        public static String PREFERENCE_NAME = "MuBai";
-
-        static SharedPreferences prefs;
+        private static SharedPreferences mSharedPreferences;
 
         public static void init(Context context) {
-                prefs = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+                if (mSharedPreferences == null) {
+                        mSharedPreferences = PreferenceManager
+                                  .getDefaultSharedPreferences(context);
+                }
         }
 
-
         /**
-         * 存入String类型参数进入SharePreferences
+         * 添加Int类型
          *
          * @param context
          * @param key
          * @param value
-         * @return 是否存入成功
          */
-        public static boolean putString(Context context, String key, String value) {
-                return prefs.edit().putString(key, value).commit();
+        public static void setSharedIntData(Context context, String key, int value) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                mSharedPreferences.edit().putInt(key, value).commit();
         }
 
         /**
-         * 取出SharePreferences的String类型值，没有设置默认值
+         * 获取Int类型
          *
          * @param context
          * @param key
-         * @return 得到共享参数的存入key的String类型值
+         * @return
          */
-        public static String getString(Context context, String key) {
-                return getString(context, key, null);
+        public static int getSharedIntData(Context context, String key) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                return mSharedPreferences.getInt(key, -1);
         }
 
         /**
-         * 取出SharePreferences的String类型值，设置默认值(取不到该key值，默认值)
+         * 添加Long类型
          *
          * @param context
          * @param key
-         * @param defaultValue
-         * @return 得到共享参数的存入key的String类型值
+         * @param value
          */
-        public static String getString(Context context, String key, String defaultValue) {
-                return prefs.getString(key, defaultValue);
+        public static void setSharedlongData(Context context, String key, long value) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                mSharedPreferences.edit().putLong(key, value).commit();
         }
 
-
-        public static boolean putInt(Context context, String key, int value) {
-                return prefs.edit().putInt(key, value).commit();
+        /**
+         * 获取Long类型
+         *
+         * @param context
+         * @param key
+         * @return
+         */
+        public static long getSharedlongData(Context context, String key) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                return mSharedPreferences.getLong(key, -1l);
         }
 
-
-        public static int getInt(Context context, String key) {
-                return getInt(context, key, -1);
+        /**
+         * 添加Float类型
+         *
+         * @param context
+         * @param key
+         * @param value
+         */
+        public static void setSharedFloatData(Context context, String key,
+                                              float value) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                mSharedPreferences.edit().putFloat(key, value).commit();
         }
 
-
-        public static int getInt(Context context, String key, int defaultValue) {
-                return prefs.getInt(key, defaultValue);
+        /**
+         * 获取Float类型
+         *
+         * @param context
+         * @param key
+         * @return
+         */
+        public static Float getSharedFloatData(Context context, String key) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                return mSharedPreferences.getFloat(key, -1f);
         }
 
-
-        public static boolean putLong(Context context, String key, long value) {
-                return prefs.edit().putLong(key, value).commit();
+        /**
+         * 添加Boolean类型
+         *
+         * @param context
+         * @param key
+         * @param value
+         */
+        public static void setSharedBooleanData(Context context, String key,
+                                                boolean value) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                mSharedPreferences.edit().putBoolean(key, value).commit();
         }
 
-
-        public static long getLong(Context context, String key) {
-                return getLong(context, key, -1);
+        /**
+         * 获取Boolean类型
+         *
+         * @param context
+         * @param key
+         * @return
+         */
+        public static Boolean getSharedBooleanData(Context context, String key) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                return mSharedPreferences.getBoolean(key, false);
         }
 
-
-        public static long getLong(Context context, String key, long defaultValue) {
-                return prefs.getLong(key, defaultValue);
+        /**
+         * 添加String类型
+         *
+         * @param context
+         * @param key
+         * @param value
+         */
+        public static void setSharedStringData(Context context, String key,
+                                               String value) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                mSharedPreferences.edit().putString(key, value).commit();
         }
 
-
-        public static boolean putFloat(Context context, String key, float value) {
-                return prefs.edit().putFloat(key, value).commit();
-        }
-
-
-        public static float getFloat(Context context, String key) {
-                return getFloat(context, key, -1);
-        }
-
-
-        public static float getFloat(Context context, String key, float defaultValue) {
-                return prefs.getFloat(key, defaultValue);
-        }
-
-
-        public static boolean putBoolean(Context context, String key, boolean value) {
-                return prefs.edit().putBoolean(key, value).commit();
-        }
-
-
-        public static boolean getBoolean(Context context, String key) {
-                return getBoolean(context, key, false);
-        }
-
-
-        public static boolean getBoolean(Context context, String key, boolean defaultValue) {
-                return prefs.getBoolean(key, defaultValue);
+        /**
+         * 获取String类型
+         *
+         * @param context
+         * @param key
+         * @return
+         */
+        public static String getSharedStringData(Context context, String key) {
+                if (mSharedPreferences == null) {
+                        init(context);
+                }
+                return mSharedPreferences.getString(key, null);
         }
 
 
@@ -141,6 +187,6 @@ public final class SpUtils {
          * @return 是否清空共享参数
          */
         public static boolean clearAllPrefer(Context context) {
-                return prefs.edit().clear().commit();
+                return mSharedPreferences.edit().clear().commit();
         }
 }

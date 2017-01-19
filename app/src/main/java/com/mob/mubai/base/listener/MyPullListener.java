@@ -1,11 +1,10 @@
-package com.lzw.library.listener;
+package com.mob.mubai.base.listener;
 
 import android.os.Handler;
 import android.os.Message;
 
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jingchen.pulltorefresh.PullToRefreshLayout.OnPullListener;
-
 
 /**
  * Created by lzw on 2016/11/10.

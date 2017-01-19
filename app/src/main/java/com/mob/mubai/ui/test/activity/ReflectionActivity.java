@@ -6,10 +6,11 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import com.lzw.library.utils.ImageUtil;
+import com.lzw.library.utils.L;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
-import com.mob.mubai.base.utils.ImageUtil;
-import com.mob.mubai.base.utils.L;
+
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

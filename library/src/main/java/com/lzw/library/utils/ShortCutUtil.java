@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.mob.mubai.R;
+import com.lzw.library.R;
 
 
 /**

@@ -1,10 +1,5 @@
 package com.mob.mubai.base.service;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
-
 import com.mob.mubai.base.api.ApiUrl;
 import com.mob.mubai.data.DataResult;
 import com.mob.mubai.data.bean.LoginValue;

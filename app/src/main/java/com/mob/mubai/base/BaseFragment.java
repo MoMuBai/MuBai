@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.lzw.library.utils.AppManager;
+import com.lzw.library.utils.TUtil;
 import com.mob.mubai.App;
 import com.mob.mubai.R;
-import com.mob.mubai.base.utils.AppManager;
-import com.mob.mubai.base.utils.TUtil;
 import com.mob.mubai.view.widget.LoadingDialog;
 
 import java.util.Map;

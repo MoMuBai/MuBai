@@ -1,6 +1,7 @@
 package com.mob.mubai.data.bean;
 
-import com.mob.mubai.base.utils.L;
+
+import com.lzw.library.utils.L;
 
 /**
  * Created by lzw on 2016/11/11.

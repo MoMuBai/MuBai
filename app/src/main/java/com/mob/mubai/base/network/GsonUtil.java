@@ -1,8 +1,8 @@
-package com.lzw.library.utils;
+package com.mob.mubai.base.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mob.mubai.base.helps.ResultJsonDeser;
+import com.mob.mubai.base.api.ResultJsonDeser;
 import com.mob.mubai.data.DataResult;
 
 /**

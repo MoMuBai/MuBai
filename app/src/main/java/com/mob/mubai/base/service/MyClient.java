@@ -1,8 +1,8 @@
 package com.mob.mubai.base.service;
 
-import com.mob.mubai.base.api.ApiService;
-import com.mob.mubai.base.utils.GsonUtil;
-import com.mob.mubai.base.utils.OkHttpManager;
+
+import com.mob.mubai.base.network.GsonUtil;
+import com.mob.mubai.base.network.OkHttpManager;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

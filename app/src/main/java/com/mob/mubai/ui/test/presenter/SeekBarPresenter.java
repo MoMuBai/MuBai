@@ -1,8 +1,8 @@
 package com.mob.mubai.ui.test.presenter;
 
 
+import com.lzw.library.utils.L;
 import com.mob.mubai.base.api.ApiClient;
-import com.mob.mubai.base.utils.L;
 import com.mob.mubai.ui.test.contract.SeekBarContract;
 
 import java.io.IOException;

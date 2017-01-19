@@ -21,8 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lzw.library.listener.OnItemClickListener;
 import com.mob.mubai.R;
-import com.mob.mubai.base.listeners.OnItemClickListener;
 import com.mob.mubai.data.bean.ViewTypeBean;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
 

@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lzw.library.listener.DialogNoBtnListener;
+import com.lzw.library.listener.DialogOkBtnListener;
 import com.mob.mubai.R;
-import com.mob.mubai.base.listeners.DialogNoBtnListener;
-import com.mob.mubai.base.listeners.DialogOkBtnListener;
 
 
 /**

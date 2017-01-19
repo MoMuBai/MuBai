@@ -4,8 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.lzw.utils.helper.CloseHelper;
-import com.lzw.utils.utils.MD5Util;
+import com.lzw.library.helper.CloseHelper;
+import com.lzw.library.utils.MD5Util;
+
 
 import java.io.File;
 import java.io.FileOutputStream;

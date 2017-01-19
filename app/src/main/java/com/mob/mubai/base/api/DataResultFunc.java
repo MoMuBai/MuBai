@@ -1,4 +1,4 @@
-package com.mob.mubai.base.helps;
+package com.mob.mubai.base.api;
 
 
 import com.mob.mubai.base.api.ApiException;

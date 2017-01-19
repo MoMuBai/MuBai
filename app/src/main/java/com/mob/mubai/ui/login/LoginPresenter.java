@@ -1,8 +1,8 @@
 package com.mob.mubai.ui.login;
 
 
-import com.mob.mubai.base.helps.DataResultFunc;
-import com.mob.mubai.base.utils.UserManager;
+import com.lzw.library.utils.UserManager;
+import com.mob.mubai.base.api.DataResultFunc;
 import com.mob.mubai.data.bean.LoginValue;
 import com.mob.mubai.data.model.PasswordValidator;
 

@@ -10,9 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.lzw.library.utils.AppManager;
 import com.mob.mubai.R;
 import com.mob.mubai.base.BaseActivity;
-import com.mob.mubai.base.utils.AppManager;
 import com.mob.mubai.ui.login.LoginActivity;
 import com.mob.mubai.ui.test.activity.BannerActivity;
 import com.mob.mubai.ui.test.activity.PinnedHeadListActivity;
