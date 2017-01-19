@@ -7,8 +7,8 @@ import com.mob.mubai.base.utils.L;
  */
 
 public class Worker {
-    private int age;
-    private String name;
+    public int age;
+    public String name;
     public String id;
 
     public Worker() {

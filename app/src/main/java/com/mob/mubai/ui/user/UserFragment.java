@@ -31,11 +31,11 @@ import com.mob.mubai.base.BaseFragment;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class Fragment3 extends BaseFragment {
+public class UserFragment extends BaseFragment {
 
 
         public static Fragment getFragment() {
-                Fragment f = new Fragment3();
+                Fragment f = new UserFragment();
                 return f;
         }
 

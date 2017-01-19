@@ -1,1 +1,1 @@
-include ':app', ':pinnedhead'
+include ':app', ':pinnedhead', ':library', ':mvvm'

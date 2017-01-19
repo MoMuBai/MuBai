@@ -1,7 +1,4 @@
-package com.mob.mubai.ui.test.activity;
-
-
-import com.mob.mubai.base.BaseActivity;
+package com.lzw.library.network;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -11,9 +8,9 @@ import com.mob.mubai.base.BaseActivity;
  * //      ┃　　　━　　　┃
  * //      ┃　┗┛　  ┗┛　┃
  * //      ┃　　　　　　 ┃
- * //      ┃　　　┻　　　┃               @Author  林志文
+ * //      ┃　　　┻　　　┃               @Author  lzw
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2016/12/21
+ * //      ┗━┓　　　┏━━━┛               @Date  2017/1/19
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -25,21 +22,9 @@ import com.mob.mubai.base.BaseActivity;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
+public interface NetInterface<T> {
+        void onSuccess(T response);
 
-public class TabActivity extends BaseActivity {
+        void onError();
 
-        @Override
-        protected int getLayout() {
-                return 0;
-        }
-
-        @Override
-        protected void initView() {
-
-        }
-
-        @Override
-        protected void initData() {
-
-        }
 }

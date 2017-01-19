@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
     defaultConfig {
         applicationId "com.mob.mubai"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -107,6 +107,7 @@ android {
 }
 
 dependencies {
+    Map<String, String> dependencies = rootProject.ext.lzwConfig
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -116,10 +117,10 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     compile 'org.mockito:mockito-core:2.2.9'
     //Support Library
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile dependencies.appCompat_v7
+    compile dependencies.support_v4
+    compile dependencies.design
+    compile dependencies.recyclerview
     //Helper Library
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
@@ -144,6 +145,8 @@ dependencies {
     //Third Party Library
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.2'
     compile(name: 'refreshAndLoad', ext: 'aar')
+    compile 'com.kelin.mvvmlight:library:1.0.0'
     compile project(':pinnedhead')
+    compile project(':library')
 }
 

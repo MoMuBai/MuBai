@@ -1,5 +1,6 @@
 package com.mob.mubai.ui.login;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -143,7 +144,7 @@ public class LoginActivity extends BaseActivity {
                         public void onResponse(String response) {
                                 token = response;
                                 L.d(TAG, token);
-                                SpUtils.putString(mContext, "token", "token");
+                                SpUtils.putString(LoginActivity.this, "token", "token");
                         }
                 });
         }

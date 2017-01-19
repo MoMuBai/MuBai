@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.mob.mubai.ui.home.Fragment1;
 import com.mob.mubai.ui.mb.Fragment4;
 import com.mob.mubai.ui.msg.Fragment2;
-import com.mob.mubai.ui.user.Fragment3;
+import com.mob.mubai.ui.user.UserFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class MainAdapter extends FragmentPagerAdapter {
                 viewList = new ArrayList<>();
                 viewList.add(Fragment1.getFragment());
                 viewList.add(Fragment2.getFragment());
-                viewList.add(Fragment3.getFragment());
+                viewList.add(UserFragment.getFragment());
                 viewList.add(Fragment4.getFragment());
         }
 
