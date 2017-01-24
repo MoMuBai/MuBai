@@ -16,14 +16,45 @@ class KotlinActivity : AppCompatActivity() {
 
     fun getInt(a: Int, b: Int): Int {
         val i: Int;
-        i = a + b;
-        return i;
+        if (a < 0) {
+            return a;
+        } else {
+            i = a + b;
+            return i;
+        }
     }
 
-    fun getStr(a: String): String {
+    fun getStr(a: String): String? {
+        if (a != null) {
+            return "0";
+        } else {
+            val s: String;
+            s = a;
+            return s;
+        }
+    }
+
+    fun main(a: String): Unit {
         val s: String;
-        s = a;
-        return s;
+        print(a)
     }
 
+    fun main(a: String, b: String) {
+        print(a + b)
+    }
+
+    fun main(a: Int, b: Int) = a + b;
+
+    fun main(b: Int) = a + b;
+
+
+    fun main(args: Array<String>) {
+        for (arg in args) {
+            print(arg)
+        }
+
+        for (i in args.indices) {
+            print(args[i])
+        }
+    }
 }
