@@ -82,7 +82,7 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
 
         @Override
         public void show(String str) {
-                To.showShort(str);
+                To.d(str);
         }
 
         @Override

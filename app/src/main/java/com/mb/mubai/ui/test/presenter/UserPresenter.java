@@ -31,6 +31,6 @@ import com.lzw.library.utils.To;
 public class UserPresenter extends BaseObservable {
         @Bindable
         public void onClickListener() {
-                To.showShort("HH");
+                To.d("HH");
         }
 }

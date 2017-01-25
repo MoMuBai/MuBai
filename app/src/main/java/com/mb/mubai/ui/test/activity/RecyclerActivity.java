@@ -158,9 +158,9 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
                         closeable.smoothCloseMenu();// 关闭被点击的菜单。
 
                         if (direction == SwipeMenuRecyclerView.RIGHT_DIRECTION) {
-                                To.showShort("list第" + adapterPosition + "; 右侧菜单第" + menuPosition);
+                                To.d("list第" + adapterPosition + "; 右侧菜单第" + menuPosition);
                         } else if (direction == SwipeMenuRecyclerView.LEFT_DIRECTION) {
-                                To.showShort("list第" + adapterPosition + "; 左侧菜单第" + menuPosition);
+                                To.d("list第" + adapterPosition + "; 左侧菜单第" + menuPosition);
                         }
                 }
         };
