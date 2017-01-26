@@ -16,6 +16,6 @@ Android屏幕适配：使得某一元素在Android不同尺寸、不同分辨率
 
 4.百分比布局  
 
-[Email：quickly520@126.com](quickly520@126.com)  
+[Email：http://www.126.com/](http://www.126.com/)quickly520@126.com  
 
 `this is code by lzw`
