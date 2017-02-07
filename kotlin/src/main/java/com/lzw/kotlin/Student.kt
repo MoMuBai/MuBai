@@ -1,16 +1,7 @@
-package com.lzw.mvvm.view;
-
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
-import com.lzw.mvvm.R;
-import com.lzw.mvvm.databinding.ActivityMainBinding;
-import com.lzw.mvvm.model.User;
-import com.lzw.mvvm.viewmodel.MainViewModel;
+package com.lzw.kotlin
 
 /**
+ *
  * //////////////////////////////////////////////////////////////////////////////
  * //
  * //      ┏┛ ┻━━━━━┛ ┻┓
@@ -20,7 +11,7 @@ import com.lzw.mvvm.viewmodel.MainViewModel;
  * //      ┃　　　　　　 ┃
  * //      ┃　　　┻　　　┃               @Author  lzw
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2017/1/19
+ * //      ┗━┓　　　┏━━━┛               @Date  2017/2/7
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -31,16 +22,18 @@ import com.lzw.mvvm.viewmodel.MainViewModel;
  * //          ┗━┻━┛   ┗━┻━┛
  * //
  * /////////////////////////////////////////////////////////////////////////////
+ *
  */
-public class MainActivity extends AppCompatActivity {
+abstract class Student : User(1, "顺丰", 24) {
+    init {
+        add(1,2)
+    }
 
-        private ActivityMainBinding mainBinding;
+    fun add(a: Int, b: Int): Int {
+        return a + b
+    }
 
-        @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-                User user = new User("MVVM", 24);
-                mainBinding.setUser(user);
-        }
+    fun add(a: Int, b: Int, c: Int = 12): Int = a + b + c
+
+
 }

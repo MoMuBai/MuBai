@@ -1,16 +1,10 @@
-package com.lzw.mvvm.view;
+package com.lzw.kotlin
 
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
-import com.lzw.mvvm.R;
-import com.lzw.mvvm.databinding.ActivityMainBinding;
-import com.lzw.mvvm.model.User;
-import com.lzw.mvvm.viewmodel.MainViewModel;
+import android.widget.Toast
+import javax.xml.datatype.Duration
 
 /**
+ *
  * //////////////////////////////////////////////////////////////////////////////
  * //
  * //      ┏┛ ┻━━━━━┛ ┻┓
@@ -20,7 +14,7 @@ import com.lzw.mvvm.viewmodel.MainViewModel;
  * //      ┃　　　　　　 ┃
  * //      ┃　　　┻　　　┃               @Author  lzw
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2017/1/19
+ * //      ┗━┓　　　┏━━━┛               @Date  2017/2/7
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -31,16 +25,15 @@ import com.lzw.mvvm.viewmodel.MainViewModel;
  * //          ┗━┻━┛   ┗━┻━┛
  * //
  * /////////////////////////////////////////////////////////////////////////////
+ *
  */
-public class MainActivity extends AppCompatActivity {
+open class User(
+        var id: Long,
+        var name: String,
+        var age: Int){
+    init {
 
-        private ActivityMainBinding mainBinding;
-
-        @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-                User user = new User("MVVM", 24);
-                mainBinding.setUser(user);
-        }
+    }
 }
+
+
