@@ -1,4 +1,4 @@
-package com.lzw.kotlin
+package com.lzw.kotlin.data
 
 /**
  *
@@ -24,10 +24,13 @@ package com.lzw.kotlin
  * /////////////////////////////////////////////////////////////////////////////
  *
  */
-abstract class Student : User(1, "顺丰", 24) {
+class Student : User(1, "顺丰", 24) {
     init {
-        add(1,2)
+        add(1, 2)
     }
+
+
+    var height: String = "170"
 
     fun add(a: Int, b: Int): Int {
         return a + b
