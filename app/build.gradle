@@ -147,6 +147,7 @@ dependencies {
     compile(name: 'refreshAndLoad', ext: 'aar')
     compile 'com.kelin.mvvmlight:library:1.0.0'
     compile 'com.airbnb.android:lottie:1.0.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile project(':pinnedhead')
     compile project(':library')
 }
