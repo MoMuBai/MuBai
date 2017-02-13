@@ -50,6 +50,25 @@ public abstract class AbsAdapter<T> extends android.widget.BaseAdapter {
                 this(null, context);
         }
 
+        @Override
+        public int getCount() {
+                return dataList.size();
+        }
+
+        @Override
+        public T getItem(int position) {
+                return dataList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+                return position;
+        }
+
+        @Override
+        public abstract View getView(int position, View convertView, ViewGroup parent);
+
+        //================对外的方法===================
         private void addData(List<T> dataList, boolean isRefresh) {
                 if (this.dataList == null) {
                         this.dataList = new ArrayList<>();
@@ -90,24 +109,6 @@ public abstract class AbsAdapter<T> extends android.widget.BaseAdapter {
                         notifyDataSetChanged();
                 } else throw new IndexOutOfBoundsException("adapter里的集合没你想的那么大");
         }
-
-        @Override
-        public int getCount() {
-                return dataList.size();
-        }
-
-        @Override
-        public T getItem(int position) {
-                return dataList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-                return position;
-        }
-
-        @Override
-        public abstract View getView(int position, View convertView, ViewGroup parent);
 
 
 }

@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.lzw.kotlin.adapter.MainRecyclerAdapter
+import com.lzw.kotlin.data.Forecast
 import com.lzw.kotlin.data.Student
 import com.lzw.kotlin.data.User
+import java.util.*
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -75,6 +77,19 @@ class MainActivity : AppCompatActivity() {
 
         val student = Student()
         student.height = "180"
+
+        //修改Forecast其中一个属性
+        val f1 = Forecast(Date(), 20f, "杭州")
+        val f2 = f1.copy(temperature = 30f)
+        //映射对象到变量中
+        val (date, temperature, details) = f1
+
+        //多声明
+        val date2 = f1.component1()
+
+        val temperature2 = f1.component2()
+
+        val details2 = f1.component3()
 
     }
 }
