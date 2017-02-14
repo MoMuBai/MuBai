@@ -1,8 +1,8 @@
 package com.mb.mubai;
 
 import com.mb.mubai.data.model.PasswordValidator;
-import com.mb.mubai.base.utils.UserManager;
-import com.mb.mubai.ui.presenter.LoginPresenter;
+import com.mb.mubai.ui.login.LoginPresenter;
+import com.mb.mubai.ui.login.UserManager;
 
 import org.junit.Before;
 import org.junit.Test;

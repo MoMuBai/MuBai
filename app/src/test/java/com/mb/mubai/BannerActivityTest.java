@@ -1,9 +1,4 @@
 package com.mb.mubai;
-
-import com.mb.mubai.ui.activity.BannerActivity;
-import com.mb.mubai.ui.activity.MainActivity;
-import com.mb.mubai.ui.activity.RecyclerActivity;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
