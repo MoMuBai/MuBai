@@ -5,9 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 
-import com.mb.mubai.ui.home.Fragment1;
-import com.mb.mubai.ui.mb.Fragment4;
-import com.mb.mubai.ui.msg.Fragment2;
+import com.mb.mubai.ui.home.HomeFragment;
+import com.mb.mubai.ui.msg.MsgFragment;
 import com.mb.mubai.ui.user.UserFragment;
 
 import java.util.ArrayList;
@@ -44,10 +43,10 @@ public class MainAdapter extends FragmentPagerAdapter {
         public MainAdapter(FragmentManager fm) {
                 super(fm);
                 viewList = new ArrayList<>();
-                viewList.add(Fragment1.getFragment());
-                viewList.add(Fragment2.getFragment());
+                viewList.add(HomeFragment.getFragment());
+                viewList.add(MsgFragment.getFragment());
                 viewList.add(UserFragment.getFragment());
-                viewList.add(Fragment4.getFragment());
+                viewList.add(UserFragment.getFragment());
         }
 
         @Override

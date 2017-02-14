@@ -1,9 +1,7 @@
 package com.mb.mubai.ui.msg;
 
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
@@ -31,17 +29,18 @@ import com.mb.mubai.base.BaseFragment;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class Fragment2 extends BaseFragment {
+public class MsgFragment extends BaseFragment {
 
 
         public static Fragment getFragment() {
-                Fragment f = new Fragment2();
+                Fragment f = new MsgFragment();
                 return f;
         }
 
+
         @Override
-        protected View getLayout(LayoutInflater inflater, ViewGroup container) {
-                return inflater.inflate(R.layout.activity_im, container, false);
+        protected int getLayoutId() {
+                return R.layout.activity_im;
         }
 
         @Override

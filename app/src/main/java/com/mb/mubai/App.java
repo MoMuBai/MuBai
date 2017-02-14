@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
+import android.support.multidex.MultiDexApplication;
 
 
 import com.lzw.library.utils.L;
@@ -35,7 +36,7 @@ import java.io.IOException;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
 
         private static Context mContext;
 

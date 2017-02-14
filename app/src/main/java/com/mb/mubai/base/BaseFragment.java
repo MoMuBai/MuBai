@@ -66,7 +66,7 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
                 AppManager.getAppManager().addFragment(this);
-                return getLayout(inflater, container);
+                return inflater.inflate(getLayoutId(), container, false);
         }
 
         @Override
@@ -119,7 +119,7 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
         /**
          * 加载布局
          */
-        protected abstract View getLayout(LayoutInflater inflater, ViewGroup container);
+        protected abstract int getLayoutId();
 
         /**
          * 初始化组件
