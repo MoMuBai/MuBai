@@ -25,7 +25,7 @@
 #### Android Http
 
 ***
-> Email <quickly520@126.com> link 
+> Email <quickly520@126.com>
 > 
 > Blog  <http://blog.csdn.net/qq_27263999> 
 > 
