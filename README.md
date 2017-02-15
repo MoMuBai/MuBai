@@ -25,6 +25,15 @@
 #### Android Http
 
 ***
-> My email <quickly520@126.com> link
+> Email <quickly520@126.com> link 
+> 
+> Blog  <http://blog.csdn.net/qq_27263999> 
+> 
 
+![MuBai](http://pic4.nipic.com/20091117/3376018_110331702620_2.jpg) 
+
+* [Markdown入门](http://www.jianshu.com/p/1e402922ee32/)
+* [Git Book](https://git-scm.com/book/zh/v2)
+* [Kotlin](http://kotlindoc.com/)
+* [React Native](http://reactnative.cn/docs/0.41/getting-started.html)
 
