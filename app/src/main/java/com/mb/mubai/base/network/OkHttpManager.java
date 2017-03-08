@@ -129,6 +129,7 @@ public class OkHttpManager {
 
         /**
          * 构建HostnameVerifier
+         * 主机名验证器
          */
         protected static HostnameVerifier getHostnameVerifier(final String[] hostUrls) {
 

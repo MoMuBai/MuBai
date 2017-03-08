@@ -1,7 +1,7 @@
 package com.mb.mubai.ui.test.model;
 
 
-import com.mb.mubai.base.service.MyFactory;
+import com.mb.mubai.base.api.MyFactory;
 import com.mb.mubai.data.DataResult;
 import com.mb.mubai.data.bean.LoginValue;
 import com.mb.mubai.ui.login.LoginContract;

@@ -1,4 +1,4 @@
-package com.mb.mubai.base.service;
+package com.mb.mubai.base.api;
 
 import com.mb.mubai.base.api.ApiUrl;
 import com.mb.mubai.data.DataResult;

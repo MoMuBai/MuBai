@@ -1,4 +1,4 @@
-package com.mb.mubai.base.service;
+package com.mb.mubai.base.api;
 
 /**
  * Created by lzw on 2016/12/17.
