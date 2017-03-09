@@ -62,6 +62,6 @@ public class SeekBarPresenter extends SeekBarContract.Presenter {
                         }
                 });
                 //Retrofit请求
-                ApiClient.getApiService().getStr("name");
+                new ApiClient().getApiService().getStr("name");
         }
 }

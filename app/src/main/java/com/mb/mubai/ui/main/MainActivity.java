@@ -13,12 +13,13 @@ import android.widget.Toast;
 import com.lzw.library.utils.AppManager;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
-import com.mb.mubai.ui.login.LoginActivity;
 import com.mb.mubai.ui.test.activity.BannerActivity;
+import com.mb.mubai.ui.test.activity.CallPhoneActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
 import com.mb.mubai.ui.test.activity.RecyclerActivity;
 import com.mb.mubai.ui.test.activity.ReflectionActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
+import com.mb.mubai.ui.user.login.LoginActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -96,6 +97,10 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                                         break;
                                 case R.id.g6:
                                         intent.setClass(mActivity, PinnedHeadListActivity.class);
+                                        startActivity(intent);
+                                        break;
+                                case R.id.g7:
+                                        intent.setClass(mActivity, CallPhoneActivity.class);
                                         startActivity(intent);
                                         break;
                                 default:

@@ -1,4 +1,4 @@
-package com.mb.mubai.ui.login;
+package com.mb.mubai.ui.user.login;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;

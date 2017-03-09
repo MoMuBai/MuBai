@@ -1,4 +1,4 @@
-package com.mb.mubai.ui.login;
+package com.mb.mubai.ui.user.login;
 
 
 import com.mb.mubai.base.api.DataResultFunc;

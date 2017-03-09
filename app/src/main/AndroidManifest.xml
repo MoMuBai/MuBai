@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name="com.mb.mubai.App"
@@ -21,7 +22,7 @@
         </activity>
         <activity android:name="com.mb.mubai.ui.main.MainActivity"
                   android:theme="@style/MuBaiTheme"/>
-        <activity android:name="com.mb.mubai.ui.login.LoginActivity"
+        <activity android:name="com.mb.mubai.ui.user.login.LoginActivity"
                   android:theme="@style/MuBaiTheme"/>
         <activity android:name="com.mb.mubai.ui.test.activity.SeekBarActivity"
                   android:theme="@style/MuBaiTheme"/>
@@ -32,6 +33,8 @@
         <activity android:name="com.mb.mubai.ui.test.activity.BannerActivity"
                   android:theme="@style/MuBaiTheme"/>
         <activity android:name="com.mb.mubai.ui.test.activity.PinnedHeadListActivity"
+                  android:theme="@style/MuBaiTheme"/>
+        <activity android:name="com.mb.mubai.ui.test.activity.CallPhoneActivity"
                   android:theme="@style/MuBaiTheme"/>
     </application>
 

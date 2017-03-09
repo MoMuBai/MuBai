@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 
+import com.mb.mubai.ui.found.FoundFragment;
 import com.mb.mubai.ui.home.HomeFragment;
 import com.mb.mubai.ui.msg.MsgFragment;
 import com.mb.mubai.ui.user.UserFragment;
@@ -45,7 +46,7 @@ public class MainAdapter extends FragmentPagerAdapter {
                 viewList = new ArrayList<>();
                 viewList.add(HomeFragment.getFragment());
                 viewList.add(MsgFragment.getFragment());
-                viewList.add(UserFragment.getFragment());
+                viewList.add(FoundFragment.getFragment());
                 viewList.add(UserFragment.getFragment());
         }
 

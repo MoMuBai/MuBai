@@ -40,7 +40,7 @@ public class MsgFragment extends BaseFragment {
 
         @Override
         protected int getLayoutId() {
-                return R.layout.activity_im;
+                return R.layout.fragment_message;
         }
 
         @Override

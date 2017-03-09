@@ -36,7 +36,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="微信"
+                    android:text="首页"
                     android:textColor="@color/selector_text"/>
 
             </LinearLayout>
@@ -54,7 +54,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="通讯录"
+                    android:text="消息"
                     android:textColor="@color/selector_text"/>
 
             </LinearLayout>

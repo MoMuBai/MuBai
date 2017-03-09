@@ -36,4 +36,10 @@
             android:icon="@drawable/mubai"
             android:title="PinnedHeadActivity"/>
     </group>
+    <group android:id="@+id/g7">
+        <item
+            android:id="@+id/callPhone"
+            android:icon="@drawable/mubai"
+            android:title="CallPhoneActivity"/>
+    </group>
 </menu>
