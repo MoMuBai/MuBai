@@ -3,6 +3,7 @@ package com.mb.mubai.ui.msg;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
 
@@ -29,32 +30,57 @@ import com.mb.mubai.base.BaseFragment;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class MsgFragment extends BaseFragment {
+public class MsgFragment extends BaseFragment<MsgPresenter, MsgModel> implements MsgContract.View {
 
 
-        public static Fragment getFragment() {
-                Fragment f = new MsgFragment();
-                return f;
-        }
+    public static Fragment getFragment() {
+        Fragment f = new MsgFragment();
+        return f;
+    }
 
 
-        @Override
-        protected int getLayoutId() {
-                return R.layout.fragment_message;
-        }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_message;
+    }
 
-        @Override
-        protected void initView(View view) {
+    @Override
+    protected void initView(View view) {
 
-        }
+    }
 
-        @Override
-        protected void initData() {
+    @Override
+    protected void initData() {
 
-        }
+    }
 
-        @Override
-        protected void lazyLoad() {
+    @Override
+    protected void lazyLoad() {
+        mPresenter.getData("Msg");
+    }
 
-        }
+    @Override
+    public void showData(String data) {
+        To.d(data);
+    }
+
+    @Override
+    public void showStart() {
+
+    }
+
+    @Override
+    public void showNoData(String msg) {
+
+    }
+
+    @Override
+    public void showError(String msg) {
+
+    }
+
+    @Override
+    public void showStop() {
+
+    }
 }

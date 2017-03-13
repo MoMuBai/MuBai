@@ -1,4 +1,4 @@
-package com.mb.mubai.base.api;
+package com.mb.mubai.base.api.user;
 
 
 import com.mb.mubai.base.network.GsonUtil;
@@ -13,13 +13,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * Created by lzw on 2016/12/17.
  */
 
-public class MyClient {
+public class UserClient {
 
-        private static MyService myService;
+        private static UserService userService;
 
         private static Retrofit retrofit;
 
-        public MyClient() {
+        public UserClient() {
                 retrofit = new Retrofit.Builder()
                           .baseUrl("")
                           .client(OkHttpManager.getOkHttpClient())
@@ -27,12 +27,12 @@ public class MyClient {
                           .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                           .addConverterFactory(ScalarsConverterFactory.create())
                           .build();
-                if (null == myService) {
-                        myService = retrofit.create(MyService.class);
+                if (null == userService) {
+                        userService = retrofit.create(UserService.class);
                 }
         }
 
-        public MyService getMyService() {
-                return myService;
+        public UserService getMyService() {
+                return userService;
         }
 }

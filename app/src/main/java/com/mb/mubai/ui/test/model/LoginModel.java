@@ -1,7 +1,7 @@
 package com.mb.mubai.ui.test.model;
 
 
-import com.mb.mubai.base.api.MyFactory;
+import com.mb.mubai.base.api.user.UserFactory;
 import com.mb.mubai.data.DataResult;
 import com.mb.mubai.data.bean.LoginValue;
 import com.mb.mubai.ui.user.login.LoginContract;
@@ -38,7 +38,7 @@ public class LoginModel implements LoginContract.Model {
 
         @Override
         public Observable<DataResult<LoginValue>> login(String name, String pass) {
-                return MyFactory.getMyService().login(name, pass);
+                return UserFactory.getUserService().login(name, pass);
         }
 
         @Override

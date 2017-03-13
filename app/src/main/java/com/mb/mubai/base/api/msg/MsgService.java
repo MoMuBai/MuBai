@@ -1,4 +1,15 @@
-package com.mb.mubai.base.api;
+package com.mb.mubai.base.api.msg;
+
+
+import com.mb.mubai.base.api.ApiUrl;
+import com.mb.mubai.data.DataResult;
+import com.mb.mubai.data.bean.LoginValue;
+
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -8,9 +19,9 @@ package com.mb.mubai.base.api;
  * //      ┃　　　━　　　┃
  * //      ┃　┗┛　  ┗┛　┃
  * //      ┃　　　　　　 ┃
- * //      ┃　　　┻　　　┃               @Author  lzw
+ * //      ┃　　　┻　　　┃               @Author  林志文
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2017/3/8
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/12/16
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -22,20 +33,12 @@ package com.mb.mubai.base.api;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class ApiFactory {
+public interface MsgService {
 
-        private static ApiService apiService;
+    @FormUrlEncoded
+    @POST(ApiUrl.LoginUrl)
+    Observable<DataResult<LoginValue>> login(@Field("name") String name, @Field("pass") String pass);
 
-        private static Object object = new Object();
-
-        public static ApiService getMyService() {
-                if (null == apiService) {
-                        synchronized (object) {
-                                if (null == apiService) {
-                                        apiService = new ApiClient().getApiService();
-                                }
-                        }
-                }
-                return apiService;
-        }
+    @POST("url")
+    Observable<String> getMsg(@Query("userId") String userId);
 }

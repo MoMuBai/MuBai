@@ -1,6 +1,5 @@
-package com.mb.mubai.base.api;
+package com.mb.mubai.base.api.msg;
 
-import com.google.gson.Gson;
 import com.mb.mubai.base.network.GsonUtil;
 import com.mb.mubai.base.network.OkHttpManager;
 
@@ -31,12 +30,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public class ApiClient {
-        private static ApiService apiService;
+public class MsgClient {
+        private static MsgService msgService;
 
         private static Retrofit retrofit;
 
-        public ApiClient() {
+        public MsgClient() {
                 retrofit = new Retrofit.Builder()
                           .baseUrl("url")
                           .client(OkHttpManager.getOkHttpClient())
@@ -44,12 +43,12 @@ public class ApiClient {
                           .addConverterFactory(ScalarsConverterFactory.create())
                           .addConverterFactory(GsonConverterFactory.create(GsonUtil.getGson()))
                           .build();
-                if (null == apiService) {
-                        apiService = retrofit.create(ApiService.class);
+                if (null == msgService) {
+                        msgService = retrofit.create(MsgService.class);
                 }
         }
 
-        public ApiService getApiService() {
-                return apiService;
+        public MsgService getApiService() {
+                return msgService;
         }
 }

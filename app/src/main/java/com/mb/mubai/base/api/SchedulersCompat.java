@@ -1,14 +1,9 @@
 package com.mb.mubai.base.api;
 
 
-import com.mb.mubai.data.DataResult;
-import com.mb.mubai.data.bean.LoginValue;
-
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -20,7 +15,7 @@ import rx.Observable;
  * //      ┃　　　　　　 ┃
  * //      ┃　　　┻　　　┃               @Author  林志文
  * //      ┃　　　　　　 ┃
- * //      ┗━┓　　　┏━━━┛               @Date  2016/12/16
+ * //      ┗━┓　　　┏━━━┛               @Date  2016/3/13
  * //        ┃　　　┃   神兽保佑
  * //        ┃　　　┃   代码无BUG！      @Desc
  * //        ┃　　　┗━━━━━━━━━┓
@@ -32,12 +27,12 @@ import rx.Observable;
  * //
  * /////////////////////////////////////////////////////////////////////////////
  */
-public interface ApiService {
+public class SchedulersCompat {
 
-        @FormUrlEncoded
-        @POST(ApiUrl.LoginUrl)
-        Observable<DataResult<LoginValue>> login(@Field("name") String name, @Field("pass") String pass);
+    private final static Observable.Transformer ioTransformer = o -> ((Observable) o).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
 
-        @POST("url")
-        Observable<String> getStr(@Query("name") String name);
+    public static <T> Observable.Transformer<T, T> applyIoSchedulers() {
+        return (Observable.Transformer<T, T>) ioTransformer;
+    }
 }

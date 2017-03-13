@@ -2,7 +2,7 @@ package com.mb.mubai.ui.test.presenter;
 
 
 import com.lzw.library.utils.L;
-import com.mb.mubai.base.api.ApiClient;
+import com.mb.mubai.base.api.msg.MsgClient;
 import com.mb.mubai.ui.test.contract.SeekBarContract;
 
 import java.io.IOException;
@@ -62,6 +62,6 @@ public class SeekBarPresenter extends SeekBarContract.Presenter {
                         }
                 });
                 //Retrofit请求
-                new ApiClient().getApiService().getStr("name");
+                new MsgClient().getApiService().getStr("name");
         }
 }
