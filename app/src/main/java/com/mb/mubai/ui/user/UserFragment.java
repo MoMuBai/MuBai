@@ -80,7 +80,7 @@ public class UserFragment extends BaseFragment<UserPresenter, UserModel> impleme
 
     @Override
     protected void lazyLoad() {
-        mPresenter.getUserInfo("userInfo");
+//        mPresenter.getUserInfo("userInfo");
     }
 
 

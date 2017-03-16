@@ -53,7 +53,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
 
     @Override
     protected void lazyLoad() {
-        mPresenter.getData("userId");
+//        mPresenter.getData("userId");
     }
 
     @Override

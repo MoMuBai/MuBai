@@ -4,42 +4,48 @@
         <item
             android:id="@+id/seekBar"
             android:icon="@drawable/mubai"
-            android:title="SeekBarActivity"/>
+            android:title="SeekBarActivity" />
     </group>
     <group android:id="@+id/g2">
         <item
             android:id="@+id/login"
             android:icon="@drawable/mubai"
-            android:title="LoginActivity"/>
+            android:title="LoginActivity" />
     </group>
     <group android:id="@+id/g3">
         <item
             android:id="@+id/reflection"
             android:icon="@drawable/mubai"
-            android:title="ReflectionActivity"/>
+            android:title="ReflectionActivity" />
     </group>
     <group android:id="@+id/g4">
         <item
             android:id="@+id/banner"
             android:icon="@drawable/mubai"
-            android:title="BannerActivity"/>
+            android:title="BannerActivity" />
     </group>
     <group android:id="@+id/g5">
         <item
             android:id="@+id/recycler"
             android:icon="@drawable/mubai"
-            android:title="RecyclerActivity"/>
+            android:title="RecyclerActivity" />
     </group>
     <group android:id="@+id/g6">
         <item
             android:id="@+id/pinnedHead"
             android:icon="@drawable/mubai"
-            android:title="PinnedHeadActivity"/>
+            android:title="PinnedHeadActivity" />
     </group>
     <group android:id="@+id/g7">
         <item
             android:id="@+id/callPhone"
             android:icon="@drawable/mubai"
-            android:title="CallPhoneActivity"/>
+            android:title="CallPhoneActivity" />
+    </group>
+    <group android:id="@+id/g8">
+        <item
+            android:id="@+id/downList"
+            android:icon="@drawable/mubai"
+            android:title="DownListActivity" />
     </group>
 </menu>

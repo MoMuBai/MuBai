@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/buleOut"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="下拉1" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/buleOut"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="下拉2" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/buleOut"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="下拉3" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/buleOut"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="下拉4" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.mb.mubai.view.widget.DownListView
+            android:id="@+id/down_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+</LinearLayout>

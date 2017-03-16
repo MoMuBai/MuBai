@@ -56,7 +56,7 @@ public class MsgFragment extends BaseFragment<MsgPresenter, MsgModel> implements
 
     @Override
     protected void lazyLoad() {
-        mPresenter.getData("Msg");
+//        mPresenter.getData("Msg");
     }
 
     @Override
