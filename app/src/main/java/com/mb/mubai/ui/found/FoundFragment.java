@@ -57,7 +57,7 @@ public class FoundFragment extends BaseFragment<FoundPresenter, FoundModel> impl
 
     @Override
     protected void lazyLoad() {
-        mPresenter.getData("Found");
+//        mPresenter.getData("Found");
     }
 
     @Override

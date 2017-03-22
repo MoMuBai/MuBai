@@ -16,9 +16,9 @@ import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.ui.test.activity.BannerActivity;
 import com.mb.mubai.ui.test.activity.CallPhoneActivity;
 import com.mb.mubai.ui.test.activity.DownListActivity;
+import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
 import com.mb.mubai.ui.test.activity.RecyclerActivity;
-import com.mb.mubai.ui.test.activity.ReflectionActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
 import com.mb.mubai.ui.user.login.LoginActivity;
 
@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     startActivity(intent);
                     break;
                 case R.id.g3:
-                    intent.setClass(mActivity, ReflectionActivity.class);
+                    intent.setClass(mActivity, ExpandableActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.g4:

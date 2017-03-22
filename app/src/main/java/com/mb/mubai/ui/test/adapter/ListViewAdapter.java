@@ -26,7 +26,7 @@ public class ListViewAdapter extends BaseAdapter<String, ListViewAdapter.ViewHol
     }
 
     @Override
-    protected void onBindData(ViewHolder holder, String data) {
+    protected void onBindData(ViewHolder holder, String data, int pos) {
         holder.mTextView.setText(data);
     }
 

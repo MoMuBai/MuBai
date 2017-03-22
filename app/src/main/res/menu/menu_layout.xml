@@ -16,7 +16,7 @@
         <item
             android:id="@+id/reflection"
             android:icon="@drawable/mubai"
-            android:title="ReflectionActivity" />
+            android:title="ExpandableActivity" />
     </group>
     <group android:id="@+id/g4">
         <item
