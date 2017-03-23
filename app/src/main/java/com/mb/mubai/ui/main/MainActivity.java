@@ -1,16 +1,21 @@
 package com.mb.mubai.ui.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.lzw.library.utils.AppManager;
+import com.lzw.library.utils.SPUtil;
+import com.lzw.library.utils.SpUtils;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.ui.test.activity.BannerActivity;
@@ -23,6 +28,7 @@ import com.mb.mubai.ui.test.activity.SeekBarActivity;
 import com.mb.mubai.ui.user.login.LoginActivity;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -60,8 +66,20 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     TextView tab3;
     @Bind(R.id.tab4)
     TextView tab4;
+    @Bind(R.id.tab5)
+    TextView tab5;
+    @Bind(R.id.underLayout)
+    LinearLayout underLayout;
+    @Bind(R.id.iv_first)
+    ImageView ivFirst;
+    @Bind(R.id.tv_first)
+    TextView tvFirst;
+    @Bind(R.id.firstLayout)
+    RelativeLayout firstLayout;
     private MainAdapter mainAdapter;
     private int backPressTimes;
+
+    private boolean isFirst = true;
 
 
     @Override
@@ -112,6 +130,18 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             }
             return true;
         });
+        isFirst = SpUtils.getSharedBooleanData(mContext, "isFirst");
+        if (isFirst) {
+            firstLayout.setVisibility(View.VISIBLE);
+            tvFirst.setVisibility(View.VISIBLE);
+            viewPager.setClickable(false);
+            viewPager.setEnabled(false);
+            underLayout.setClickable(false);
+            underLayout.setEnabled(false);
+        } else {
+            firstLayout.setVisibility(View.GONE);
+            tvFirst.setVisibility(View.GONE);
+        }
     }
 
 
@@ -180,7 +210,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     }
 
 
-    @OnClick({R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4})
+    @OnClick({R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4, R.id.tab5, R.id.iv_first})
     void onTabClick(View view) {
         switch (view.getId()) {
             case R.id.tab1:
@@ -195,9 +225,19 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             case R.id.tab4:
                 viewPager.setCurrentItem(3);
                 break;
+            case R.id.tab5:
+                break;
+            case R.id.iv_first:
+                firstLayout.setVisibility(View.GONE);
+                viewPager.setClickable(true);
+                viewPager.setEnabled(true);
+                underLayout.setClickable(true);
+                underLayout.setEnabled(true);
+                tvFirst.setVisibility(View.GONE);
+                SpUtils.setSharedBooleanData(mContext, "isFirst", false);
+                break;
             default:
                 break;
         }
     }
-
 }

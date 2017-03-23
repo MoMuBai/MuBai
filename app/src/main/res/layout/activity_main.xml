@@ -9,6 +9,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/underLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -116,30 +117,35 @@
 
 
         <RelativeLayout
+            android:id="@+id/firstLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.7"
-            android:background="@color/graybit">
+            android:alpha="0.5"
+            android:background="@color/black">
 
             <ImageView
+                android:id="@+id/iv_first"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="-15dp"
                 android:background="@drawable/yuan" />
-
         </RelativeLayout>
 
-
-        <ImageView
+        <TextView
+            android:id="@+id/tv_first"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="200dp"
             android:layout_marginRight="50dp"
-            android:src="@drawable/mubai" />
+            android:background="@drawable/yuan"
+            android:gravity="center"
+            android:text="新的发现板块哦！"
+            android:textColor="@color/colorAccent" />
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

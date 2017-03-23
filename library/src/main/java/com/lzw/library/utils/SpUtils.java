@@ -147,7 +147,7 @@ public final class SpUtils {
                 if (mSharedPreferences == null) {
                         init(context);
                 }
-                return mSharedPreferences.getBoolean(key, false);
+                return mSharedPreferences.getBoolean(key, true);
         }
 
         /**
