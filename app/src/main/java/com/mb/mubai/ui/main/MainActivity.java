@@ -142,6 +142,12 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             firstLayout.setVisibility(View.GONE);
             tvFirst.setVisibility(View.GONE);
         }
+        ivFirst.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return tab3.dispatchTouchEvent(event);
+            }
+        });
     }
 
 

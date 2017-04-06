@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvm/mvvm.iml" filepath="$PROJECT_DIR$/mvvm/mvvm.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinnedhead/pinnedhead.iml" filepath="$PROJECT_DIR$/pinnedhead/pinnedhead.iml" />
+      <module fileurl="file://$PROJECT_DIR$/refresh/refresh.iml" filepath="$PROJECT_DIR$/refresh/refresh.iml" />
     </modules>
   </component>
 </project>
