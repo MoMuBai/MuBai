@@ -25,6 +25,7 @@ import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
 import com.mb.mubai.ui.test.activity.RecyclerActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
+import com.mb.mubai.ui.test.activity.WebViewActivity;
 import com.mb.mubai.ui.user.login.LoginActivity;
 
 import butterknife.Bind;
@@ -125,6 +126,10 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     intent.setClass(mActivity, DownListActivity.class);
                     startActivity(intent);
                     break;
+                case R.id.g9:
+                    intent.setClass(mActivity, WebViewActivity.class);
+                    startActivity(intent);
+                    break;
                 default:
                     break;
             }
@@ -142,12 +147,6 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             firstLayout.setVisibility(View.GONE);
             tvFirst.setVisibility(View.GONE);
         }
-        ivFirst.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return tab3.dispatchTouchEvent(event);
-            }
-        });
     }
 
 

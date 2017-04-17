@@ -1,12 +1,10 @@
-package com.mubai.refresh.view;
+package com.mubai.refresh.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,10 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mubai.refresh.R;
-import com.mubai.refresh.activity.TouchEventUtil;
 
 /**
  * @author: lzw
@@ -57,6 +53,9 @@ public class RefreshLayout extends LinearLayout {
      */
     private TextView tvRefresh;
 
+    /**
+     * 下拉显示箭头
+     */
     private ImageView ivRefresh;
     /**
      * 刷新显示的bar
@@ -77,7 +76,6 @@ public class RefreshLayout extends LinearLayout {
      * 最小移动距离，用于判断是否在下拉
      */
     private final static float MIN_MOVE_DISTANCE = 5.0f;
-
 
     private final static float PULL_DOWN_DISTANCE = 300f;
 
@@ -124,19 +122,11 @@ public class RefreshLayout extends LinearLayout {
         addView(headRefreshLayout);
     }
 
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        if (isRefreshing()) {
-//            return true;
-//        }
-//        if (isLoading()) {
-//            return true;
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (!canScroll()) {
+            return super.dispatchTouchEvent(ev);
+        }
         int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
@@ -161,6 +151,11 @@ public class RefreshLayout extends LinearLayout {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return super.onInterceptTouchEvent(ev);
     }
 
     /**
@@ -192,7 +187,9 @@ public class RefreshLayout extends LinearLayout {
                 if (null != refreshListener) refreshListener.onRefresh();
                 break;
             case DONE://刷新完成状态
+                tvRefresh.setText("刷新完成");
                 mProgressBar.setVisibility(GONE);
+                isRefresh = false;
                 break;
             default:
                 break;
@@ -237,8 +234,7 @@ public class RefreshLayout extends LinearLayout {
 
 
     public void setRefreshFinish() {
-        tvRefresh.setText("刷新完成");
-        isRefresh = false;
+        changeState(DONE);
     }
 
     public void setLoadFinish() {

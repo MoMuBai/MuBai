@@ -48,4 +48,10 @@
             android:icon="@drawable/mubai"
             android:title="DownListActivity" />
     </group>
+    <group android:id="@+id/g9">
+        <item
+            android:id="@+id/webView"
+            android:icon="@drawable/mubai"
+            android:title="WebViewActivity" />
+    </group>
 </menu>

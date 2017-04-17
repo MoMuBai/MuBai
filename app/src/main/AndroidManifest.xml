@@ -47,6 +47,9 @@
         <activity
             android:name="com.mb.mubai.ui.test.activity.DownListActivity"
             android:theme="@style/MuBaiTheme" />
+        <activity
+            android:name="com.mb.mubai.ui.test.activity.WebViewActivity"
+            android:theme="@style/MuBaiTheme" />
     </application>
 
 </manifest>
