@@ -1,1 +1,1 @@
-include ':app', ':pinnedhead', ':library', ':mvvm', ':kotlin', ':refresh'
+include ':app', ':pinnedhead', ':library', ':mvvm', ':kotlin', ':refresh', ':progress'
