@@ -8,9 +8,9 @@ import android.os.Environment;
  * Created by lzw on 2016/11/8.
  * 应用程序配置类：用于保存用户相关信息及设置
  */
-public final class AppConfig {
+public final class Config {
 
-        private static AppConfig appConfig;
+        private static Config appConfig;
         private static Context mContext;
 
         // 设置是否打印Log
@@ -21,9 +21,9 @@ public final class AppConfig {
                   + "/mubai/camera/";
 
 
-        public static AppConfig getAppConfig(Context context) {
+        public static Config getAppConfig(Context context) {
                 if (appConfig == null) {
-                        appConfig = new AppConfig();
+                        appConfig = new Config();
                         appConfig.mContext = context;
                 }
                 return appConfig;

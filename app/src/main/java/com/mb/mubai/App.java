@@ -1,7 +1,6 @@
 package com.mb.mubai;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
@@ -50,7 +49,7 @@ public class App extends MultiDexApplication {
         mContext = getApplicationContext();
         strictMode();
         SpUtils.init(mContext);
-        L.setL(AppConfig.isPrintLog);
+        L.setL(Config.isPrintLog);
         To.init(mContext);
         try {
             OkHttpClientUtil.getInstance()
