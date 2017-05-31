@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.lzw.kotlin.adapter.MainRecyclerAdapter
 import com.lzw.kotlin.data.Forecast
+import com.lzw.kotlin.data.Person
 import com.lzw.kotlin.data.Student
 import com.lzw.kotlin.data.User
 import java.util.*
@@ -52,6 +53,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MainRecyclerAdapter(items)
         test("Example")
+
+        var jake = Person()
+        To(this, jake.name)
+
+        var juan = User(1,"juan",24)
+
     }
 
 

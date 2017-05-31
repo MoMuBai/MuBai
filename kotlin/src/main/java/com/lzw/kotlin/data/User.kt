@@ -27,13 +27,6 @@ import javax.xml.datatype.Duration
  * /////////////////////////////////////////////////////////////////////////////
  *
  */
-open class User(
-        var id: Long,
-        var name: String,
-        var age: Int){
-    init {
-
-    }
-}
+open class User(var id: Long, var name: String, var age: Int)
 
 
