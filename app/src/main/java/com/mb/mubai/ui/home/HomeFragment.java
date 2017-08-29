@@ -1,8 +1,10 @@
 package com.mb.mubai.ui.home;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 
+import com.lzw.library.utils.MD5Util;
 import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
@@ -49,6 +51,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
 
     @Override
     protected void initData() {
+        Log.d("HomeFragment", MD5Util.getMD5Str("筑家易"));
     }
 
     @Override

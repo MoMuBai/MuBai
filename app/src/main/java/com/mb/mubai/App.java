@@ -1,7 +1,10 @@
 package com.mb.mubai;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
 
@@ -12,6 +15,9 @@ import com.lzw.library.utils.SpUtils;
 import com.lzw.library.utils.To;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -39,6 +45,12 @@ public class App extends MultiDexApplication {
 
     private static Context mContext;
 
+    /**
+     * 维护Activity的List
+     */
+    private static List<Activity> mActivitys = Collections.synchronizedList(new LinkedList<Activity>());
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -48,6 +60,7 @@ public class App extends MultiDexApplication {
     private void initApp() {
         mContext = getApplicationContext();
         strictMode();
+        registerActivityListener();
         SpUtils.init(mContext);
         L.setL(Config.isPrintLog);
         To.init(mContext);
@@ -90,6 +103,53 @@ public class App extends MultiDexApplication {
                     .penaltyLog()//将警告输出到LogCat
                     .penaltyDeath()//一旦StrictMode消息被写到LogCat后应用就会崩溃
                     .build());
+        }
+    }
+
+    /**
+     * 注册ActivityListener
+     */
+    private void registerActivityListener() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+                @Override
+                public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                    if (null == mActivitys) {
+                        return;
+                    }
+                    mActivitys.add(activity);
+                }
+
+                @Override
+                public void onActivityStarted(Activity activity) {
+                }
+
+                @Override
+                public void onActivityResumed(Activity activity) {
+                }
+
+                @Override
+                public void onActivityPaused(Activity activity) {
+                }
+
+                @Override
+                public void onActivityStopped(Activity activity) {
+                }
+
+                @Override
+                public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+                }
+
+                @Override
+                public void onActivityDestroyed(Activity activity) {
+                    if (null == activity && mActivitys.isEmpty()) {
+                        return;
+                    }
+                    if (mActivitys.contains(activity)) {
+                        mActivitys.remove(activity);
+                    }
+                }
+            });
         }
     }
 
