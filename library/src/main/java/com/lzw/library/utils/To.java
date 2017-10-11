@@ -27,48 +27,48 @@ import android.widget.Toast;
  */
 public final class To {
 
-        private static boolean isToast = true;
+    private static boolean isToast = true;
 
-        private static long oneTime = 0;
+    private static long oneTime = 0;
 
-        private static long twoTime = 0;
+    private static long twoTime = 0;
 
-        private static String oldMsg;
+    private static String oldMsg;
 
-        private static Context mContext;
+    private static Context mContext;
 
-        private static Toast mToast;
+    private static Toast mToast;
 
 
-        private To() {
+    private To() {
         /* cannot be instantiated */
-                throw new UnsupportedOperationException("cannot be instantiated");
-        }
+        throw new UnsupportedOperationException("cannot be instantiated");
+    }
 
-        public static void init(Context context) {
-                mContext = context;
-        }
+    public static void init(Context context) {
+        mContext = context;
+    }
 
 
-        public static void d(String msg) {
-                if (isToast) {
-                        if (mToast == null) {
-                                mToast = Toast.makeText(mContext, msg, Toast.LENGTH_SHORT);
-                                mToast.show();
-                                oneTime = System.currentTimeMillis();
-                        } else {
-                                twoTime = System.currentTimeMillis();
-                                if (msg.equals(oldMsg)) {
-                                        if (twoTime - oneTime > Toast.LENGTH_SHORT) {
-                                                mToast.show();
-                                        }
-                                } else {
-                                        oldMsg = msg;
-                                        mToast.setText(msg);
-                                        mToast.show();
-                                }
-                        }
-                        oneTime = twoTime;
+    public static void d(String msg) {
+        if (isToast) {
+            if (mToast == null) {
+                mToast = Toast.makeText(mContext, msg, Toast.LENGTH_SHORT);
+                mToast.show();
+                oneTime = System.currentTimeMillis();
+            } else {
+                twoTime = System.currentTimeMillis();
+                if (msg.equals(oldMsg)) {
+                    if (twoTime - oneTime > Toast.LENGTH_SHORT) {
+                        mToast.show();
+                    }
+                } else {
+                    oldMsg = msg;
+                    mToast.setText(msg);
+                    mToast.show();
                 }
+            }
+            oneTime = twoTime;
         }
+    }
 }

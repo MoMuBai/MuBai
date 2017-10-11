@@ -2,7 +2,9 @@ package com.mb.mubai;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ComponentCallbacks;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -72,9 +74,57 @@ public class App extends MultiDexApplication {
         }
         //配置程序异常退出处理
 //        Thread.setDefaultUncaughtExceptionHandler(new LocalFileHandler(this));
+
+        registerComponentCallbacks(new ComponentCallbacks() {
+
+            /**
+             * 监听 应用程序 配置信息的改变，如屏幕旋转等
+             *
+             * @param newConfig
+             */
+            @Override
+            public void onConfigurationChanged(Configuration newConfig) {
+
+            }
+
+            @Override
+            public void onLowMemory() {
+
+            }
+        });
     }
 
-    /*
+    /**
+     * 监听 Android系统整体内存较低时刻
+     * Android 4.0前 检测内存使用情况，从而避免被系统直接杀掉 & 优化应用程序的性能体验
+     */
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+    }
+
+
+    /**
+     * 通知应用程序当前内存的使用情况
+     *
+     * @param level
+     */
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
+
+    /**
+     * 应用程序结束时调用
+     * 但该方法只用于Android仿真机测试，在Android产品机是不会调用的
+     */
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
+
+
+    /**
      * 获取Application唯一实例
      */
     public static Context getInstance() {

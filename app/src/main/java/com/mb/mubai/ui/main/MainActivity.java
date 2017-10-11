@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzw.library.utils.AppManager;
+import com.lzw.library.utils.AppUtil;
 import com.lzw.library.utils.SPUtil;
 import com.lzw.library.utils.SpUtils;
+import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.ui.test.activity.BannerActivity;
@@ -219,7 +221,11 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     void onTabClick(View view) {
         switch (view.getId()) {
             case R.id.tab1:
-                viewPager.setCurrentItem(0);
+                if (!AppUtil.isFastDoubleClick()) {
+                    viewPager.setCurrentItem(0);
+                } else {
+                    Toast.makeText(mContext, "不能多次点击", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.tab2:
                 viewPager.setCurrentItem(1);

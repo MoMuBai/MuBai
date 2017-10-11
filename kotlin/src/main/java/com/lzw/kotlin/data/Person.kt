@@ -8,7 +8,7 @@ package com.lzw.kotlin.data
  *  @desc:
  */
 class Person {
-    var name: String = ""
+    var name: String = "lzw"
     var age: Int = 0
     var college: String? = null
 }

@@ -10,6 +10,7 @@ import com.lzw.kotlin.data.Person
 import com.lzw.kotlin.data.Student
 import com.lzw.kotlin.data.User
 import java.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -49,16 +50,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recyclerView = findViewById(R.id.recycler_view) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MainRecyclerAdapter(items)
+        recycler_view.layoutManager = LinearLayoutManager(this, 1, false)
+        recycler_view.adapter = MainRecyclerAdapter(items)
+//        val recyclerView = findViewById(R.id.recycler_view) as RecyclerView
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = MainRecyclerAdapter(items)
         test("Example")
 
         var jake = Person()
         To(this, jake.name)
-
-        var juan = User(1,"juan",24)
-
+        var juan = User(1, "juan", 24)
     }
 
 
