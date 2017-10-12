@@ -4,7 +4,6 @@ package com.mb.mubai.base.api;
 import com.mb.mubai.C;
 
 /**
- *
  * //////////////////////////////////////////////////////////////////////////////
  * //
  * //      ┏┛ ┻━━━━━┛ ┻┓
@@ -25,10 +24,9 @@ import com.mb.mubai.C;
  * //          ┗━┻━┛   ┗━┻━┛
  * //
  * /////////////////////////////////////////////////////////////////////////////
- *
  */
 
 public final class ApiUrl {
-        public static final String LoginUrl = C.BaseUrl + "r=register/VerifyPhone";
+    public static final String LoginUrl = C.BaseUrl + "r=register/VerifyPhone";
 
 }

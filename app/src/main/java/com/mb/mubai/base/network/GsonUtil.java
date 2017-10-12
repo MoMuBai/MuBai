@@ -13,20 +13,20 @@ import com.mb.mubai.data.DataResult;
 public class GsonUtil {
 
 
-        private static Gson gson;
+    private static Gson gson;
 
-        public static Gson getGson() {
+    public static Gson getGson() {
+        if (null == gson) {
+            synchronized (GsonUtil.class) {
                 if (null == gson) {
-                        synchronized (GsonUtil.class) {
-                                if (null == gson) {
-                                        gson = new GsonBuilder()
-                                                  .registerTypeHierarchyAdapter(DataResult.class, new ResultJsonDeser())
-                                                  .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                                                  .serializeNulls()
-                                                  .create();
-                                }
-                        }
+                    gson = new GsonBuilder()
+                            .registerTypeHierarchyAdapter(DataResult.class, new ResultJsonDeser())
+                            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                            .serializeNulls()
+                            .create();
                 }
-                return gson;
+            }
         }
+        return gson;
+    }
 }

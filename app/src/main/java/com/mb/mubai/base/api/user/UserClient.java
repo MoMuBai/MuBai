@@ -15,24 +15,24 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class UserClient {
 
-        private static UserService userService;
+    private static UserService userService;
 
-        private static Retrofit retrofit;
+    private static Retrofit retrofit;
 
-        public UserClient() {
-                retrofit = new Retrofit.Builder()
-                          .baseUrl("")
-                          .client(OkHttpManager.getOkHttpClient())
-                          .addConverterFactory(GsonConverterFactory.create(GsonUtil.getGson()))
-                          .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                          .addConverterFactory(ScalarsConverterFactory.create())
-                          .build();
-                if (null == userService) {
-                        userService = retrofit.create(UserService.class);
-                }
+    public UserClient() {
+        retrofit = new Retrofit.Builder()
+                .baseUrl("")
+                .client(OkHttpManager.getOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create(GsonUtil.getGson()))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        if (null == userService) {
+            userService = retrofit.create(UserService.class);
         }
+    }
 
-        public UserService getMyService() {
-                return userService;
-        }
+    public UserService getMyService() {
+        return userService;
+    }
 }

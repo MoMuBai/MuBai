@@ -15,21 +15,21 @@ import java.lang.reflect.Type;
  */
 
 public class ResultJsonDeser implements JsonDeserializer<DataResult<?>> {
-        @Override
-        public DataResult<?> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                DataResult dataResult = new DataResult();
-                if (json.isJsonObject()) {
-                        JsonObject jsonObject = json.getAsJsonObject();
-                        String code = jsonObject.get("code").getAsString();
-                        dataResult.setCode(code);
-                        dataResult.setMsg(jsonObject.get("msg").getAsString());
-                        if (code.endsWith("200")) {
-                                return dataResult;
-                        }
-                        Type itemType = ((ParameterizedType) typeOfT).getActualTypeArguments()[0];
-                        dataResult.setData(context.deserialize(jsonObject.get("data"), itemType));
-                        return dataResult;
-                }
+    @Override
+    public DataResult<?> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        DataResult dataResult = new DataResult();
+        if (json.isJsonObject()) {
+            JsonObject jsonObject = json.getAsJsonObject();
+            String code = jsonObject.get("code").getAsString();
+            dataResult.setCode(code);
+            dataResult.setMsg(jsonObject.get("msg").getAsString());
+            if (code.endsWith("200")) {
                 return dataResult;
+            }
+            Type itemType = ((ParameterizedType) typeOfT).getActualTypeArguments()[0];
+            dataResult.setData(context.deserialize(jsonObject.get("data"), itemType));
+            return dataResult;
         }
+        return dataResult;
+    }
 }

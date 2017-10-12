@@ -14,11 +14,11 @@ import rx.functions.Func1;
  */
 
 public class DataResultFunc<T> implements Func1<DataResult<T>, T> {
-        @Override
-        public T call(DataResult<T> dataResult) {
-                if (dataResult.getCode().endsWith("200")) {
-                        throw new ApiException(dataResult.getCode());
-                }
-                return dataResult.getData();
+    @Override
+    public T call(DataResult<T> dataResult) {
+        if (dataResult.getCode().endsWith("200")) {
+            throw new ApiException(dataResult.getCode());
         }
+        return dataResult.getData();
+    }
 }

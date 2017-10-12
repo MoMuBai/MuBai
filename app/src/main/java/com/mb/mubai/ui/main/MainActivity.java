@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -84,6 +85,9 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
 
     private boolean isFirst = true;
 
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     @Override
     protected int getLayout() {
