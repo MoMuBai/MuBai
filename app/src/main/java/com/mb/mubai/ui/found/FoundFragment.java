@@ -1,11 +1,22 @@
 package com.mb.mubai.ui.found;
 
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.lzw.library.utils.StatusBarCompat;
 import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**
@@ -33,6 +44,14 @@ import com.mb.mubai.base.BaseFragment;
 
 public class FoundFragment extends BaseFragment<FoundPresenter, FoundModel> implements FoundContract.View {
 
+    private boolean isHide = true;
+
+    @Bind(R.id.img)
+    ImageView img;
+    @Bind(R.id.text)
+    TextView text;
+    @Bind(R.id.toggle)
+    AppCompatButton toggle;
 
     public static Fragment getFragment() {
         Fragment f = new FoundFragment();
@@ -47,7 +66,24 @@ public class FoundFragment extends BaseFragment<FoundPresenter, FoundModel> impl
 
     @Override
     protected void initView(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            text.setVisibility(View.VISIBLE);
+            toggle.setVisibility(View.VISIBLE);
+        } else {
+            text.setVisibility(View.GONE);
+            toggle.setVisibility(View.GONE);
+        }
 
+
+        toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StatusBarCompat.translucentStatusBar(getActivity(), isHide);
+                isHide = !isHide;
+            }
+        });
+
+        toggle.callOnClick();
     }
 
     @Override
@@ -84,4 +120,15 @@ public class FoundFragment extends BaseFragment<FoundPresenter, FoundModel> impl
     public void showStop() {
 
     }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            StatusBarCompat.translucentStatusBar(getActivity(), isHide);
+            isHide = !isHide;
+        }
+    }
+
 }

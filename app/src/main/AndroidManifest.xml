@@ -5,7 +5,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <!--自定义权限-->
+    <permission
+        android:name="com.mb.mubai.PermissionTest"
+        android:description="@string/permission_des"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/permission_label"
+        android:permissionFlags="costsMoney"
+        android:permissionGroup="com.mb.mubai.PermissionGroup"
+        android:protectionLevel="signature" />
+
 
     <application
         android:name="com.mb.mubai.App"
@@ -19,6 +30,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>
         <activity
@@ -29,7 +41,16 @@
             android:theme="@style/MuBaiTheme" />
         <activity
             android:name="com.mb.mubai.ui.test.activity.SeekBarActivity"
-            android:theme="@style/MuBaiTheme" />
+            android:permission="com.mb.mubai.PermissionTest"
+            android:theme="@style/MuBaiTheme">
+
+            <intent-filter>
+
+                <action android:name="com.mb.mubai.PermissionTest" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.mb.mubai.ui.test.activity.RecyclerActivity"
             android:theme="@style/MuBaiTheme" />

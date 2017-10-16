@@ -3,6 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBackground">#319bd2</color>
 
     <!--标题、重要文字字体颜色-->
     <color name="mainText">#333333</color>

@@ -1,13 +1,23 @@
 package com.mb.mubai.ui.home;
 
+import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.lzw.library.utils.MD5Util;
+import com.lzw.library.utils.StatusBarCompat;
 import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**
@@ -34,6 +44,12 @@ import com.mb.mubai.base.BaseFragment;
  */
 public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> implements HomeContract.View {
 
+    @Bind(R.id.text)
+    TextView text;
+    @Bind(R.id.seek_bar)
+    SeekBar seekBar;
+    private int DEFAULT_COLOR = Color.parseColor("#319bd2");
+
     public static Fragment getFragment() {
         Fragment f = new HomeFragment();
         return f;
@@ -46,8 +62,26 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
 
     @Override
     protected void initView(View view) {
+        setStatusBar();
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                StatusBarCompat.setStatusBarColor(getActivity(), DEFAULT_COLOR, progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
+
 
     @Override
     protected void initData() {
@@ -82,5 +116,19 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
     @Override
     public void showStop() {
 
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            setStatusBar();
+        }
+    }
+
+    private void setStatusBar() {
+        StatusBarCompat.setStatusBarColor(getActivity(), Color.GREEN);
+        StatusBarCompat.setStatusBarColor(getActivity(), DEFAULT_COLOR);
     }
 }

@@ -42,71 +42,71 @@ import butterknife.OnClick;
 
 public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel> implements SeekBarContract.View {
 
-        @Bind(R.id.img1)
-        ImageView img1;
-        @Bind(R.id.txt1)
-        TextView txt1;
-        @Bind(R.id.back)
-        RelativeLayout back;
-        @Bind(R.id.img2)
-        TextView img2;
-        @Bind(R.id.rl)
-        RelativeLayout rl;
-        @Bind(R.id.seek_bar)
-        SeekBar seekBar;
-        @Bind(R.id.seek_bar_other)
-        SeekBar seekBarOther;
-        @Bind(R.id.activity_second)
-        LinearLayout activitySecond;
+    @Bind(R.id.img1)
+    ImageView img1;
+    @Bind(R.id.txt1)
+    TextView txt1;
+    @Bind(R.id.back)
+    RelativeLayout back;
+    @Bind(R.id.img2)
+    TextView img2;
+    @Bind(R.id.rl)
+    RelativeLayout rl;
+    @Bind(R.id.seek_bar)
+    SeekBar seekBar;
+    @Bind(R.id.seek_bar_other)
+    SeekBar seekBarOther;
+    @Bind(R.id.activity_second)
+    LinearLayout activitySecond;
 
-        @Override
-        protected int getLayout() {
-                return R.layout.activity_seekbar;
-        }
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_seekbar;
+    }
 
-        @Override
-        protected void initView() {
+    @Override
+    protected void initView() {
 
-        }
+    }
 
-        @Override
-        protected void initData() {
-                mPresenter.myPost();
+    @Override
+    protected void initData() {
+        mPresenter.myPost();
 //                mPresenter.start();
-        }
+    }
 
-        @OnClick(R.id.back)
-        void back() {
-                finish();
-        }
+    @OnClick(R.id.back)
+    void back() {
+        finish();
+    }
 
-        @Override
-        public void show(String str) {
-                To.d(str);
-        }
+    @Override
+    public void show(String str) {
+        To.d(str);
+    }
 
-        @Override
-        public void show() {
+    @Override
+    public void show() {
 
-        }
+    }
 
-        @Override
-        public void showStart() {
+    @Override
+    public void showStart() {
 
-        }
+    }
 
-        @Override
-        public void showNoData(String msg) {
+    @Override
+    public void showNoData(String msg) {
 
-        }
+    }
 
-        @Override
-        public void showError(String msg) {
+    @Override
+    public void showError(String msg) {
 
-        }
+    }
 
-        @Override
-        public void showStop() {
+    @Override
+    public void showStop() {
 
-        }
+    }
 }

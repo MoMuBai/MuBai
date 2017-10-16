@@ -70,8 +70,8 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     TextView tab3;
     @Bind(R.id.tab4)
     TextView tab4;
-    @Bind(R.id.tab5)
-    TextView tab5;
+    //    @Bind(R.id.tab5)
+//    TextView tab5;
     @Bind(R.id.underLayout)
     LinearLayout underLayout;
     @Bind(R.id.iv_first)
@@ -221,7 +221,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     }
 
 
-    @OnClick({R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4, R.id.tab5, R.id.iv_first})
+    @OnClick({R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4, R.id.iv_first})
     void onTabClick(View view) {
         switch (view.getId()) {
             case R.id.tab1:
@@ -239,8 +239,6 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                 break;
             case R.id.tab4:
                 viewPager.setCurrentItem(3);
-                break;
-            case R.id.tab5:
                 break;
             case R.id.iv_first:
                 firstLayout.setVisibility(View.GONE);

@@ -1,8 +1,12 @@
 package com.mb.mubai.ui.msg;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.lzw.library.utils.StatusBarCompat;
 import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
@@ -46,7 +50,10 @@ public class MsgFragment extends BaseFragment<MsgPresenter, MsgModel> implements
 
     @Override
     protected void initView(View view) {
+        setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).setSupportActionBar((Toolbar) view.findViewById(R.id.toolbar));
 
+        StatusBarCompat.setStatusBarColor(getActivity(), ContextCompat.getColor(getContext(), R.color.colorAccent));
     }
 
     @Override
@@ -82,5 +89,14 @@ public class MsgFragment extends BaseFragment<MsgPresenter, MsgModel> implements
     @Override
     public void showStop() {
 
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            StatusBarCompat.setStatusBarColor(getActivity(), ContextCompat.getColor(getContext(), R.color.colorAccent));
+        }
     }
 }
