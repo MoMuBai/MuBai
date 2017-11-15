@@ -15,6 +15,7 @@ import com.lzw.library.utils.L;
 import com.lzw.library.utils.OkHttpClientUtil;
 import com.lzw.library.utils.SpUtils;
 import com.lzw.library.utils.To;
+import com.mb.mubai.base.util.MethodInfo;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -209,6 +210,9 @@ public class App extends MultiDexApplication {
      * @param context
      * @return
      */
+
+    @MethodInfo(author = "quicklymost@gmail.com"
+            , date = "2017-11-14", Desc = "获得当前进程的名字")
     public static String getCurProcessName(Context context) {
 
         int pid = android.os.Process.myPid();
