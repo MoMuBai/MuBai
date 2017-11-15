@@ -1,11 +1,11 @@
 package com.mb.mubai.ui.main;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,11 +16,11 @@ import android.widget.Toast;
 
 import com.lzw.library.utils.AppManager;
 import com.lzw.library.utils.AppUtil;
-import com.lzw.library.utils.SPUtil;
 import com.lzw.library.utils.SpUtils;
-import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
+import com.mb.mubai.base.util.MethodInfo;
+import com.mb.mubai.data.DataResult;
 import com.mb.mubai.ui.test.activity.BannerActivity;
 import com.mb.mubai.ui.test.activity.CallPhoneActivity;
 import com.mb.mubai.ui.test.activity.DownListActivity;
@@ -31,8 +31,11 @@ import com.mb.mubai.ui.test.activity.SeekBarActivity;
 import com.mb.mubai.ui.test.activity.WebViewActivity;
 import com.mb.mubai.ui.user.login.LoginActivity;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -159,6 +162,69 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     @Override
     protected void initData() {
         initTab();
+        try {
+            Class cls = Class.forName("com.mb.mubai.App");
+            for (Method method : cls.getMethods()) {
+                MethodInfo methodInfo = method.getAnnotation(MethodInfo.class);
+                if (methodInfo != null) {
+                    String methodName = method.getName();
+                    String methodAuthor = methodInfo.author();
+                    String desc = methodInfo.Desc();
+                    String date = methodInfo.date();
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        getName();
+        getCode();
+    }
+
+    private void getCode() {
+        try {
+            Class cls = ClassLoader.getSystemClassLoader().loadClass("com.mb.mubai.data.DataResult");
+            Constructor constructor = cls.getConstructor(String.class);
+            Object object = constructor.newInstance();
+            Method method = cls.getMethod("setCode", null);
+            method.invoke(object, "1101");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getName() {
+        DataResult result = new DataResult();
+        try {
+            /**
+             * 通过JVM查找并加载指定的类
+             * 调用newInstance()方法让加载完的类在内存中创建对应的实例
+             */
+            Class<?> cls = Class.forName("com.mb.mubai.data.DataResult");
+            DataResult dataResult = (DataResult) cls.newInstance();
+            Method setCode = cls.getDeclaredMethod("setCode", String.class);//获取setCode()方法
+            setCode.invoke(dataResult, "1101");//设置调用setCode的对象和传入setCode的值
+            Method getCode = cls.getDeclaredMethod("getCode");//获取getCode()方法
+            Log.d("MainActivity", "getCode.invoke(dataResult, null):" + getCode.invoke(dataResult, null));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
