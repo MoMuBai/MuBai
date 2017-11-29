@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 //保留时间，source:源码时，class：编译时，runtime：运行时，默认为class，值为source大多为mark annotation，如@overrided等
 @Retention(RetentionPolicy.RUNTIME)
 //表示可以用来修饰哪些程序元素，如方法，变量，类，参数等等，如果没有标注则表示修饰所有
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.TYPE})
 //是否可以被继承，默认为false
 @Inherited
 public @interface MethodInfo {

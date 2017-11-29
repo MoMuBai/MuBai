@@ -72,6 +72,10 @@
         <activity
             android:name="com.mb.mubai.ui.test.activity.WebViewActivity"
             android:theme="@style/MuBaiTheme" />
+
+        <activity
+            android:name=".ui.test.activity.RecyclerViewMoveActivity"
+            android:theme="@style/MuBaiTheme" />
     </application>
 
 </manifest>

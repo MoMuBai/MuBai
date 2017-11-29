@@ -27,6 +27,7 @@ import com.mb.mubai.ui.test.activity.DownListActivity;
 import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
 import com.mb.mubai.ui.test.activity.RecyclerActivity;
+import com.mb.mubai.ui.test.activity.RecyclerViewMoveActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
 import com.mb.mubai.ui.test.activity.WebViewActivity;
 import com.mb.mubai.ui.user.login.LoginActivity;
@@ -120,7 +121,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     startActivity(intent);
                     break;
                 case R.id.g5:
-                    intent.setClass(mActivity, RecyclerActivity.class);
+                    intent.setClass(mActivity, RecyclerViewMoveActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.g6:

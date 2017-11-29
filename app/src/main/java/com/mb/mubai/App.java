@@ -9,12 +9,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 
 
 import com.lzw.library.utils.L;
 import com.lzw.library.utils.OkHttpClientUtil;
 import com.lzw.library.utils.SpUtils;
 import com.lzw.library.utils.To;
+import com.mb.mubai.base.util.AnnotationUse;
 import com.mb.mubai.base.util.MethodInfo;
 
 import java.io.IOException;
@@ -210,25 +212,32 @@ public class App extends MultiDexApplication {
      * @param context
      * @return
      */
-
     @MethodInfo(author = "quicklymost@gmail.com"
             , date = "2017-11-14", Desc = "获得当前进程的名字")
     public static String getCurProcessName(Context context) {
-
         int pid = android.os.Process.myPid();
-
         ActivityManager activityManager = (ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE);
-
-        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
-                .getRunningAppProcesses()) {
-
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager.getRunningAppProcesses()) {
             if (appProcess.pid == pid) {
-
                 return appProcess.processName;
             }
         }
         return null;
+    }
+
+
+    private void isUseAnnotation() {
+        /**
+         * 检查类是否有注解
+         */
+        if (AnnotationUse.class.isAnnotationPresent(MethodInfo.class)) {
+            /**
+             * 通过反射来对AnnotationUse进行检查是否有注解
+             */
+            MethodInfo methodInfo = AnnotationUse.class.getAnnotation(MethodInfo.class);
+            Log.d("App", "methodInfo:" + methodInfo);
+        }
     }
 
 }
