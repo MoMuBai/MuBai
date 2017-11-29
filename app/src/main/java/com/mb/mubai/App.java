@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.IntDef;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
