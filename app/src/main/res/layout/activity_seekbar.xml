@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_second"
     android:layout_width="match_parent"
@@ -7,61 +8,71 @@
     android:orientation="vertical"
     tools:context=".ui.test.activity.SeekBarActivity">
 
-    <include layout="@layout/actionbar"/>
+    <include layout="@layout/actionbar" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:text="美颜"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="美颜" />
 
         <SeekBar
             android:id="@+id/seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
             android:focusable="true"
             android:maxHeight="4.0dp"
             android:minHeight="4.0dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"
             android:progressDrawable="@drawable/po_seekbar"
             android:thumb="@drawable/seekbar_thumb" />
     </LinearLayout>
 
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:text="美白"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="美白" />
 
         <SeekBar
             android:id="@+id/seek_bar_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
             android:focusable="true"
             android:maxHeight="4.0dp"
             android:minHeight="4.0dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"
             android:progressDrawable="@drawable/po_seekbar"
             android:thumb="@drawable/seekbar_thumb" />
 
     </LinearLayout>
+
+
+    <com.mb.mubai.view.widget.ShapedImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        app:round_radius="5dp"
+        app:shape_mode="round_rect" />
 
 
 </LinearLayout>
