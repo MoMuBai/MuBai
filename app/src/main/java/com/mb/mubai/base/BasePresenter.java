@@ -5,22 +5,22 @@ package com.mb.mubai.base;
  */
 public abstract class BasePresenter<M, V> {
 
-        public M mModel;
+    public M mModel;
 
-        public V mView;
+    public V mView;
 
-        public RxManager mRxManager = new RxManager();
+    public RxManager mRxManager = new RxManager();
 
-        public void setVM(M m, V v) {
-                this.mModel = m;
-                this.mView = v;
-                onStart();
-        }
+    public void setVM(M m, V v) {
+        this.mModel = m;
+        this.mView = v;
+        onStart();
+    }
 
-        protected abstract void onStart();
+    protected abstract void onStart();
 
 
-        public void onDestory() {
-                mRxManager.clear();
-        }
+    public void onDestory() {
+        mRxManager.clear();
+    }
 }

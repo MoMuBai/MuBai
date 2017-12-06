@@ -17,7 +17,6 @@ import rx.subjects.PublishSubject;
 import rx.subjects.Subject;
 
 /**
- *
  * //////////////////////////////////////////////////////////////////////////////
  * //
  * //      ┏┛ ┻━━━━━┛ ┻┓
@@ -38,110 +37,109 @@ import rx.subjects.Subject;
  * //          ┗━┻━┛   ┗━┻━┛
  * //
  * /////////////////////////////////////////////////////////////////////////////
- *
  */
 public final class RxBus {
-        private static RxBus instance;
+    private static RxBus instance;
 
-        public static synchronized RxBus $() {
-                if (null == instance) {
-                        instance = new RxBus();
-                }
-                return instance;
+    public static synchronized RxBus $() {
+        if (null == instance) {
+            instance = new RxBus();
         }
+        return instance;
+    }
 
-        private RxBus() {
+    private RxBus() {
+    }
+
+    @SuppressWarnings("rawtypes")
+    private ConcurrentHashMap<Object, List<Subject>> subjectMapper = new ConcurrentHashMap<Object, List<Subject>>();
+
+    /**
+     * 订阅事件源
+     *
+     * @param mObservable
+     * @param mAction1
+     * @return
+     */
+    public RxBus OnEvent(Observable<?> mObservable, Action1<Object> mAction1) {
+        mObservable.observeOn(AndroidSchedulers.mainThread()).subscribe(mAction1, (e) -> e.printStackTrace());
+        return $();
+    }
+
+    /**
+     * 注册事件源
+     *
+     * @param tag
+     * @return SuppressWarnings 压制警告，即去除警告
+     * rawtypes：传参时要传递带泛型的参数
+     */
+    @SuppressWarnings({"rawtypes"})
+    public <T> Observable<T> register(@NonNull Object tag) {
+        List<Subject> subjectList = subjectMapper.get(tag);
+        if (null == subjectList) {
+            subjectList = new ArrayList<Subject>();
+            subjectMapper.put(tag, subjectList);
         }
+        Subject<T, T> subject;
+        subjectList.add(subject = PublishSubject.create());
+        L.d("register", tag + "  size:" + subjectList.size());
+        return subject;
+    }
 
-        @SuppressWarnings("rawtypes")
-        private ConcurrentHashMap<Object, List<Subject>> subjectMapper = new ConcurrentHashMap<Object, List<Subject>>();
-
-        /**
-         * 订阅事件源
-         *
-         * @param mObservable
-         * @param mAction1
-         * @return
-         */
-        public RxBus OnEvent(Observable<?> mObservable, Action1<Object> mAction1) {
-                mObservable.observeOn(AndroidSchedulers.mainThread()).subscribe(mAction1, (e) -> e.printStackTrace());
-                return $();
+    @SuppressWarnings("rawtypes")
+    public void unregister(@NonNull Object tag) {
+        List<Subject> subjects = subjectMapper.get(tag);
+        if (null != subjects) {
+            subjectMapper.remove(tag);
         }
+    }
 
-        /**
-         * 注册事件源
-         *
-         * @param tag
-         * @return SuppressWarnings 压制警告，即去除警告
-         * rawtypes：传参时要传递带泛型的参数
-         */
-        @SuppressWarnings({"rawtypes"})
-        public <T> Observable<T> register(@NonNull Object tag) {
-                List<Subject> subjectList = subjectMapper.get(tag);
-                if (null == subjectList) {
-                        subjectList = new ArrayList<Subject>();
-                        subjectMapper.put(tag, subjectList);
-                }
-                Subject<T, T> subject;
-                subjectList.add(subject = PublishSubject.create());
-                L.d("register", tag + "  size:" + subjectList.size());
-                return subject;
+    /**
+     * 取消监听
+     *
+     * @param tag
+     * @param observable
+     * @return
+     */
+    @SuppressWarnings("rawtypes")
+    public RxBus unregister(@NonNull Object tag,
+                            @NonNull Observable<?> observable) {
+        if (null == observable)
+            return $();
+        List<Subject> subjects = subjectMapper.get(tag);
+        if (null != subjects) {
+            subjects.remove((Subject<?, ?>) observable);
+            if (isEmpty(subjects)) {
+                subjectMapper.remove(tag);
+                L.d("unregister", tag + "  size:" + subjects.size());
+            }
         }
+        return $();
+    }
 
-        @SuppressWarnings("rawtypes")
-        public void unregister(@NonNull Object tag) {
-                List<Subject> subjects = subjectMapper.get(tag);
-                if (null != subjects) {
-                        subjectMapper.remove(tag);
-                }
-        }
+    public void post(@NonNull Object content) {
+        post(content.getClass().getName(), content);
+    }
 
-        /**
-         * 取消监听
-         *
-         * @param tag
-         * @param observable
-         * @return
-         */
-        @SuppressWarnings("rawtypes")
-        public RxBus unregister(@NonNull Object tag,
-                                @NonNull Observable<?> observable) {
-                if (null == observable)
-                        return $();
-                List<Subject> subjects = subjectMapper.get(tag);
-                if (null != subjects) {
-                        subjects.remove((Subject<?, ?>) observable);
-                        if (isEmpty(subjects)) {
-                                subjectMapper.remove(tag);
-                                L.d("unregister", tag + "  size:" + subjects.size());
-                        }
-                }
-                return $();
+    /**
+     * 触发事件
+     *
+     * @param content
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public void post(@NonNull Object tag, @NonNull Object content) {
+        L.d("post", "eventName: " + tag);
+        List<Subject> subjectList = subjectMapper.get(tag);
+        if (!isEmpty(subjectList)) {
+            for (Subject subject : subjectList) {
+                subject.onNext(content);
+                L.d("onEvent", "eventName: " + tag);
+            }
         }
+    }
 
-        public void post(@NonNull Object content) {
-                post(content.getClass().getName(), content);
-        }
-
-        /**
-         * 触发事件
-         *
-         * @param content
-         */
-        @SuppressWarnings({"unchecked", "rawtypes"})
-        public void post(@NonNull Object tag, @NonNull Object content) {
-                L.d("post", "eventName: " + tag);
-                List<Subject> subjectList = subjectMapper.get(tag);
-                if (!isEmpty(subjectList)) {
-                        for (Subject subject : subjectList) {
-                                subject.onNext(content);
-                                L.d("onEvent", "eventName: " + tag);
-                        }
-                }
-        }
-
-        @SuppressWarnings("rawtypes")
-        public static boolean isEmpty(Collection<Subject> collection) {
-                return null == collection || collection.isEmpty();
-        }
+    @SuppressWarnings("rawtypes")
+    public static boolean isEmpty(Collection<Subject> collection) {
+        return null == collection || collection.isEmpty();
+    }
 }

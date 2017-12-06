@@ -129,10 +129,12 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.alibaba:fastjson:1.2.22'
     //HTTP Library
-    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //RxJava+RxAndroid Library
     compile 'io.reactivex:rxjava:1.2.3'
     compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     //Retrofit Library
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'

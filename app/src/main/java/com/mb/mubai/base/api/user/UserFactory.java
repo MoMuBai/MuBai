@@ -6,18 +6,18 @@ package com.mb.mubai.base.api.user;
 
 public class UserFactory {
 
-        private static UserService userService;
+    private static UserService userService;
 
-        private static Object object = new Object();
+    private static Object object = new Object();
 
-        public static UserService getUserService() {
+    public static UserService getUserService() {
+        if (null == userService) {
+            synchronized (object) {
                 if (null == userService) {
-                        synchronized (object) {
-                                if (null == userService) {
-                                        userService = new UserClient().getMyService();
-                                }
-                        }
+                    userService = new UserClient().getMyService();
                 }
-                return userService;
+            }
         }
+        return userService;
+    }
 }
