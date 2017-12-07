@@ -14,6 +14,8 @@ public interface HomeContract {
 
     interface Model extends BaseModel {
         Observable<String> getData(String userId);
+
+        Observable<String> getHome(String userId);
     }
 
     interface View extends BaseView {

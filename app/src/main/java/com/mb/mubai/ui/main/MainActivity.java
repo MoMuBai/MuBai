@@ -19,6 +19,11 @@ import com.lzw.library.utils.AppUtil;
 import com.lzw.library.utils.SpUtils;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
+import com.mb.mubai.ui.test.fly.AFlyFactory;
+import com.mb.mubai.ui.test.fly.BFly;
+import com.mb.mubai.ui.test.fly.BFlyFactory;
+import com.mb.mubai.ui.test.fly.FlyInterface;
+import com.mb.mubai.ui.test.run.RunInterface;
 import com.mb.mubai.base.util.MethodInfo;
 import com.mb.mubai.data.DataResult;
 import com.mb.mubai.ui.test.activity.BannerActivity;
@@ -26,10 +31,12 @@ import com.mb.mubai.ui.test.activity.CallPhoneActivity;
 import com.mb.mubai.ui.test.activity.DownListActivity;
 import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
-import com.mb.mubai.ui.test.activity.RecyclerActivity;
 import com.mb.mubai.ui.test.activity.RecyclerViewMoveActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
 import com.mb.mubai.ui.test.activity.WebViewActivity;
+import com.mb.mubai.ui.test.run.RunFactory;
+import com.mb.mubai.ui.test.run.RunMoreFactory;
+import com.mb.mubai.ui.test.run.RunStaticFactory;
 import com.mb.mubai.ui.user.login.LoginActivity;
 
 import java.lang.reflect.Constructor;
@@ -180,6 +187,36 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
 
         getName();
         getCode();
+
+        /**
+         * 工厂模式
+         */
+        RunFactory runFactory = new RunFactory();
+        RunInterface runInterface = runFactory.runType("A");
+        runInterface.run();
+
+        /**
+         * 多个工厂模式
+         */
+        RunMoreFactory runMoreFactory = new RunMoreFactory();
+        RunInterface runMoreInterface = runMoreFactory.runA();
+        runMoreInterface.run();
+
+        /**
+         * 静态工厂模式
+         */
+        RunInterface runStaticInterface = RunStaticFactory.runA();
+        runStaticInterface.run();
+
+
+        /**
+         * 抽象工厂
+         */
+        FlyInterface AflyInterface = new AFlyFactory().produce();
+        AflyInterface.fly();
+
+        FlyInterface BflyInterface = new BFlyFactory().produce();
+        BflyInterface.fly();
     }
 
     private void getCode() {
