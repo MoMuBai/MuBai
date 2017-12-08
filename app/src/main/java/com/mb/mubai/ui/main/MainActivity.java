@@ -185,8 +185,8 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             e.printStackTrace();
         }
 
-        getName();
-        getCode();
+//        getName();
+//        getCode();
 
         /**
          * 工厂模式
@@ -217,6 +217,9 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
 
         FlyInterface BflyInterface = new BFlyFactory().produce();
         BflyInterface.fly();
+
+
+
     }
 
     private void getCode() {

@@ -34,13 +34,13 @@ import com.lzw.mvvm.viewmodel.MainViewModel;
  */
 public class MainActivity extends AppCompatActivity {
 
-        private ActivityMainBinding mainBinding;
+    private ActivityMainBinding mainBinding;
 
-        @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-                User user = new User("MVVM", 24);
-                mainBinding.setUser(user);
-        }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        User user = new User("MVVM", 24);
+        mainBinding.setUser(user);
+    }
 }

@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.lzw.library.utils.AppManager;
 import com.lzw.library.utils.TUtil;
 import com.mb.mubai.App;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
  * Created by lzw on 2016/11/7.
  */
 
-public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel> extends RxAppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel> extends AppCompatActivity {
 
     public T mPresenter;
 

@@ -13,4 +13,9 @@ public class HomeModel implements HomeContract.Model {
     public Observable<String> getData(String userId) {
         return HomeFactory.getHomeService().getHomeData(userId);
     }
+
+    @Override
+    public Observable<String> getHome(String userId) {
+        return null;
+    }
 }
