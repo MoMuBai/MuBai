@@ -3,6 +3,8 @@
 > [个人总结](https://momubai.github.io/)（不好意思说成博客，毕竟只是平时的摘要）
 > 
 > 个人项目集合，将自己想写的东西，发现的东西集合起来!
+> 
+> 今天发现了个学习数据结构和算法的开源项目[Java-LeetCode](https://github.com/Blankj/awesome-java-leetcode)
 
 | First  | Second   | Third  | ...|
 |--------|--------|-------|-------|
