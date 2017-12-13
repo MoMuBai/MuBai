@@ -5,11 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/MuBai.iml" filepath="$PROJECT_DIR$/MuBai.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kotlin/kotlin.iml" filepath="$PROJECT_DIR$/kotlin/kotlin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mode_library/library.iml" filepath="$PROJECT_DIR$/mode_library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mode_pinnedhead/pinnedhead.iml" filepath="$PROJECT_DIR$/mode_pinnedhead/pinnedhead.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvc/mvc.iml" filepath="$PROJECT_DIR$/mvc/mvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvp/mvp.iml" filepath="$PROJECT_DIR$/mvp/mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvm/mvvm.iml" filepath="$PROJECT_DIR$/mvvm/mvvm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pinnedhead/pinnedhead.iml" filepath="$PROJECT_DIR$/pinnedhead/pinnedhead.iml" />
       <module fileurl="file://$PROJECT_DIR$/refresh/refresh.iml" filepath="$PROJECT_DIR$/refresh/refresh.iml" />
     </modules>
   </component>

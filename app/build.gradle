@@ -148,9 +148,9 @@ dependencies {
     compile 'com.kelin.mvvmlight:library:1.0.0'
     compile 'com.airbnb.android:lottie:1.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile project(':pinnedhead')
+    compile project(':mode_pinnedhead')
     //    testCompile 'com.mubai:library:1.0.2'
-    compile project(':library')
+    compile project(':mode_library')
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.1'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.1'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
