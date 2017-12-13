@@ -150,7 +150,12 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile project(':mode_pinnedhead')
     //    testCompile 'com.mubai:library:1.0.2'
-    compile project(':mode_library')
+
+    //import lib
+    compile project(':lib_library')
+    compile project(':lib_load')
+    compile project(':lib_refresh')
+
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.1'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.1'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
