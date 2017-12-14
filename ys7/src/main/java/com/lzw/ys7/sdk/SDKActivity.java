@@ -1,13 +1,48 @@
 package com.lzw.ys7.sdk;
 
+import android.annotation.SuppressLint;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ezviz.player.EZFECMediaPlayer;
+import com.ezviz.player.EZMediaPlayer;
+import com.lzw.ys7.MyListView;
+import com.lzw.ys7.OkHttpClientUtil;
 import com.lzw.ys7.R;
+import com.squareup.okhttp.Request;
+import com.videogo.exception.BaseException;
+import com.videogo.openapi.EZConstants;
 import com.videogo.openapi.EZOpenSDK;
+import com.videogo.openapi.EZOpenSDKListener;
+import com.videogo.openapi.EZPlayer;
+import com.videogo.openapi.bean.EZDetectorInfo;
+import com.videogo.openapi.bean.EZDeviceInfo;
+import com.videogo.openapi.bean.EZProbeDeviceInfo;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: lzw
@@ -16,15 +51,290 @@ import com.videogo.openapi.EZOpenSDK;
  */
 
 public class SDKActivity extends AppCompatActivity {
+
+    private ListAdapter listAdapter;
+    private String token;
+
+    private MyListView listView;
+    private List<EZDeviceInfo> ezDeviceInfos;
+    private EZOpenSDK ezOpenSDK;
+    private String deviceSerial = "756067560", validateCode = "SMRGKG";
+
+    private SurfaceView mRealPlaySv;
+    private SurfaceHolder mRealPlaySh = null;
+    private EZPlayer ezPlayer;
+    private EZProbeDeviceInfo ezProbeDeviceInfo = null;
+
+    private EditText nameEdit, pwdEdit;
+    private TextView nameText;
+    private LinearLayout layout;
+    private Button firstBtn, secondBtn, startBtn;
+    private String ssid;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sdk);
-        findViewById(R.id.login_page_btn).setOnClickListener(new View.OnClickListener() {
+        mRealPlaySv = (SurfaceView) findViewById(R.id.surface_view);
+        mRealPlaySh = mRealPlaySv.getHolder();
+        listView = (MyListView) findViewById(R.id.list_view);
+        nameEdit = (EditText) findViewById(R.id.name_edit);
+        pwdEdit = (EditText) findViewById(R.id.pwd_edit);
+        nameText = (TextView) findViewById(R.id.name_text);
+        layout = (LinearLayout) findViewById(R.id.layout);
+        firstBtn = (Button) findViewById(R.id.first_btn);
+        secondBtn = (Button) findViewById(R.id.second_btn);
+        startBtn = (Button) findViewById(R.id.start_btn);
+        ezOpenSDK = EZOpenSDK.getInstance();
+        findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                EZOpenSDK.getInstance().openLoginPage();
+            public void onClick(View v) {
+                getToken();
+                Toast.makeText(SDKActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.add_device_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addDevice();
+            }
+        });
+        findViewById(R.id.delete_device_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteDevice();
+            }
+        });
+        findViewById(R.id.out_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ezOpenSDK.logout();
+                token = EZOpenSDK.getInstance().getEZAccessToken().getAccessToken();
+                Toast.makeText(SDKActivity.this, "退出登录", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+
+    /**
+     * 获取AccessToken
+     *
+     * @return
+     */
+    private void getToken() {
+        Map<String, String> map = new HashMap<>();
+        map.put("appKey", "848742ba79e345ffb1ecca9a7371e51c");
+        map.put("appSecret", "28b17f898e115ed4987c38e96b5efd2a");
+        OkHttpClientUtil.postAsyn("https://open.ys7.com/api/lapp/token/get", new OkHttpClientUtil.ResultCallback<TokenResponse>() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(TokenResponse response) {
+                token = response.getData().getAccessToken();
+                ezOpenSDK.setAccessToken(token);
+                getDeviceList();
+                Toast.makeText(SDKActivity.this, "获取token：" + token, Toast.LENGTH_SHORT).show();
+            }
+        }, map);
+    }
+
+
+    /**
+     * 添加设备
+     */
+    private void addDevice() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                boolean result = false;
+                try {
+                    ezProbeDeviceInfo = ezOpenSDK.probeDeviceInfo(deviceSerial);
+                    try {
+                        result = ezOpenSDK.addDevice(deviceSerial, validateCode);
+                        if (result) {
+                            getDeviceList();
+                            Message message = new Message();
+                            message.what = 3;
+                            mHandler.sendMessage(message);
+                            Toast.makeText(SDKActivity.this, "添加设备成功", Toast.LENGTH_SHORT).show();
+                        }
+                        Looper.loop();
+                    } catch (BaseException e) {
+                        Toast.makeText(SDKActivity.this, "添加设备：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }
+                } catch (BaseException e) {
+                    if (e.getErrorCode() == 120023) {//设备未配网
+                        Message message = new Message();
+                        message.what = 2;
+                        mHandler.sendMessage(message);
+                    } else {
+                        Toast.makeText(SDKActivity.this, "添加设备：" + e.getErrorCode(), Toast.LENGTH_SHORT).show();
+                    }
+                    Looper.loop();
+                }
+            }
+        }).start();
+
+    }
+
+
+    /**
+     * 配置wifi
+     */
+    public void getWifi() {
+        layout.setVisibility(View.VISIBLE);
+        secondBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nameEdit.setVisibility(View.VISIBLE);
+                pwdEdit.setVisibility(View.VISIBLE);
+                startBtn.setVisibility(View.VISIBLE);
+                @SuppressLint("WifiManagerLeak") WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                ssid = wifiInfo.getSSID();
+                nameEdit.setText(ssid);
+                startBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ezOpenSDK.startConfigWifi(SDKActivity.this, deviceSerial, ssid.replace("\"", ""), pwdEdit.getText().toString(), new EZOpenSDKListener.EZStartConfigWifiCallback() {
+                            @Override
+                            public void onStartConfigWifiCallback(EZConstants.EZWifiConfigStatus status) {
+                                if (status == EZConstants.EZWifiConfigStatus.DEVICE_WIFI_CONNECTED) {
+                                    Log.d("SDKActivity", "接收到设备连接上WIFI");
+                                } else if (status == EZConstants.EZWifiConfigStatus.DEVICE_PLATFORM_REGISTED) {
+                                    Log.d("SDKActivity", "接收到设备连接上PLAT信息");
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    /**
+     * 移除设备
+     */
+    private void deleteDevice() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                try {
+                    boolean result = ezOpenSDK.deleteDevice(deviceSerial);
+                    if (result) {
+                        if (null != ezPlayer) {
+                            ezPlayer.stopRealPlay();
+                        }
+                        Toast.makeText(SDKActivity.this, "移除设备成功", Toast.LENGTH_SHORT).show();
+                        getDeviceList();
+                        Looper.loop();
+                    }
+                } catch (BaseException e) {
+                    Toast.makeText(SDKActivity.this, "移除设备：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Looper.loop();
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * 获取设备列表
+     */
+    private void getDeviceList() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                try {
+                    ezDeviceInfos = ezOpenSDK.getDeviceList(0, 10);
+                    if (null != ezDeviceInfos && ezDeviceInfos.size() > 0) {
+                        Message message = new Message();
+                        message.what = 0;
+                        message.obj = ezDeviceInfos;
+                        mHandler.sendMessage(message);
+                        Looper.loop();
+                    } else {
+                        Message message = new Message();
+                        message.what = 1;
+                        mHandler.sendMessage(message);
+                        Toast.makeText(SDKActivity.this, "没有设备", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }
+                } catch (BaseException e) {
+                    Toast.makeText(SDKActivity.this, "没有设备：" + e.getErrorCode(), Toast.LENGTH_SHORT).show();
+                    Looper.loop();
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * 开始播放
+     *
+     * @param ezDeviceInfo
+     */
+    private void startPlayer(EZDeviceInfo ezDeviceInfo) {
+        if (ezDeviceInfo != null) {
+            if (ezPlayer == null) {
+                ezPlayer = ezOpenSDK.createPlayer(ezDeviceInfo.getDeviceSerial(), ezDeviceInfo.getCameraInfoList().get(0).getCameraNo());
+            }
+            if (ezPlayer == null) {
+                return;
+            }
+            if (ezDeviceInfo == null) {
+                return;
+            }
+            if (ezDeviceInfo.getIsEncrypt() == 1) {
+                ezPlayer.setPlayVerifyCode(validateCode);
+            }
+            ezPlayer.setHandler(mHandler);
+            ezPlayer.setSurfaceHold(mRealPlaySh);
+            ezPlayer.startRealPlay();
+            Toast.makeText(this, "开始播放", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private Handler mHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    listAdapter = new ListAdapter((List<EZDeviceInfo>) msg.obj, SDKActivity.this);
+                    listView.setAdapter(listAdapter);
+                    listAdapter.setStart(new ListAdapter.Start() {
+                        @Override
+                        public void startPlayer(EZDeviceInfo deviceInfo) {
+                            SDKActivity.this.startPlayer(deviceInfo);
+                        }
+                    });
+                    listAdapter.setStop(new ListAdapter.Stop() {
+                        @Override
+                        public void stopPlayer(EZDeviceInfo ezDeviceInfo) {
+                            ezPlayer.stopRealPlay();
+                            Toast.makeText(SDKActivity.this, "暂停播放", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    break;
+                case 1:
+                    listAdapter = new ListAdapter(new ArrayList<EZDeviceInfo>(), SDKActivity.this);
+                    listView.setAdapter(listAdapter);
+                    break;
+                case 2:
+                    getWifi();
+                    break;
+                case 3:
+                    layout.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        }
+    });
 }

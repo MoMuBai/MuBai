@@ -27,7 +27,7 @@ public class UIKitActivity extends AppCompatActivity implements EZUIPlayer.EZUIP
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uikit);
-        ezuiPlayer = findViewById(R.id.player_ui);
+        ezuiPlayer = (EZUIPlayer) findViewById(R.id.player_ui);
         /**
          * 设置播放回调CallBack
          */
