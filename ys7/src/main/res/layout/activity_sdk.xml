@@ -43,7 +43,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="退出" />
+
             </LinearLayout>
+
+            <Button
+                android:id="@+id/screen_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="横屏" />
 
             <SurfaceView
                 android:id="@+id/surface_view"

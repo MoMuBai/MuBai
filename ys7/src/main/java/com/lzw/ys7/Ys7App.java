@@ -15,10 +15,12 @@ public class Ys7App extends Application {
 
     private final String appKey = "848742ba79e345ffb1ecca9a7371e51c";
 
+    private static Ys7App ys7App;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        ys7App = this;
 
 //        /**
 //         * 初始化EZUIKit
@@ -33,7 +35,13 @@ public class Ys7App extends Application {
 //         */
 //        EZUIKit.setAccessToken("at.bkf7hu552tosffvb39qf2kv9a6frhfsv-54v03xiz4c-0kozjl5-6r0tkrev8");
 
+    }
 
+    public static Ys7App getYs7App() {
+        return ys7App;
+    }
+
+    public void initEzOpenSDK() {
         /**
          * SDK完整接入
          */
@@ -41,4 +49,5 @@ public class Ys7App extends Application {
         EZOpenSDK.enableP2P(false);
         EZOpenSDK.initLib(this, appKey, "");
     }
+
 }

@@ -1,14 +1,22 @@
 package com.lzw.ys7.sdk;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -26,6 +34,7 @@ import com.ezviz.player.EZMediaPlayer;
 import com.lzw.ys7.MyListView;
 import com.lzw.ys7.OkHttpClientUtil;
 import com.lzw.ys7.R;
+import com.lzw.ys7.Ys7App;
 import com.squareup.okhttp.Request;
 import com.videogo.exception.BaseException;
 import com.videogo.openapi.EZConstants;
@@ -68,13 +77,14 @@ public class SDKActivity extends AppCompatActivity {
     private EditText nameEdit, pwdEdit;
     private TextView nameText;
     private LinearLayout layout;
-    private Button firstBtn, secondBtn, startBtn;
+    private Button firstBtn, secondBtn, startBtn, screenBtn;
     private String ssid;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sdk);
+        initPermission();
         mRealPlaySv = (SurfaceView) findViewById(R.id.surface_view);
         mRealPlaySh = mRealPlaySv.getHolder();
         listView = (MyListView) findViewById(R.id.list_view);
@@ -83,9 +93,9 @@ public class SDKActivity extends AppCompatActivity {
         nameText = (TextView) findViewById(R.id.name_text);
         layout = (LinearLayout) findViewById(R.id.layout);
         firstBtn = (Button) findViewById(R.id.first_btn);
+        screenBtn = (Button) findViewById(R.id.screen_btn);
         secondBtn = (Button) findViewById(R.id.second_btn);
         startBtn = (Button) findViewById(R.id.start_btn);
-        ezOpenSDK = EZOpenSDK.getInstance();
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,8 +123,40 @@ public class SDKActivity extends AppCompatActivity {
                 Toast.makeText(SDKActivity.this, "退出登录", Toast.LENGTH_SHORT).show();
             }
         });
+        screenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SDKActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            }
+        });
     }
 
+
+    private void initPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            int isPermission1 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+            if (isPermission1 != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 123);
+            } else {
+                Ys7App.getYs7App().initEzOpenSDK();
+                ezOpenSDK = EZOpenSDK.getInstance();
+            }
+        } else {
+            Ys7App.getYs7App().initEzOpenSDK();
+            ezOpenSDK = EZOpenSDK.getInstance();
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (grantResults.length > 0) {
+            if (grantResults[0] >= 0) {
+                Ys7App.getYs7App().initEzOpenSDK();
+                ezOpenSDK = EZOpenSDK.getInstance();
+            }
+        }
+    }
 
     /**
      * 获取AccessToken

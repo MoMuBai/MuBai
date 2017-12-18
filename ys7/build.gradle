@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "26.0.2"
 
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
 
@@ -36,7 +36,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.0'
     testCompile 'junit:junit:4.12'
     compile 'com.hikvision.ezviz:ezuikit:1.4'
     compile 'com.hikvision.ezviz:ezviz-sdk:4.7.1'
