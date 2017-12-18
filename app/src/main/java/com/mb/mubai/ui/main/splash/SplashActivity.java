@@ -3,6 +3,7 @@ package com.mb.mubai.ui.main.splash;
 import android.content.Intent;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.lzw.library.utils.AppUtil;
 import com.mb.mubai.App;
@@ -72,6 +73,14 @@ public class SplashActivity extends BaseActivity {
                 }
             }
         }, 2000);
+        initToast();
+    }
+
+    /**
+     * 阿里云SopHix补丁测试
+     */
+    private void initToast() {
+        Toast.makeText(mContext, "测试Toast", Toast.LENGTH_SHORT).show();
     }
 
     private void showDialog() {

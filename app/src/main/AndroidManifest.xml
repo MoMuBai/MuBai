@@ -6,7 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--自定义权限-->
     <permission
         android:name="com.mb.mubai.PermissionTest"
@@ -76,6 +78,17 @@
         <activity
             android:name=".ui.test.activity.RecyclerViewMoveActivity"
             android:theme="@style/MuBaiTheme" />
+
+        <!--阿里云热修复-->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24735299-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="App Secret" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="RSA密钥" />
     </application>
 
 </manifest>

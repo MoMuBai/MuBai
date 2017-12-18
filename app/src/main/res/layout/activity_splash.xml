@@ -5,13 +5,6 @@
     android:background="@color/buleOut"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="沐白"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/iv_splash"
@@ -26,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="技术需要沉淀！"
+        android:text="Kotlin"
         android:textColor="@color/white"
         android:textSize="20sp" />
 </LinearLayout>
