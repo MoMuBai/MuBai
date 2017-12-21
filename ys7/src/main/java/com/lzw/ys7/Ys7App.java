@@ -1,9 +1,14 @@
 package com.lzw.ys7;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.ezvizuikit.open.EZUIKit;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.videogo.openapi.EZOpenSDK;
+
+import java.sql.Ref;
 
 /**
  * @author: lzw
@@ -13,15 +18,23 @@ import com.videogo.openapi.EZOpenSDK;
 
 public class Ys7App extends Application {
 
-    private final String appKey = "848742ba79e345ffb1ecca9a7371e51c";
+    private final String appKey = "2efac217bf674f9eb14828448e8c7816";
 
     private static Ys7App ys7App;
+
+    private RefWatcher refWatcher;
+
+    public static RefWatcher getRefWatcher(Context context) {
+        Ys7App application = (Ys7App) context.getApplicationContext();
+        return application.refWatcher;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         ys7App = this;
 
+        refWatcher = LeakCanary.install(this);
 //        /**
 //         * 初始化EZUIKit
 //         * @param application 应用application

@@ -3,6 +3,7 @@ package com.lzw.ys7.sdk;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
@@ -35,6 +36,7 @@ import com.lzw.ys7.MyListView;
 import com.lzw.ys7.OkHttpClientUtil;
 import com.lzw.ys7.R;
 import com.lzw.ys7.Ys7App;
+import com.squareup.leakcanary.RefWatcher;
 import com.squareup.okhttp.Request;
 import com.videogo.exception.BaseException;
 import com.videogo.openapi.EZConstants;
@@ -79,6 +81,10 @@ public class SDKActivity extends AppCompatActivity {
     private LinearLayout layout;
     private Button firstBtn, secondBtn, startBtn, screenBtn;
     private String ssid;
+
+
+    private static Test test;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,9 +132,13 @@ public class SDKActivity extends AppCompatActivity {
         screenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SDKActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                Intent intent = new Intent();
+                intent.setClass(SDKActivity.this, LeakTestActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
+        test = new Test();
     }
 
 
@@ -165,8 +175,8 @@ public class SDKActivity extends AppCompatActivity {
      */
     private void getToken() {
         Map<String, String> map = new HashMap<>();
-        map.put("appKey", "848742ba79e345ffb1ecca9a7371e51c");
-        map.put("appSecret", "28b17f898e115ed4987c38e96b5efd2a");
+        map.put("appKey", "2efac217bf674f9eb14828448e8c7816");
+        map.put("appSecret", "ed39f75532e3c19a19c43f3cfb7e0588");
         OkHttpClientUtil.postAsyn("https://open.ys7.com/api/lapp/token/get", new OkHttpClientUtil.ResultCallback<TokenResponse>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -176,6 +186,7 @@ public class SDKActivity extends AppCompatActivity {
             @Override
             public void onResponse(TokenResponse response) {
                 token = response.getData().getAccessToken();
+                Log.d("SDKActivity", token);
                 ezOpenSDK.setAccessToken(token);
                 getDeviceList();
                 Toast.makeText(SDKActivity.this, "获取token：" + token, Toast.LENGTH_SHORT).show();
@@ -215,7 +226,7 @@ public class SDKActivity extends AppCompatActivity {
                         message.what = 2;
                         mHandler.sendMessage(message);
                     } else {
-                        Toast.makeText(SDKActivity.this, "添加设备：" + e.getErrorCode(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SDKActivity.this, "添加设备：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     Looper.loop();
                 }
@@ -289,6 +300,7 @@ public class SDKActivity extends AppCompatActivity {
      * 获取设备列表
      */
     private void getDeviceList() {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -379,4 +391,15 @@ public class SDKActivity extends AppCompatActivity {
             return false;
         }
     });
+
+    class Test {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = Ys7App.getRefWatcher(this);
+        refWatcher.watch(this);
+    }
 }
