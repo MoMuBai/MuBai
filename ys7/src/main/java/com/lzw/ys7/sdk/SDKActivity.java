@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -83,9 +84,6 @@ public class SDKActivity extends AppCompatActivity {
     private String ssid;
 
 
-    private static Test test;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,13 +130,9 @@ public class SDKActivity extends AppCompatActivity {
         screenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(SDKActivity.this, LeakTestActivity.class);
-                startActivity(intent);
-                finish();
+                TextHelper.getTextHelper(SDKActivity.this).setText(nameText);
             }
         });
-        test = new Test();
     }
 
 
@@ -150,10 +144,12 @@ public class SDKActivity extends AppCompatActivity {
             } else {
                 Ys7App.getYs7App().initEzOpenSDK();
                 ezOpenSDK = EZOpenSDK.getInstance();
+                Log.d("SDKActivity", "ezOpenSDK:" + ezOpenSDK);
             }
         } else {
             Ys7App.getYs7App().initEzOpenSDK();
             ezOpenSDK = EZOpenSDK.getInstance();
+            Log.d("SDKActivity", "ezOpenSDK:" + ezOpenSDK);
         }
     }
 
@@ -164,6 +160,7 @@ public class SDKActivity extends AppCompatActivity {
             if (grantResults[0] >= 0) {
                 Ys7App.getYs7App().initEzOpenSDK();
                 ezOpenSDK = EZOpenSDK.getInstance();
+                Log.d("SDKActivity", "ezOpenSDK:" + ezOpenSDK);
             }
         }
     }
@@ -354,6 +351,36 @@ public class SDKActivity extends AppCompatActivity {
         }
     }
 
+    private EZDeviceInfo ezDeviceInfo;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (null != ezDeviceInfo) {
+            startPlayer(ezDeviceInfo);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (null != ezPlayer) {
+            ezPlayer.stopRealPlay();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ezDeviceInfo = null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ezDeviceInfo = null;
+    }
+
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -364,6 +391,7 @@ public class SDKActivity extends AppCompatActivity {
                     listAdapter.setStart(new ListAdapter.Start() {
                         @Override
                         public void startPlayer(EZDeviceInfo deviceInfo) {
+                            SDKActivity.this.ezDeviceInfo = deviceInfo;
                             SDKActivity.this.startPlayer(deviceInfo);
                         }
                     });
@@ -371,6 +399,7 @@ public class SDKActivity extends AppCompatActivity {
                         @Override
                         public void stopPlayer(EZDeviceInfo ezDeviceInfo) {
                             ezPlayer.stopRealPlay();
+                            SDKActivity.this.ezDeviceInfo = null;
                             Toast.makeText(SDKActivity.this, "暂停播放", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -391,15 +420,4 @@ public class SDKActivity extends AppCompatActivity {
             return false;
         }
     });
-
-    class Test {
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        RefWatcher refWatcher = Ys7App.getRefWatcher(this);
-        refWatcher.watch(this);
-    }
 }

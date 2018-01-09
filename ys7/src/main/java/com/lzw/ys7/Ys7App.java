@@ -47,7 +47,6 @@ public class Ys7App extends Application {
 //         * @param accessToken
 //         */
 //        EZUIKit.setAccessToken("at.bkf7hu552tosffvb39qf2kv9a6frhfsv-54v03xiz4c-0kozjl5-6r0tkrev8");
-
     }
 
     public static Ys7App getYs7App() {

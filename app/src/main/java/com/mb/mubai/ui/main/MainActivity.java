@@ -19,6 +19,7 @@ import com.lzw.library.utils.AppUtil;
 import com.lzw.library.utils.SpUtils;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
+import com.mb.mubai.ui.test.activity.PopupActivity;
 import com.mb.mubai.ui.test.fly.AFlyFactory;
 import com.mb.mubai.ui.test.fly.BFly;
 import com.mb.mubai.ui.test.fly.BFlyFactory;
@@ -145,6 +146,10 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     break;
                 case R.id.g9:
                     intent.setClass(mActivity, WebViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.g10:
+                    intent.setClass(mActivity, PopupActivity.class);
                     startActivity(intent);
                     break;
                 default:

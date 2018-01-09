@@ -54,4 +54,10 @@
             android:icon="@drawable/mubai"
             android:title="WebViewActivity" />
     </group>
+    <group android:id="@+id/g10">
+        <item
+            android:id="@+id/popupView"
+            android:icon="@drawable/mubai"
+            android:title="PopupActivity" />
+    </group>
 </menu>
