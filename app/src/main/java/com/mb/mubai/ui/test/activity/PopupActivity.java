@@ -52,6 +52,9 @@ public class PopupActivity extends AppCompatActivity {
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow2 = new PopupWindow(popView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
         mPopupWindow2.setOutsideTouchable(true);
+        //解决isShowing失效问题
+        mPopupWindow.setFocusable(true);
+        mPopupWindow2.setFocusable(true);
 //        Button floatingButton = new Button(this);
 //        floatingButton.setPadding(20, 20, 20, 20);
 //        floatingButton.setText("button");
@@ -104,7 +107,9 @@ public class PopupActivity extends AppCompatActivity {
         @Override
         protected void onBindData(ViewHolder holder, String data, int pos) {
             holder.text.setOnClickListener(v -> {
-                mPopupWindow.showAsDropDown(holder.text, 0, 0, Gravity.BOTTOM);
+                if (!mPopupWindow.isShowing()) {
+                    mPopupWindow.showAsDropDown(holder.text, 0, 0, Gravity.BOTTOM);
+                }
             });
         }
 
