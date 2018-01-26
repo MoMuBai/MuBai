@@ -10,23 +10,23 @@ import android.os.Environment;
  */
 public final class Config {
 
-        private static Config appConfig;
-        private static Context mContext;
+    private static Config appConfig;
+    private static Context mContext;
 
-        // 设置是否打印Log
-        public static boolean isPrintLog = true;
+    // 设置是否打印Log
+    public static boolean isPrintLog = true;
 
-        // 拍照存放的路径
-        public static String SAVED_IMAGE_DIR_PATH = Environment.getExternalStorageDirectory().getPath()
-                  + "/mubai/camera/";
+    // 拍照存放的路径
+    public static String SAVED_IMAGE_DIR_PATH = Environment.getExternalStorageDirectory().getPath()
+            + "/mubai/camera/";
 
 
-        public static Config getAppConfig(Context context) {
-                if (appConfig == null) {
-                        appConfig = new Config();
-                        appConfig.mContext = context;
-                }
-                return appConfig;
+    public static Config getAppConfig(Context context) {
+        if (appConfig == null) {
+            appConfig = new Config();
+            appConfig.mContext = context;
         }
+        return appConfig;
+    }
 
 }

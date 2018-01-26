@@ -232,8 +232,8 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             Class cls = ClassLoader.getSystemClassLoader().loadClass("com.mb.mubai.data.DataResult");
             Constructor constructor = cls.getConstructor(String.class);
             Object object = constructor.newInstance();
-            Method method = cls.getMethod("setCode", null);
-            method.invoke(object, "1101");
+//            Method method = cls.getMethod("setCode", null);
+//            method.invoke(object, "1101");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -259,7 +259,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             Method setCode = cls.getDeclaredMethod("setCode", String.class);//获取setCode()方法
             setCode.invoke(dataResult, "1101");//设置调用setCode的对象和传入setCode的值
             Method getCode = cls.getDeclaredMethod("getCode");//获取getCode()方法
-            Log.d("MainActivity", "getCode.invoke(dataResult, null):" + getCode.invoke(dataResult, null));
+//            Log.d("MainActivity", "getCode.invoke(dataResult, null):" + getCode.invoke(dataResult, null));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

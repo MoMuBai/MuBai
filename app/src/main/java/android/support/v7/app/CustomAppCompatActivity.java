@@ -10,7 +10,7 @@ import android.view.Window;
  * @author: lzw
  * @date: 12/12/2017 3:15 PM
  * @desc: 自定义可全局改变TextView/ImageView/Button/EditText的Activity，这里通过委托代理
- * 参考链接：http://zhuanlan.51cto.com/art/201709/553338.htm
+ * 参考链接：http://zhuanlan.51cto.com/art/201709/553338.html
  */
 
 public class CustomAppCompatActivity extends AppCompatActivity {

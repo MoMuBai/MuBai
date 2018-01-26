@@ -37,6 +37,7 @@ import com.lzw.ys7.MyListView;
 import com.lzw.ys7.OkHttpClientUtil;
 import com.lzw.ys7.R;
 import com.lzw.ys7.Ys7App;
+import com.lzw.ys7.jni.AndroidJni;
 import com.squareup.leakcanary.RefWatcher;
 import com.squareup.okhttp.Request;
 import com.videogo.exception.BaseException;
@@ -88,7 +89,11 @@ public class SDKActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sdk);
-        initPermission();
+//        initPermission();
+        String str = AndroidJni.getString();
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+        Log.d("AndroidJniTest", str);
+
         mRealPlaySv = (SurfaceView) findViewById(R.id.surface_view);
         mRealPlaySh = mRealPlaySv.getHolder();
         listView = (MyListView) findViewById(R.id.list_view);
