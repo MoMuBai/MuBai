@@ -14,8 +14,8 @@
     </declare-styleable>
     <!-- 进度条-->
     <declare-styleable name="SVCircleProgressBar">
-        <attr name="roundColor" format="color"/>
-        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressColor" format="color" />
         <attr name="roundWidth" format="dimension"></attr>
         <attr name="max" format="integer"></attr>
         <attr name="style">
@@ -33,5 +33,12 @@
 
         <attr name="stroke_width" format="dimension" />
         <attr name="stroke_color" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MyView">
+        <attr name="my_view_1" format="dimension" />
+        <attr name="my_view_2" format="color" />
+        <attr name="my_view_3" format="boolean" />
+        <attr name="my_view_4" format="float" />
     </declare-styleable>
 </resources>
