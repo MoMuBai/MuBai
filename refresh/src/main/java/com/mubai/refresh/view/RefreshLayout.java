@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Handler;
+import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,49 +25,57 @@ import android.widget.Toast;
 import com.mubai.refresh.R;
 import com.mubai.refresh.activity.TouchEventUtil;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
  * @author: lzw
- * //
- * @date: 2017/4/5 上午11:17
- * //
- * @desc: 自定义刷新控件
+ * @date: 2018/2/1 下午2:00
+ * @desc:
  */
+
 
 public class RefreshLayout extends LinearLayout {
 
     private static final String TAG = "REFRESH_LAYOUT";
 
+    /**
+     * 刷新的颜色
+     */
     private int refreshColor;
 
     private Context mContext;
-
-    private static boolean isUpDown = false;
 
     /**
      * 初始状态
      */
     private static final int INIT = 0;
     /**
+     * 下拉刷新
+     */
+    private static final int PULL_TO_REFRESH = 1;
+    /**
      * 释放刷新
      */
-    private static final int RELEASE_TO_REFRESH = 1;
+    private static final int RELEASE_TO_REFRESH = 2;
     /**
      * 正在刷新
      */
-    private static final int REFRESHING = 2;
-    /**
-     * 操作完毕
-     */
-    private static final int DONE = 3;
-    /**
-     * 当前状态
-     */
-    private int state = INIT;
+    private static final int REFRESHING = 3;
+
+    @Status
+    private int status;
+
+    private int mTouchDownY;
+
+    private int moveY, loadMoveY;
 
     /**
      * 头部刷新布局
      */
-    private View headRefreshLayout;
+    private View refreshView;
 
     /**
      * 刷新文字
@@ -79,15 +90,6 @@ public class RefreshLayout extends LinearLayout {
      */
     private ProgressBar mProgressBar;
 
-    /**
-     * 刷新头部高度
-     */
-    private int headHeight;
-
-    /**
-     * 下拉的距离Y
-     */
-    private float mTouchDownY = -1;
 
     /**
      * 最小移动距离，用于判断是否在下拉
@@ -95,17 +97,22 @@ public class RefreshLayout extends LinearLayout {
     private final static float MIN_MOVE_DISTANCE = 5.0f;
 
 
-    private float PULL_DOWN_DISTANCE = 300f;
-
-
-    private boolean isRefresh = false, isLoad = false;
-
     private RefreshListener refreshListener;
 
+    private View contentView, footView;
+
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({INIT, PULL_TO_REFRESH, RELEASE_TO_REFRESH, REFRESHING})
+    public @interface Status {
+
+    }
 
     public void setRefreshListener(RefreshListener refreshListener) {
         this.refreshListener = refreshListener;
+        initFootView();
     }
+
 
     public RefreshLayout(Context context) {
         this(context, null);
@@ -113,6 +120,7 @@ public class RefreshLayout extends LinearLayout {
 
     public RefreshLayout(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
+        setOrientation(LinearLayout.VERTICAL);
     }
 
     public RefreshLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -122,114 +130,166 @@ public class RefreshLayout extends LinearLayout {
 
     private void initView(Context context, AttributeSet attrs, int defStyleAttr) {
         this.mContext = context;
-        initHeadView();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RefreshLayout, defStyleAttr, 0);
         refreshColor = typedArray.getColor(R.styleable.RefreshLayout_refreshColor, Color.WHITE);
         typedArray.recycle();
+        initHeadView();
     }
 
+
+    /**
+     * 初始化HeadView
+     */
     private void initHeadView() {
-        headRefreshLayout = LayoutInflater.from(mContext).inflate(R.layout.head_refresh_layout, null);
-        tvRefresh = (TextView) headRefreshLayout.findViewById(R.id.tv_refresh);
-        ivRefresh = (ImageView) headRefreshLayout.findViewById(R.id.iv_refresh);
-        relativeLayout = (RelativeLayout) headRefreshLayout.findViewById(R.id.refresh_layout);
-        mProgressBar = (ProgressBar) headRefreshLayout.findViewById(R.id.progress_refresh);
-        addView(headRefreshLayout);
-        changeState(DONE);
+        refreshView = LayoutInflater.from(mContext).inflate(R.layout.head_refresh_layout, null);
+        tvRefresh = (TextView) refreshView.findViewById(R.id.tv_refresh);
+        ivRefresh = (ImageView) refreshView.findViewById(R.id.iv_refresh);
+        relativeLayout = (RelativeLayout) refreshView.findViewById(R.id.refresh_layout);
+        mProgressBar = (ProgressBar) refreshView.findViewById(R.id.progress_refresh);
+        addView(refreshView);
+        refreshView.setVisibility(GONE);
     }
 
+    /**
+     * 初始化FootView
+     */
+    private void initFootView() {
+        footView = LayoutInflater.from(mContext).inflate(R.layout.foot_refresh_layout, null);
+        addView(footView);
+    }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        contentView = getChildAt(1);
+        contentView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
+        int y = (int) ev.getRawY();
         switch (action) {
             case MotionEvent.ACTION_POINTER_DOWN:
             case MotionEvent.ACTION_DOWN:
-                mTouchDownY = ev.getRawY();
+                mTouchDownY = y;
                 break;
             case MotionEvent.ACTION_MOVE:
-                float m = ev.getRawY() - mTouchDownY;
-                if (m > 0) {
-                    if (m > MIN_MOVE_DISTANCE && canScroll()) {
-                        if (ev.getRawY() - mTouchDownY > PULL_DOWN_DISTANCE) {
-                            /**
-                             * 滑动大于一定距离表示可以显示刷新
-                             */
-                            changeState(RELEASE_TO_REFRESH);
-                        } else {
-                            /**
-                             * 滑动小于一定距离表示不可以显示刷新，需显示初始化状态
-                             */
-                            changeState(INIT);
-                        }
-                    }
-                } else {
-                    isUpDown = true;
+                int m = y - mTouchDownY;
+                if (m > MIN_MOVE_DISTANCE && canRefresh()) {
+                    /**
+                     * 当下拉大于最小距离且子View可以滑动的时候将事件拦截下来
+                     */
+                    return true;
                 }
-                break;
-            case MotionEvent.ACTION_POINTER_UP:
-            case MotionEvent.ACTION_UP:
-                if (isUpDown) {
-                    Log.d(TAG, "return super.dispatchTouchEvent(ev)");
-                    return super.dispatchTouchEvent(ev);
-                } else {
-                    if (state == RELEASE_TO_REFRESH) {
-                        changeState(REFRESHING);
-                    }
-                    // 重置
-                    mTouchDownY = -1;
+                if (m < 0 && canLoad()) {
+                    return true;
                 }
                 break;
             default:
                 break;
         }
-        Log.d(TAG, "return true");
+        return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        int y = (int) event.getRawY();
+        switch (action) {
+            case MotionEvent.ACTION_POINTER_DOWN:
+            case MotionEvent.ACTION_DOWN:
+                mTouchDownY = y;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int m = y - mTouchDownY;
+                if (m > 0) {
+                    /**
+                     * 执行偏移
+                     */
+                    refreshMoveEvent(m);
+                } else {
+//                    loadMoveEvent(m);
+                }
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+            case MotionEvent.ACTION_UP:
+                int n = y - mTouchDownY;
+                Log.d(TAG, "n:" + n);
+                /**
+                 * 执行刷新
+                 */
+                refreshEvent(n);
+//                    loadEvent();
+//                    footView.setVisibility(VISIBLE);
+            default:
+                break;
+        }
         return true;
     }
 
+    private void loadMoveEvent(int m) {
+        Log.d(TAG, "m:" + m);
+        LayoutParams layoutParams = (LayoutParams) footView.getLayoutParams();
+        layoutParams.bottomMargin = (int) (-m * 0.3f);
+        Log.d(TAG, "layoutParams.bottomMargin:" + layoutParams.bottomMargin);
+        footView.setLayoutParams(layoutParams);
+        footView.setVisibility(VISIBLE);
+        loadMoveY = layoutParams.bottomMargin - refreshView.getHeight();
+        Log.d(TAG, "contentView.getHeight():" + contentView.getHeight());
+        this.scrollTo(0, loadMoveY);
+        Log.d(TAG, "loadMoveY:" + loadMoveY);
+    }
+
+    private void loadEvent() {
+        LinearLayout.LayoutParams lp = (LayoutParams) this.footView.getLayoutParams();
+        Log.d(TAG, "lp.bottomMargin:" + lp.bottomMargin);
+        Log.d(TAG, "开始加载");
+    }
+
+    private void refreshEvent(int n) {
+        if (n > 0) {
+            LinearLayout.LayoutParams lp = (LayoutParams) this.refreshView.getLayoutParams();
+            Log.d(TAG, "lp.topMargin:" + lp.topMargin);
+            Log.d(TAG, "开始刷新");
+            if (lp.topMargin > 100) {
+                lp.topMargin = lp.topMargin - moveY - refreshView.getHeight();
+                refreshView.setLayoutParams(lp);
+                tvRefresh.setText("正在刷新");
+                ivRefresh.setVisibility(GONE);
+                mProgressBar.setVisibility(VISIBLE);
+                refreshListener.onRefresh();
+            } else {
+                refreshView.setVisibility(GONE);
+            }
+        } else {
+            refreshView.setVisibility(GONE);
+        }
+    }
 
     /**
-     * 改变状态
+     * 执行偏移
      *
-     * @param state
+     * @param m
      */
-    private void changeState(int state) {
-        this.state = state;
-        switch (state) {
-            case INIT://初始化状态
-                isRefresh = false;
-                tvRefresh.setText("下拉刷新");
-                mProgressBar.setVisibility(GONE);
-                ivRefresh.setVisibility(VISIBLE);
-                ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_down));
-                relativeLayout.setVisibility(VISIBLE);
-                break;
-            case RELEASE_TO_REFRESH://释放刷新状态
-                isRefresh = true;
+    private void refreshMoveEvent(int m) {
+        if (m > 0) {
+            Log.d(TAG, "m:" + m);
+            status = PULL_TO_REFRESH;
+            LayoutParams layoutParams = (LayoutParams) refreshView.getLayoutParams();
+            layoutParams.topMargin = (int) (m * 0.3f);
+            Log.d(TAG, "layoutParams.topMargin:" + layoutParams.topMargin);
+            if (layoutParams.topMargin > 100) {
                 tvRefresh.setText("释放立即刷新");
-                tvRefresh.setVisibility(VISIBLE);
-                mProgressBar.setVisibility(GONE);
-                ivRefresh.setVisibility(VISIBLE);
                 ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_up));
-                relativeLayout.setVisibility(VISIBLE);
-                break;
-            case REFRESHING://正在刷新状态
-                tvRefresh.setText("正在刷新");
-                mProgressBar.setVisibility(VISIBLE);
-                ivRefresh.setVisibility(GONE);
-                if (null != refreshListener) {
-                    refreshListener.onRefresh();
-                }
-                relativeLayout.setVisibility(VISIBLE);
-                break;
-            case DONE://刷新完成状态
-                tvRefresh.setVisibility(VISIBLE);
-                ivRefresh.setVisibility(VISIBLE);
-                mProgressBar.setVisibility(VISIBLE);
-                relativeLayout.setVisibility(GONE);
-                break;
-            default:
-                break;
+            } else {
+                tvRefresh.setText("下拉刷新");
+                ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_down));
+            }
+            refreshView.setLayoutParams(layoutParams);
+            refreshView.setVisibility(VISIBLE);
+            moveY = layoutParams.topMargin - refreshView.getHeight();
+            Log.d(TAG, "moveY:" + moveY);
         }
     }
 
@@ -238,7 +298,7 @@ public class RefreshLayout extends LinearLayout {
      *
      * @return
      */
-    private boolean canScroll() {
+    private boolean canRefresh() {
         View childView;
         if (getChildCount() > 1) {
             childView = this.getChildAt(1);
@@ -249,54 +309,61 @@ public class RefreshLayout extends LinearLayout {
                     return false;
                 }
             } else if (childView instanceof ListView) {
+                int top = ((ListView) childView).getChildAt(0).getTop();
+                int pad = ((ListView) childView).getListPaddingTop();
+                if ((Math.abs(top - pad)) < 3
+                        && ((ListView) childView).getFirstVisiblePosition() == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
         return false;
     }
 
-
-    public void setPullDownDistance(int distance) {
-        setPullDownDistance((float) distance);
-    }
-
-    public void setPullDownDistance(float distance) {
-        this.PULL_DOWN_DISTANCE = distance;
-    }
-
-
-    public boolean isRefreshing() {
-        if (isRefresh) {
-            return true;
-        } else {
-            return false;
+    /**
+     * 判断是否可以加载
+     *
+     * @return
+     */
+    private boolean canLoad() {
+        View childView;
+        if (getChildCount() > 1) {
+            childView = this.getChildAt(1);
+            if (childView instanceof ScrollView) {
+                if (((ScrollView) childView).getChildAt(0).getHeight() - ((ScrollView) childView).getHeight() == ((ScrollView) childView).getScrollY()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
-    }
-
-    public boolean isLoading() {
-        if (isLoad) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
      * 刷新完成
      */
     public void setRefreshFinish() {
-        isRefresh = false;
-        changeState(DONE);
+        refreshView.setVisibility(GONE);
+        tvRefresh.setText("下拉刷新");
+        ivRefresh.setVisibility(VISIBLE);
+        ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_down));
+        mProgressBar.setVisibility(GONE);
     }
 
-    public void setLoadFinish() {
-        isLoad = false;
-    }
 
     public interface RefreshListener {
         /**
          * 执行刷新
          */
         void onRefresh();
+
+        /**
+         * 执行加载
+         */
+        void onLoad();
     }
 }
 

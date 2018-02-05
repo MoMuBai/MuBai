@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:orientation="vertical">
 
 
@@ -24,9 +24,10 @@
             android:id="@+id/progress_refresh"
             android:layout_width="23dp"
             android:layout_height="23dp"
+            android:layout_alignBottom="@id/tv_refresh"
+            android:layout_alignTop="@id/tv_refresh"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
             android:layout_toLeftOf="@id/tv_refresh"
             android:visibility="gone" />
 
@@ -36,7 +37,7 @@
             android:layout_height="23dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_toLeftOf="@id/tv_refresh"
             android:src="@drawable/refresh_down" />
     </RelativeLayout>

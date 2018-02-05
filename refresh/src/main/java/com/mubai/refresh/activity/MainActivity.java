@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "REFRESH";
 
+    private ScrollView scrollView;
+
     private RefreshLayout refreshLayout;
 
     private Handler handler = new Handler();
+
 
     private Runnable runnable = new Runnable() {
         @Override
@@ -50,11 +55,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
         refreshLayout = (RefreshLayout) findViewById(R.id.refresh_layout);
         refreshLayout.setRefreshListener(new RefreshLayout.RefreshListener() {
             @Override
             public void onRefresh() {
                 handler.postDelayed(runnable, 4000);
+            }
+
+            @Override
+            public void onLoad() {
+
             }
         });
     }

@@ -21,9 +21,9 @@ public class TypeCheck {
     /**
      * 无法确定传入的参数是否符合要求，这里可以利用IntDef/StringDef来对类型进行检查
      */
-//    public MethodCheck(int itemType) {
-//        this.itemType = itemType;
-//    }
+    public void MethodCheck(int itemType) {
+        this.itemType = itemType;
+    }
 
 
     @Retention(RetentionPolicy.SOURCE)
