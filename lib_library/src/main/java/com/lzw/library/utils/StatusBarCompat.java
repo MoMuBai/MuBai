@@ -28,6 +28,7 @@ public class StatusBarCompat {
 
     /**
      * set statusBarColor
+     *
      * @param statusColor color
      * @param alpha       0 - 255
      */
@@ -49,6 +50,7 @@ public class StatusBarCompat {
 
     /**
      * change to full screen mode
+     *
      * @param hideStatusBarBackground hide status bar alpha Background when SDK > 21, true if hide it
      */
     public static void translucentStatusBar(@NonNull Activity activity, boolean hideStatusBarBackground) {

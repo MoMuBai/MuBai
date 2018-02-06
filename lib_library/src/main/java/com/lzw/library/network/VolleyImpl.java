@@ -32,48 +32,48 @@ import com.lzw.library.volley.GsonRequest;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public class VolleyImpl implements NetModeInterface {
-        private RequestQueue queue;
+    private RequestQueue queue;
 
-        public VolleyImpl(Context context) {
-                queue = getQueue(context);
-        }
+    public VolleyImpl(Context context) {
+        queue = getQueue(context);
+    }
 
-        private RequestQueue getQueue(Context context) {
-                if (queue == null) {
-                        queue = Volley.newRequestQueue(context);
-                }
-                return queue;
+    private RequestQueue getQueue(Context context) {
+        if (queue == null) {
+            queue = Volley.newRequestQueue(context);
         }
+        return queue;
+    }
 
-        @Override
-        public void startRequest(String url, final NetInterface<String> request) {
-                StringRequest strRequest = new StringRequest(url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                                request.onSuccess(response);
-                        }
-                }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                                request.onError();
-                        }
-                });
-                queue.add(strRequest);
-        }
+    @Override
+    public void startRequest(String url, final NetInterface<String> request) {
+        StringRequest strRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                request.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                request.onError();
+            }
+        });
+        queue.add(strRequest);
+    }
 
-        @Override
-        public <T> void startRequest(String url, Class<T> clazz, final NetInterface<T> request) {
-                GsonRequest<T> gsonRequest = new GsonRequest<T>(url, clazz, new Response.Listener<T>() {
-                        @Override
-                        public void onResponse(T response) {
-                                request.onSuccess(response);
-                        }
-                }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                                request.onError();
-                        }
-                });
-                queue.add(gsonRequest);
-        }
+    @Override
+    public <T> void startRequest(String url, Class<T> clazz, final NetInterface<T> request) {
+        GsonRequest<T> gsonRequest = new GsonRequest<T>(url, clazz, new Response.Listener<T>() {
+            @Override
+            public void onResponse(T response) {
+                request.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                request.onError();
+            }
+        });
+        queue.add(gsonRequest);
+    }
 }

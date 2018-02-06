@@ -6,6 +6,6 @@ package com.lzw.library.listener;
  */
 public interface DialogNoBtnListener {
 
-        // 无参: 传空
-        void DealSom(String s);
+    // 无参: 传空
+    void DealSom(String s);
 }

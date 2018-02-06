@@ -20,6 +20,6 @@ package com.lzw.library.listener;
  */
 public interface OnItemClickListener {
 
-        void onItemClick(int position);
+    void onItemClick(int position);
 
 }

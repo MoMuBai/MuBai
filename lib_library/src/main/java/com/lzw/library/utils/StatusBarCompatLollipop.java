@@ -39,7 +39,7 @@ class StatusBarCompatLollipop {
 
     /**
      * set StatusBarColor
-     *
+     * <p>
      * 1. set Flags to call setStatusBarColor
      * 2. call setSystemUiVisibility to clear translucentStatusBar's Flag.
      * 3. set FitsSystemWindows to false
@@ -62,7 +62,7 @@ class StatusBarCompatLollipop {
 
     /**
      * translucentStatusBar(full-screen)
-     *
+     * <p>
      * 1. set Flags to full-screen
      * 2. set FitsSystemWindows to false
      *
@@ -91,7 +91,7 @@ class StatusBarCompatLollipop {
 
     /**
      * compat for CollapsingToolbarLayout
-     *
+     * <p>
      * 1. change to full-screen mode(like translucentStatusBar).
      * 2. cancel CollapsingToolbarLayout's WindowInsets, let it layout as normal(now setStatusBarScrimColor is useless).
      * 3. set View's FitsSystemWindow to false.

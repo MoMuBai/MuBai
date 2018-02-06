@@ -95,15 +95,20 @@ public class StreamUtil {
 
     }
 
-    /** byte 转为 16进制 */
-    public static String byteToHex(byte buffer){
+    /**
+     * byte 转为 16进制
+     */
+    public static String byteToHex(byte buffer) {
         int temp = buffer & 0xFF;
         return Integer.toHexString(temp);
     }
-    /** 16进制 转为 byte  */
-    public static byte hexToByte(String hex){
+
+    /**
+     * 16进制 转为 byte
+     */
+    public static byte hexToByte(String hex) {
         hex = hex.toUpperCase();
-        char [] chars = hex.toCharArray();
+        char[] chars = hex.toCharArray();
         return (byte) (charToByte(chars[0]) << 4 | charToByte(chars[1]));
     }
 
@@ -122,7 +127,7 @@ public class StreamUtil {
         return d;
     }
 
-    public static String bytesToHexString(byte[] src){
+    public static String bytesToHexString(byte[] src) {
         StringBuilder stringBuilder = new StringBuilder("");
         if (src == null || src.length <= 0) {
             return null;

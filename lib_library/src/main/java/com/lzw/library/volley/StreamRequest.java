@@ -32,27 +32,27 @@ import java.io.InputStream;
  */
 public class StreamRequest extends Request<InputStream> {
 
-        private final Response.Listener<InputStream> mListener;
+    private final Response.Listener<InputStream> mListener;
 
-        public StreamRequest(int method, String url, Response.Listener<InputStream> listener,
-                             Response.ErrorListener errorListener) {
-                super(method, url, errorListener);
-                mListener = listener;
-        }
+    public StreamRequest(int method, String url, Response.Listener<InputStream> listener,
+                         Response.ErrorListener errorListener) {
+        super(method, url, errorListener);
+        mListener = listener;
+    }
 
-        public StreamRequest(String url, Response.Listener<InputStream> listener, Response.ErrorListener errorListener) {
-                this(Method.GET, url, listener, errorListener);
-        }
+    public StreamRequest(String url, Response.Listener<InputStream> listener, Response.ErrorListener errorListener) {
+        this(Method.GET, url, listener, errorListener);
+    }
 
-        @Override
-        protected Response<InputStream> parseNetworkResponse(NetworkResponse response) {
-                InputStream is = new ByteArrayInputStream(response.data);
-                return Response.success(is, HttpHeaderParser.parseCacheHeaders(response));
-        }
+    @Override
+    protected Response<InputStream> parseNetworkResponse(NetworkResponse response) {
+        InputStream is = new ByteArrayInputStream(response.data);
+        return Response.success(is, HttpHeaderParser.parseCacheHeaders(response));
+    }
 
-        @Override
-        protected void deliverResponse(InputStream response) {
-                mListener.onResponse(response);
-        }
+    @Override
+    protected void deliverResponse(InputStream response) {
+        mListener.onResponse(response);
+    }
 
 }

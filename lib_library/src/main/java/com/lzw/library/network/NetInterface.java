@@ -23,8 +23,8 @@ package com.lzw.library.network;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public interface NetInterface<T> {
-        void onSuccess(T response);
+    void onSuccess(T response);
 
-        void onError();
+    void onError();
 
 }

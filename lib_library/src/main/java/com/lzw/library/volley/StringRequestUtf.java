@@ -31,26 +31,26 @@ import java.io.UnsupportedEncodingException;
  */
 public class StringRequestUtf extends StringRequest {
 
-        public StringRequestUtf(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-                super(method, url, listener, errorListener);
-        }
+    public StringRequestUtf(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+        super(method, url, listener, errorListener);
+    }
 
-        public StringRequestUtf(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-                super(url, listener, errorListener);
-        }
+    public StringRequestUtf(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+        super(url, listener, errorListener);
+    }
 
-        @Override
-        protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                String parsed = null;
-                try {
-                        parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                } catch (UnsupportedEncodingException e) {
-                        try {
-                                parsed = new String(response.data, "utf-8");
-                        } catch (UnsupportedEncodingException e1) {
-                                parsed = new String(response.data);
-                        }
-                }
-                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+    @Override
+    protected Response<String> parseNetworkResponse(NetworkResponse response) {
+        String parsed = null;
+        try {
+            parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+        } catch (UnsupportedEncodingException e) {
+            try {
+                parsed = new String(response.data, "utf-8");
+            } catch (UnsupportedEncodingException e1) {
+                parsed = new String(response.data);
+            }
         }
+        return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+    }
 }

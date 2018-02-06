@@ -23,7 +23,7 @@ package com.lzw.library.network;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public interface NetModeInterface {
-        void startRequest(String url, NetInterface<String> request);
+    void startRequest(String url, NetInterface<String> request);
 
-        <T> void startRequest(String url, Class<T> clazz, NetInterface<T> request);
+    <T> void startRequest(String url, Class<T> clazz, NetInterface<T> request);
 }

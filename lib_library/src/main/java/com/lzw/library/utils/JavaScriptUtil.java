@@ -11,35 +11,35 @@ import android.webkit.WebView;
 
 public class JavaScriptUtil {
 
-        private Activity activity;
+    private Activity activity;
 
-        private WebView webView;
+    private WebView webView;
 
 
-        public JavaScriptUtil(Activity activity, WebView webView) {
-                this.activity = activity;
-                this.webView = webView;
-        }
+    public JavaScriptUtil(Activity activity, WebView webView) {
+        this.activity = activity;
+        this.webView = webView;
+    }
 
-        /**
-         * 返回事件回调
-         */
-        @JavascriptInterface
-        public void closeWebview() {
-                webView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                                if (webView.canGoBack()) {
-                                        webView.goBack();
-                                } else {
-                                        backView();
-                                }
-                        }
-                });
-        }
+    /**
+     * 返回事件回调
+     */
+    @JavascriptInterface
+    public void closeWebview() {
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    backView();
+                }
+            }
+        });
+    }
 
-        private void backView() {
-                activity.finish();
-        }
+    private void backView() {
+        activity.finish();
+    }
 
 }
