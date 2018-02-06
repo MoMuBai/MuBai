@@ -24,6 +24,6 @@ package com.mb.mubai;
  */
 public final class C {
 
-        public static final String BaseUrl = "http://192.168.1.43/dataApi/lzgApi.php?";
+    public static final String BaseUrl = "http://192.168.1.43/dataApi/lzgApi.php?";
 
 }
