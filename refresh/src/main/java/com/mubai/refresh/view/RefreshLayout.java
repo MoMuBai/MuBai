@@ -166,6 +166,11 @@ public class RefreshLayout extends LinearLayout {
     }
 
     @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
         int y = (int) ev.getRawY();
@@ -182,9 +187,9 @@ public class RefreshLayout extends LinearLayout {
                      */
                     return true;
                 }
-                if (m < 0 && canLoad()) {
-                    return true;
-                }
+//                if (m < 0 && canLoad()) {
+//                    return true;
+//                }
                 break;
             default:
                 break;
@@ -203,14 +208,10 @@ public class RefreshLayout extends LinearLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 int m = y - mTouchDownY;
-                if (m > 0) {
-                    /**
-                     * 执行偏移
-                     */
-                    refreshMoveEvent(m);
-                } else {
-//                    loadMoveEvent(m);
-                }
+                /**
+                 * 执行偏移
+                 */
+                refreshMoveEvent(m);
                 break;
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_UP:
@@ -220,8 +221,6 @@ public class RefreshLayout extends LinearLayout {
                  * 执行刷新
                  */
                 refreshEvent(n);
-//                    loadEvent();
-//                    footView.setVisibility(VISIBLE);
             default:
                 break;
         }
@@ -231,7 +230,7 @@ public class RefreshLayout extends LinearLayout {
     private void loadMoveEvent(int m) {
         Log.d(TAG, "m:" + m);
         LayoutParams layoutParams = (LayoutParams) footView.getLayoutParams();
-        layoutParams.bottomMargin = (int) (-m * 0.3f);
+        layoutParams.bottomMargin = (int) (m * 0.3f);
         Log.d(TAG, "layoutParams.bottomMargin:" + layoutParams.bottomMargin);
         footView.setLayoutParams(layoutParams);
         footView.setVisibility(VISIBLE);
@@ -273,24 +272,22 @@ public class RefreshLayout extends LinearLayout {
      * @param m
      */
     private void refreshMoveEvent(int m) {
-        if (m > 0) {
-            Log.d(TAG, "m:" + m);
-            status = PULL_TO_REFRESH;
-            LayoutParams layoutParams = (LayoutParams) refreshView.getLayoutParams();
-            layoutParams.topMargin = (int) (m * 0.3f);
-            Log.d(TAG, "layoutParams.topMargin:" + layoutParams.topMargin);
-            if (layoutParams.topMargin > 100) {
-                tvRefresh.setText("释放立即刷新");
-                ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_up));
-            } else {
-                tvRefresh.setText("下拉刷新");
-                ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_down));
-            }
-            refreshView.setLayoutParams(layoutParams);
-            refreshView.setVisibility(VISIBLE);
-            moveY = layoutParams.topMargin - refreshView.getHeight();
-            Log.d(TAG, "moveY:" + moveY);
+        Log.d(TAG, "m:" + m);
+        status = PULL_TO_REFRESH;
+        LayoutParams layoutParams = (LayoutParams) refreshView.getLayoutParams();
+        layoutParams.topMargin = (int) (m * 0.3f);
+        Log.d(TAG, "layoutParams.topMargin:" + layoutParams.topMargin);
+        if (layoutParams.topMargin > 100) {
+            tvRefresh.setText("释放立即刷新");
+            ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_up));
+        } else {
+            tvRefresh.setText("下拉刷新");
+            ivRefresh.setImageDrawable(mContext.getResources().getDrawable(R.drawable.refresh_down));
         }
+        refreshView.setLayoutParams(layoutParams);
+        refreshView.setVisibility(VISIBLE);
+        moveY = layoutParams.topMargin - refreshView.getHeight();
+        Log.d(TAG, "moveY:" + moveY);
     }
 
     /**
