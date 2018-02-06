@@ -64,6 +64,16 @@ public class UserFragment extends BaseFragment<UserPresenter, UserModel> impleme
 
 
     @Override
+    protected UserModel getModel() {
+        return new UserModel();
+    }
+
+    @Override
+    protected UserPresenter getPresenter() {
+        return new UserPresenter();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_user;
     }

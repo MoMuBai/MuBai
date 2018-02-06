@@ -46,6 +46,16 @@ public class DownListActivity extends BaseActivity<DownListPresenter, DownListMo
     private ListViewAdapter adapter;
 
     @Override
+    protected DownListModel getModel() {
+        return new DownListModel();
+    }
+
+    @Override
+    protected DownListPresenter getPresenter() {
+        return new DownListPresenter();
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_down_list;
     }

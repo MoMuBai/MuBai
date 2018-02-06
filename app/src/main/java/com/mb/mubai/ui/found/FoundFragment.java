@@ -60,6 +60,16 @@ public class FoundFragment extends BaseFragment<FoundPresenter, FoundModel> impl
 
 
     @Override
+    protected FoundModel getModel() {
+        return new FoundModel();
+    }
+
+    @Override
+    protected FoundPresenter getPresenter() {
+        return new FoundPresenter();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_found;
     }

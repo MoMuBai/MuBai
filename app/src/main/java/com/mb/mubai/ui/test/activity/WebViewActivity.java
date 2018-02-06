@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.lzw.library.utils.JavaScriptUtil;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
+import com.mb.mubai.base.BaseModel;
+import com.mb.mubai.base.BasePresenter;
 
 import java.io.ByteArrayInputStream;
 import java.security.MessageDigest;
@@ -42,6 +44,16 @@ public class WebViewActivity extends BaseActivity {
     private WebView webView;
 
     private WebSettings webSettings;
+
+    @Override
+    protected BaseModel getModel() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
+    }
 
     @Override
     protected int getLayout() {

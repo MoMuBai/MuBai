@@ -36,6 +36,16 @@ public class ExpandableActivity extends BaseActivity<ExpandablePresenter, Expand
     private ExpandableAdapter expandableAdapter;
 
     @Override
+    protected ExpandableModel getModel() {
+        return new ExpandableModel();
+    }
+
+    @Override
+    protected ExpandablePresenter getPresenter() {
+        return new ExpandablePresenter();
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_expandable;
     }

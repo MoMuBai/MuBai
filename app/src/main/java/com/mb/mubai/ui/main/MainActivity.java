@@ -102,6 +102,16 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
     }
 
     @Override
+    protected MainModel getModel() {
+        return new MainModel();
+    }
+
+    @Override
+    protected MainPresenter getPresenter() {
+        return new MainPresenter();
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_main;
     }
@@ -222,7 +232,6 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
 
         FlyInterface BflyInterface = new BFlyFactory().produce();
         BflyInterface.fly();
-
 
 
     }

@@ -1,7 +1,8 @@
 package com.mb.mubai.base;
 
 /**
- * Created by lzw on 2016/11/3.
+ * @author lzw
+ * @date 2016/11/3
  */
 public abstract class BasePresenter<M, V> {
 

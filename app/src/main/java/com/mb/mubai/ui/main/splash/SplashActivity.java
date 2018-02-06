@@ -9,6 +9,8 @@ import com.lzw.library.utils.AppUtil;
 import com.mb.mubai.App;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
+import com.mb.mubai.base.BaseModel;
+import com.mb.mubai.base.BasePresenter;
 import com.mb.mubai.base.service.UpdateService;
 import com.mb.mubai.ui.main.MainActivity;
 import com.mb.mubai.view.dialog.MyDialog;
@@ -46,6 +48,16 @@ public class SplashActivity extends BaseActivity {
 
 
     private MyDialog myDialog;
+
+    @Override
+    protected BaseModel getModel() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
+    }
 
     @Override
     protected int getLayout() {

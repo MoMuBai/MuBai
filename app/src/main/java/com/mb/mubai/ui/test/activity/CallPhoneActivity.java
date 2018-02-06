@@ -15,6 +15,8 @@ import android.widget.Button;
 
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
+import com.mb.mubai.base.BaseModel;
+import com.mb.mubai.base.BasePresenter;
 
 import java.util.List;
 import java.util.Set;
@@ -50,6 +52,16 @@ public class CallPhoneActivity extends BaseActivity {
     Button btnCallPhone1;
     @Bind(R.id.btn_callPhone2)
     Button btnCallPhone2;
+
+    @Override
+    protected BaseModel getModel() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
+    }
 
     @Override
     protected int getLayout() {

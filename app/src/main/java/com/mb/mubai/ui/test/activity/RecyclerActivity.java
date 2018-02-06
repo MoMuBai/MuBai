@@ -64,6 +64,16 @@ public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerMo
     private SwipeMenuRecyclerView swipeMenuRecyclerView;
 
     @Override
+    protected RecyclerModel getModel() {
+        return new RecyclerModel();
+    }
+
+    @Override
+    protected RecyclerPresenter getPresenter() {
+        return new RecyclerPresenter();
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_recycler;
     }

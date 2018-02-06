@@ -71,6 +71,16 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
     ShapedImageView image;
 
     @Override
+    protected SeekBarModel getModel() {
+        return new SeekBarModel();
+    }
+
+    @Override
+    protected SeekBarPresenter getPresenter() {
+        return new SeekBarPresenter();
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_seekbar;
     }

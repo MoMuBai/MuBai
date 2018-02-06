@@ -44,6 +44,16 @@ public class MsgFragment extends BaseFragment<MsgPresenter, MsgModel> implements
 
 
     @Override
+    protected MsgModel getModel() {
+        return new MsgModel();
+    }
+
+    @Override
+    protected MsgPresenter getPresenter() {
+        return new MsgPresenter();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_message;
     }

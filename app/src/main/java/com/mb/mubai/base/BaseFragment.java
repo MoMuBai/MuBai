@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 
 import com.lzw.library.utils.AppManager;
-import com.lzw.library.utils.TUtil;
 import com.mb.mubai.App;
 import com.mb.mubai.R;
 import com.mb.mubai.view.widget.LoadingDialog;
@@ -85,12 +84,20 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         setLoadingDialog();
-        mPresenter = TUtil.getT(this, 0);
-        mModel = TUtil.getT(this, 1);
+        mPresenter = getPresenter();
+        mModel = getModel();
         mContext = App.getInstance();
-        if (this instanceof BaseView) mPresenter.setVM(this, mModel);
+        if (this instanceof BaseView) {
+            if (null != mPresenter && null != mModel) {
+                mPresenter.setVM(this, mModel);
+            }
+        }
         initView(view);
     }
+
+    protected abstract V getModel();
+
+    protected abstract T getPresenter();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
