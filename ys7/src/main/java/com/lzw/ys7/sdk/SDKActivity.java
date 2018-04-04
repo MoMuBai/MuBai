@@ -2,9 +2,6 @@ package com.lzw.ys7.sdk;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -17,41 +14,30 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ezviz.player.EZFECMediaPlayer;
-import com.ezviz.player.EZMediaPlayer;
 import com.lzw.ys7.MyListView;
 import com.lzw.ys7.OkHttpClientUtil;
 import com.lzw.ys7.R;
 import com.lzw.ys7.Ys7App;
-import com.lzw.ys7.jni.AndroidJni;
-import com.squareup.leakcanary.RefWatcher;
 import com.squareup.okhttp.Request;
 import com.videogo.exception.BaseException;
 import com.videogo.openapi.EZConstants;
 import com.videogo.openapi.EZOpenSDK;
 import com.videogo.openapi.EZOpenSDKListener;
 import com.videogo.openapi.EZPlayer;
-import com.videogo.openapi.bean.EZDetectorInfo;
 import com.videogo.openapi.bean.EZDeviceInfo;
 import com.videogo.openapi.bean.EZProbeDeviceInfo;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +57,10 @@ public class SDKActivity extends AppCompatActivity {
     private MyListView listView;
     private List<EZDeviceInfo> ezDeviceInfos;
     private EZOpenSDK ezOpenSDK;
-    private String deviceSerial = "756067560", validateCode = "SMRGKG";
+    //序列号、验证码
+//    private String deviceSerial = "C07721608", validateCode = "PVXKXR";
+
+    private String deviceSerial = "202628564", validateCode = "VLFAAC";
 
     private SurfaceView mRealPlaySv;
     private SurfaceHolder mRealPlaySh = null;
@@ -81,7 +70,7 @@ public class SDKActivity extends AppCompatActivity {
     private EditText nameEdit, pwdEdit;
     private TextView nameText;
     private LinearLayout layout;
-    private Button firstBtn, secondBtn, startBtn, screenBtn;
+    private Button firstBtn, secondBtn, startBtn, screenBtn, fanBtn, upBtn, dowmBtn, leftBtn, rightBtn, starttalkBtn, stoptalkBtn;
     private String ssid;
 
 
@@ -89,10 +78,10 @@ public class SDKActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sdk);
-//        initPermission();
-        String str = AndroidJni.getString();
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-        Log.d("AndroidJniTest", str);
+        initPermission();
+//        String str = AndroidJni.getString();
+//        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+//        Log.d("AndroidJniTest", str);
 
         mRealPlaySv = (SurfaceView) findViewById(R.id.surface_view);
         mRealPlaySh = mRealPlaySv.getHolder();
@@ -105,6 +94,15 @@ public class SDKActivity extends AppCompatActivity {
         screenBtn = (Button) findViewById(R.id.screen_btn);
         secondBtn = (Button) findViewById(R.id.second_btn);
         startBtn = (Button) findViewById(R.id.start_btn);
+
+        fanBtn = (Button) findViewById(R.id.fan_btn);
+        upBtn = (Button) findViewById(R.id.up_btn);
+        dowmBtn = (Button) findViewById(R.id.down_btn);
+        leftBtn = (Button) findViewById(R.id.left_btn);
+        rightBtn = (Button) findViewById(R.id.right_btn);
+        starttalkBtn = (Button) findViewById(R.id.start_talk_btn);
+        stoptalkBtn = (Button) findViewById(R.id.stop_talk_btn);
+
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +134,167 @@ public class SDKActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TextHelper.getTextHelper(SDKActivity.this).setText(nameText);
+            }
+        });
+
+        fanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    ezOpenSDK.controlVideoFlip(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZDisplayCommand.EZPTZDisplayCommandFlip);
+                } catch (BaseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        upBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            int a = ezDeviceInfo.getCameraNum();
+                            ezOpenSDK.controlPTZ(deviceSerial, a, EZConstants.EZPTZCommand.EZPTZCommandUp, EZConstants.EZPTZAction.EZPTZActionSTART, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+        upBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                int a = ezDeviceInfo.getCameraNum();
+                                ezOpenSDK.controlPTZ(deviceSerial, a, EZConstants.EZPTZCommand.EZPTZCommandUp, EZConstants.EZPTZAction.EZPTZActionSTOP, 1);
+                            } catch (BaseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+                return false;
+            }
+        });
+        dowmBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ezOpenSDK.controlPTZ(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZCommand.EZPTZCommandDown, EZConstants.EZPTZAction.EZPTZActionSTART, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+        dowmBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ezOpenSDK.controlPTZ(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZCommand.EZPTZCommandDown, EZConstants.EZPTZAction.EZPTZActionSTOP, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+        leftBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ezOpenSDK.controlPTZ(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZCommand.EZPTZCommandLeft, EZConstants.EZPTZAction.EZPTZActionSTART, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+        leftBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ezOpenSDK.controlPTZ(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZCommand.EZPTZCommandLeft, EZConstants.EZPTZAction.EZPTZActionSTOP, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+        rightBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ezOpenSDK.controlPTZ(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZCommand.EZPTZCommandRight, EZConstants.EZPTZAction.EZPTZActionSTART, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+        rightBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ezOpenSDK.controlPTZ(deviceSerial, ezDeviceInfo.getCameraNum(), EZConstants.EZPTZCommand.EZPTZCommandRight, EZConstants.EZPTZAction.EZPTZActionSTOP, 1);
+                        } catch (BaseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                return false;
+            }
+        });
+
+
+        starttalkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ezPlayer.openSound();
+                ezPlayer.setVoiceTalkStatus(true);
+            }
+        });
+
+        stoptalkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                关闭对讲
+                ezPlayer.closeSound();
             }
         });
     }
@@ -177,12 +336,12 @@ public class SDKActivity extends AppCompatActivity {
      */
     private void getToken() {
         Map<String, String> map = new HashMap<>();
-        map.put("appKey", "2efac217bf674f9eb14828448e8c7816");
-        map.put("appSecret", "ed39f75532e3c19a19c43f3cfb7e0588");
+        map.put("appKey", "4dd7877b948840fab257d7e0fc3385d9");
+        map.put("appSecret", "cea98619ba4b6bc51c3682114c8525c0");
         OkHttpClientUtil.postAsyn("https://open.ys7.com/api/lapp/token/get", new OkHttpClientUtil.ResultCallback<TokenResponse>() {
             @Override
             public void onError(Request request, Exception e) {
-
+                Log.d("SDKActivity", "e:" + e);
             }
 
             @Override
@@ -302,7 +461,6 @@ public class SDKActivity extends AppCompatActivity {
      * 获取设备列表
      */
     private void getDeviceList() {
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -352,6 +510,7 @@ public class SDKActivity extends AppCompatActivity {
             ezPlayer.setHandler(mHandler);
             ezPlayer.setSurfaceHold(mRealPlaySh);
             ezPlayer.startRealPlay();
+            ezPlayer.openSound();
             Toast.makeText(this, "开始播放", Toast.LENGTH_SHORT).show();
         }
     }
@@ -390,7 +549,7 @@ public class SDKActivity extends AppCompatActivity {
         @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
-                case 0:
+                case 0://有设备
                     listAdapter = new ListAdapter((List<EZDeviceInfo>) msg.obj, SDKActivity.this);
                     listView.setAdapter(listAdapter);
                     listAdapter.setStart(new ListAdapter.Start() {
@@ -404,12 +563,13 @@ public class SDKActivity extends AppCompatActivity {
                         @Override
                         public void stopPlayer(EZDeviceInfo ezDeviceInfo) {
                             ezPlayer.stopRealPlay();
+                            ezPlayer.release();
                             SDKActivity.this.ezDeviceInfo = null;
                             Toast.makeText(SDKActivity.this, "暂停播放", Toast.LENGTH_SHORT).show();
                         }
                     });
                     break;
-                case 1:
+                case 1://没有设备
                     listAdapter = new ListAdapter(new ArrayList<EZDeviceInfo>(), SDKActivity.this);
                     listView.setAdapter(listAdapter);
                     break;

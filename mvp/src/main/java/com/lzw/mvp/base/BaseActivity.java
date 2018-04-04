@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
-    
+
     protected T mPresenter;
 
     @Override

@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!--自定义权限-->
     <permission
         android:name="com.mb.mubai.PermissionTest"
@@ -83,6 +83,7 @@
         <activity
             android:name=".ui.test.activity.PopupActivity"
             android:theme="@style/MuBaiTheme" />
+        <activity android:name=".ui.test.activity.CameraActivity" />
 
         <!--阿里云热修复-->
         <meta-data

@@ -75,4 +75,10 @@
         app:shape_mode="round_rect" />
 
 
+    <TextView
+        android:id="@+id/camera_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="扫一扫" />
 </LinearLayout>

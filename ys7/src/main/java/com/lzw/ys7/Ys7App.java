@@ -3,12 +3,9 @@ package com.lzw.ys7;
 import android.app.Application;
 import android.content.Context;
 
-import com.ezvizuikit.open.EZUIKit;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.videogo.openapi.EZOpenSDK;
-
-import java.sql.Ref;
 
 /**
  * @author: lzw
@@ -18,7 +15,7 @@ import java.sql.Ref;
 
 public class Ys7App extends Application {
 
-    private final String appKey = "2efac217bf674f9eb14828448e8c7816";
+    private final String appKey = "4dd7877b948840fab257d7e0fc3385d9";
 
     private static Ys7App ys7App;
 
@@ -59,7 +56,7 @@ public class Ys7App extends Application {
          */
         EZOpenSDK.showSDKLog(true);
         EZOpenSDK.enableP2P(false);
-        EZOpenSDK.initLib(this, appKey, "");
+        EZOpenSDK.initLib(this, appKey);
     }
 
 }

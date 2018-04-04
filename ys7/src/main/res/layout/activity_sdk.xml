@@ -46,11 +46,70 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/screen_btn"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="横屏" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fan_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="画面翻转" />
+
+                <Button
+                    android:id="@+id/start_talk_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开启对讲" />
+
+                <Button
+                    android:id="@+id/stop_talk_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关闭对讲" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/screen_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="横屏"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/up_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上" />
+
+                <Button
+                    android:id="@+id/down_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下" />
+
+                <Button
+                    android:id="@+id/left_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="左" />
+
+                <Button
+                    android:id="@+id/right_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="右" />
+
+            </LinearLayout>
+
 
             <SurfaceView
                 android:id="@+id/surface_view"
