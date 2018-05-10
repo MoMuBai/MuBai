@@ -58,16 +58,23 @@
                     android:text="画面翻转" />
 
                 <Button
+                    android:id="@+id/talk_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="对讲" />
+
+                <Button
                     android:id="@+id/start_talk_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="开启对讲" />
+                    android:text="开始对讲" />
+
 
                 <Button
                     android:id="@+id/stop_talk_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="关闭对讲" />
+                    android:text="关闭" />
 
             </LinearLayout>
 
@@ -124,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/name_text"
@@ -168,6 +175,7 @@
             </LinearLayout>
 
             <com.lzw.ys7.MyListView
+                android:visibility="gone"
                 android:id="@+id/list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

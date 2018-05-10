@@ -1,11 +1,11 @@
 package com.mb.mubai.ui.main;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,12 +19,6 @@ import com.lzw.library.utils.AppUtil;
 import com.lzw.library.utils.SpUtils;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
-import com.mb.mubai.ui.test.activity.PopupActivity;
-import com.mb.mubai.ui.test.fly.AFlyFactory;
-import com.mb.mubai.ui.test.fly.BFly;
-import com.mb.mubai.ui.test.fly.BFlyFactory;
-import com.mb.mubai.ui.test.fly.FlyInterface;
-import com.mb.mubai.ui.test.run.RunInterface;
 import com.mb.mubai.base.util.MethodInfo;
 import com.mb.mubai.data.DataResult;
 import com.mb.mubai.ui.test.activity.BannerActivity;
@@ -32,10 +26,15 @@ import com.mb.mubai.ui.test.activity.CallPhoneActivity;
 import com.mb.mubai.ui.test.activity.DownListActivity;
 import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
+import com.mb.mubai.ui.test.activity.PopupActivity;
 import com.mb.mubai.ui.test.activity.RecyclerViewMoveActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
 import com.mb.mubai.ui.test.activity.WebViewActivity;
+import com.mb.mubai.ui.test.fly.AFlyFactory;
+import com.mb.mubai.ui.test.fly.BFlyFactory;
+import com.mb.mubai.ui.test.fly.FlyInterface;
 import com.mb.mubai.ui.test.run.RunFactory;
+import com.mb.mubai.ui.test.run.RunInterface;
 import com.mb.mubai.ui.test.run.RunMoreFactory;
 import com.mb.mubai.ui.test.run.RunStaticFactory;
 import com.mb.mubai.ui.user.login.LoginActivity;
@@ -372,6 +371,23 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * 隐藏虚拟按键，并且全屏
+     */
+    protected void hideBottomUIMenu() {
+        //隐藏虚拟按键，并且全屏
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            View v = this.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
         }
     }
 }

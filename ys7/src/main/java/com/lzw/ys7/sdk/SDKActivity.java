@@ -65,12 +65,14 @@ public class SDKActivity extends AppCompatActivity {
     private SurfaceView mRealPlaySv;
     private SurfaceHolder mRealPlaySh = null;
     private EZPlayer ezPlayer;
+    private EZPlayer tolkEzPlayer;
+
     private EZProbeDeviceInfo ezProbeDeviceInfo = null;
 
     private EditText nameEdit, pwdEdit;
     private TextView nameText;
     private LinearLayout layout;
-    private Button firstBtn, secondBtn, startBtn, screenBtn, fanBtn, upBtn, dowmBtn, leftBtn, rightBtn, starttalkBtn, stoptalkBtn;
+    private Button firstBtn, secondBtn, startBtn, talkBtn, screenBtn, fanBtn, upBtn, dowmBtn, leftBtn, rightBtn, starttalkBtn, stoptalkBtn;
     private String ssid;
 
 
@@ -100,9 +102,9 @@ public class SDKActivity extends AppCompatActivity {
         dowmBtn = (Button) findViewById(R.id.down_btn);
         leftBtn = (Button) findViewById(R.id.left_btn);
         rightBtn = (Button) findViewById(R.id.right_btn);
+        talkBtn = (Button) findViewById(R.id.talk_btn);
         starttalkBtn = (Button) findViewById(R.id.start_talk_btn);
         stoptalkBtn = (Button) findViewById(R.id.stop_talk_btn);
-
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,11 +284,19 @@ public class SDKActivity extends AppCompatActivity {
         });
 
 
-        starttalkBtn.setOnClickListener(new View.OnClickListener() {
+        talkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ezPlayer.openSound();
+                ezPlayer.closeSound();
+                ezPlayer.startVoiceTalk();
+            }
+        });
+
+        starttalkBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
                 ezPlayer.setVoiceTalkStatus(true);
+                return false;
             }
         });
 
@@ -294,7 +304,8 @@ public class SDKActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                关闭对讲
-                ezPlayer.closeSound();
+                ezPlayer.stopVoiceTalk();
+                ezPlayer.openSound();
             }
         });
     }
@@ -304,7 +315,7 @@ public class SDKActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             int isPermission1 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
             if (isPermission1 != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 123);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.RECORD_AUDIO}, 123);
             } else {
                 Ys7App.getYs7App().initEzOpenSDK();
                 ezOpenSDK = EZOpenSDK.getInstance();
@@ -497,8 +508,12 @@ public class SDKActivity extends AppCompatActivity {
         if (ezDeviceInfo != null) {
             if (ezPlayer == null) {
                 ezPlayer = ezOpenSDK.createPlayer(ezDeviceInfo.getDeviceSerial(), ezDeviceInfo.getCameraInfoList().get(0).getCameraNo());
+                tolkEzPlayer = ezOpenSDK.createPlayer(ezDeviceInfo.getDeviceSerial(), ezDeviceInfo.getCameraInfoList().get(0).getCameraNo());
             }
             if (ezPlayer == null) {
+                return;
+            }
+            if (tolkEzPlayer == null) {
                 return;
             }
             if (ezDeviceInfo == null) {
@@ -510,7 +525,6 @@ public class SDKActivity extends AppCompatActivity {
             ezPlayer.setHandler(mHandler);
             ezPlayer.setSurfaceHold(mRealPlaySh);
             ezPlayer.startRealPlay();
-            ezPlayer.openSound();
             Toast.makeText(this, "开始播放", Toast.LENGTH_SHORT).show();
         }
     }
@@ -557,6 +571,12 @@ public class SDKActivity extends AppCompatActivity {
                         public void startPlayer(EZDeviceInfo deviceInfo) {
                             SDKActivity.this.ezDeviceInfo = deviceInfo;
                             SDKActivity.this.startPlayer(deviceInfo);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ezPlayer.openSound();
+                                }
+                            }, 1000);
                         }
                     });
                     listAdapter.setStop(new ListAdapter.Stop() {

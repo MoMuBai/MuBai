@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/lib_library/lib_library.iml" filepath="$PROJECT_DIR$/lib_library/lib_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_load/lib_load.iml" filepath="$PROJECT_DIR$/lib_load/lib_load.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_refresh/lib_refresh.iml" filepath="$PROJECT_DIR$/lib_refresh/lib_refresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mfdemotest/mfdemotest.iml" filepath="$PROJECT_DIR$/mfdemotest/mfdemotest.iml" />
       <module fileurl="file://$PROJECT_DIR$/mode_home/mode_home.iml" filepath="$PROJECT_DIR$/mode_home/mode_home.iml" />
       <module fileurl="file://$PROJECT_DIR$/mode_pinnedhead/mode_pinnedhead.iml" filepath="$PROJECT_DIR$/mode_pinnedhead/mode_pinnedhead.iml" />
       <module fileurl="file://$PROJECT_DIR$/mode_user/mode_user.iml" filepath="$PROJECT_DIR$/mode_user/mode_user.iml" />

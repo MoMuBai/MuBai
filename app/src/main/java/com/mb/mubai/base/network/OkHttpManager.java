@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.lzw.library.utils.IsNetUtil;
-import com.lzw.library.utils.L;
 import com.mb.mubai.App;
 import com.mb.mubai.R;
 
@@ -14,6 +13,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -35,11 +35,15 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.CertificatePinner;
+import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
+import okio.BufferedSource;
 
 /**
  * Created by lzw on 2016/12/17.
@@ -322,6 +326,54 @@ public class OkHttpManager {
                         .removeHeader("Pragma")
                         .build();
             }
+        }
+    }
+
+    /**
+     * 请求和返回日志
+     */
+    static class HttpCacheInterceptor2 implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            String token = "";
+            Request request = chain.request().newBuilder()
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Accept", "application/json")
+                    .addHeader("Authorization", "Bearer " + token)
+                    .build();
+            //打印请求信息
+            Log.d("RetrofitLog:", "url:" + request.url());
+            Log.d("RetrofitLog:", "method:" + request.method());
+
+            //记录请求耗时
+            long startNs = System.nanoTime();
+            okhttp3.Response response;
+            try {
+                //发送请求，获得相应，
+                response = chain.proceed(request);
+            } catch (Exception e) {
+                throw e;
+            }
+            long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
+            //打印请求耗时
+            Log.d("RetrofitLog:", "耗时:" + tookMs + "ms");
+            //使用response获得headers(),可以更新本地Cookie。
+            Log.d("RetrofitLog:", "headers==========");
+            Headers headers = response.headers();
+            Log.d("RetrofitLog:", headers.toString());
+
+            //获得返回的body，注意此处不要使用responseBody.string()获取返回数据，原因在于这个方法会消耗返回结果的数据(buffer)
+            ResponseBody responseBody = response.body();
+
+            //为了不消耗buffer，我们这里使用source先获得buffer对象，然后clone()后使用
+            BufferedSource source = responseBody.source();
+            source.request(Long.MAX_VALUE); // Buffer the entire body.
+            //获得返回的数据
+            Buffer buffer = source.buffer();
+            //使用前clone()下，避免直接消耗
+            Log.d("RetrofitLog:", "response:" + buffer.clone().readString(Charset.forName("UTF-8")));
+
+            return response;
         }
     }
 
