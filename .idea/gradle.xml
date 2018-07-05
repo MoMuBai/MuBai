@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/mvc" />
             <option value="$PROJECT_DIR$/mvp" />
             <option value="$PROJECT_DIR$/mvvm" />
+            <option value="$PROJECT_DIR$/netty" />
             <option value="$PROJECT_DIR$/refresh" />
             <option value="$PROJECT_DIR$/ys7" />
           </set>

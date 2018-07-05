@@ -10,12 +10,11 @@ import java.lang.reflect.Proxy;
 
 public class MyRunTest {
     public static void main(String args[]) {
-        MyRun myRun = new MyRun();
-        myRun.run();
+        MyTest myTest = new MyRun();
 
-        MyInvoke myInvoke = new MyInvoke(myRun);
+        MyInvoke myInvoke = new MyInvoke(myTest);
 
-        MyRun myRun1 = (MyRun) Proxy.newProxyInstance(myInvoke.getClass().getClassLoader(), myInvoke.getClass().getInterfaces(), myInvoke);
+        MyTest myRun1 = (MyRun) Proxy.newProxyInstance(myInvoke.getClass().getClassLoader(), myInvoke.getClass().getInterfaces(), myInvoke);
 
         myRun1.run();
 

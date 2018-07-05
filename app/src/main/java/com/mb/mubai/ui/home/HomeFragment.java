@@ -1,15 +1,13 @@
 package com.mb.mubai.ui.home;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.lzw.library.utils.GsonUtil;
 import com.lzw.library.utils.MD5Util;
 import com.lzw.library.utils.StatusBarCompat;
 import com.lzw.library.utils.To;
@@ -17,7 +15,6 @@ import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 
 /**
@@ -96,6 +93,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
     @Override
     protected void initData() {
         Log.d("HomeFragment", MD5Util.getMD5Str("筑家易"));
+        GsonUtil.gson();
     }
 
     @Override

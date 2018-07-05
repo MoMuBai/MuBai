@@ -19,7 +19,11 @@ public class MyInvoke implements InvocationHandler {
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
+        System.out.println("Before:" + method);
+        method.invoke(object, objects);
+        System.out.println("After:" + method);
         System.out.println(method);
         return null;
     }
+
 }

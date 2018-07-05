@@ -10,12 +10,11 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.IntDef;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import android.widget.Toast;
 
-
+import com.google.gson.Gson;
 import com.lzw.library.utils.L;
 import com.lzw.library.utils.OkHttpClientUtil;
 import com.lzw.library.utils.SpUtils;
@@ -83,6 +82,7 @@ public class App extends MultiDexApplication {
         SpUtils.init(mContext);
         L.setL(Config.isPrintLog);
         To.init(mContext);
+        Gson gson = new Gson();
         try {
             OkHttpClientUtil.getInstance()
                     .setCertificates(getAssets().open("srca.cer"));

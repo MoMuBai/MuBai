@@ -42,4 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="其他"/>
+
+    <include layout="@layout/head_test"/>
 </RelativeLayout>

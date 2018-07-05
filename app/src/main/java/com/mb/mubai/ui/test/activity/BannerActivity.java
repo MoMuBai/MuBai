@@ -1,22 +1,15 @@
 package com.mb.mubai.ui.test.activity;
 
-import android.content.Intent;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.util.Log;
 
-
+import com.lzw.library.utils.OkHttpClientUtil;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.base.BaseModel;
 import com.mb.mubai.base.BasePresenter;
-import com.mb.mubai.ui.test.adapter.ImagePagerAdapter;
-import com.mb.mubai.view.banner.CircleFlowIndicator;
-import com.mb.mubai.view.banner.ViewFlow;
+import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -42,14 +35,14 @@ import butterknife.OnClick;
  */
 
 public class BannerActivity extends BaseActivity {
-    @Bind(R.id.viewflow)
-    ViewFlow mViewFlow;
-    @Bind(R.id.viewflowindic)
-    CircleFlowIndicator mFlowIndicator;
-    @Bind(R.id.framelayout)
-    FrameLayout framelayout;
-    @Bind(R.id.text)
-    TextView text;
+//    @Bind(R.id.viewflow)
+//    ViewFlow mViewFlow;
+//    @Bind(R.id.viewflowindic)
+//    CircleFlowIndicator mFlowIndicator;
+//    @Bind(R.id.framelayout)
+//    FrameLayout framelayout;
+//    @Bind(R.id.text)
+//    TextView text;
 
     private ArrayList<String> imageUrlList = new ArrayList<String>();
     private ArrayList<String> linkUrlArray = new ArrayList<String>();
@@ -67,7 +60,7 @@ public class BannerActivity extends BaseActivity {
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_banner;
+        return R.layout.test_my;
     }
 
     @Override
@@ -88,26 +81,39 @@ public class BannerActivity extends BaseActivity {
 //                titleList.add("Android开发面试经——4.常见Android进阶笔试题（更新中...）");
 //                titleList.add("Android控件GridView之仿支付宝钱包首页带有分割线的GridView九宫格的完美实现");
 //                titleList.add("Android动画之仿美团加载数据等待时，小人奔跑进度动画对话框（附顺丰快递员奔跑效果） ");
-        initBanner(imageUrlList);
+//        initBanner(imageUrlList);
+
+        OkHttpClientUtil.getAsyn("http://ip.taobao.com/service/getIpInfo.php?ip=202.107.195.94", new OkHttpClientUtil.ResultCallback<String>() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Log.d("BannerActivity", response);
+            }
+        });
+
     }
 
-    private void initBanner(ArrayList<String> imageUrlList) {
-
-        mViewFlow.setAdapter(new ImagePagerAdapter(this, imageUrlList,
-                linkUrlArray, titleList).setInfiniteLoop(true));
-        mViewFlow.setmSideBuffer(imageUrlList.size()); // 实际图片张数，
-        // 我的ImageAdapter实际图片张数为3
-
-        mViewFlow.setFlowIndicator(mFlowIndicator);
-        mViewFlow.setTimeSpan(4500);
-        mViewFlow.setSelection(imageUrlList.size() * 1000); // 设置初始位置
-        mViewFlow.startAutoFlowTimer(); // 启动自动播放
-    }
-
-    @OnClick(R.id.text)
-    void text() {
-        Intent intent = new Intent(this, RecyclerActivity.class);
-        startActivity(intent);
-    }
+//    private void initBanner(ArrayList<String> imageUrlList) {
+//
+//        mViewFlow.setAdapter(new ImagePagerAdapter(this, imageUrlList,
+//                linkUrlArray, titleList).setInfiniteLoop(true));
+//        mViewFlow.setmSideBuffer(imageUrlList.size()); // 实际图片张数，
+//        // 我的ImageAdapter实际图片张数为3
+//
+//        mViewFlow.setFlowIndicator(mFlowIndicator);
+//        mViewFlow.setTimeSpan(4500);
+//        mViewFlow.setSelection(imageUrlList.size() * 1000); // 设置初始位置
+//        mViewFlow.startAutoFlowTimer(); // 启动自动播放
+//    }
+//
+//    @OnClick(R.id.text)
+//    void text() {
+//        Intent intent = new Intent(this, RecyclerActivity.class);
+//        startActivity(intent);
+//    }
 
 }
