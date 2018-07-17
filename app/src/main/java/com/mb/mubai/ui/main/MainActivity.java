@@ -26,9 +26,9 @@ import com.mb.mubai.ui.test.activity.CallPhoneActivity;
 import com.mb.mubai.ui.test.activity.DownListActivity;
 import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
-import com.mb.mubai.ui.test.activity.PopupActivity;
 import com.mb.mubai.ui.test.activity.RecyclerViewMoveActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
+import com.mb.mubai.ui.test.activity.TestActivity;
 import com.mb.mubai.ui.test.activity.WebViewActivity;
 import com.mb.mubai.ui.test.fly.AFlyFactory;
 import com.mb.mubai.ui.test.fly.BFlyFactory;
@@ -158,7 +158,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     startActivity(intent);
                     break;
                 case R.id.g10:
-                    intent.setClass(mActivity, PopupActivity.class);
+                    intent.setClass(mActivity, TestActivity.class);
                     startActivity(intent);
                     break;
                 default:

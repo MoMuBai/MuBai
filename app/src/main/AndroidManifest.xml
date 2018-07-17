@@ -85,6 +85,8 @@
             android:theme="@style/MuBaiTheme" />
         <activity android:name=".ui.test.activity.CameraActivity" />
 
+        <activity android:name=".ui.test.activity.TestActivity" />
+
         <!--阿里云热修复-->
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
