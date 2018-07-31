@@ -9,9 +9,9 @@
         android:supportsRtl="true">
 
         <service
-            android:name=".UserService"
+            android:name=".user.UserService"
             android:process="" />
 
-        <activity android:name=".UserActivity" />
+        <activity android:name=".user.UserActivity" />
     </application>
 </manifest>

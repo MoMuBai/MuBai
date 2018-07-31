@@ -64,13 +64,12 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.aaaaaa;
     }
 
     @Override
     protected void initView(View view) {
         setStatusBar();
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

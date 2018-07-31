@@ -6,12 +6,11 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kotlin/kotlin.iml" filepath="$PROJECT_DIR$/kotlin/kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_library/lib_library.iml" filepath="$PROJECT_DIR$/lib_library/lib_library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib_load/lib_load.iml" filepath="$PROJECT_DIR$/lib_load/lib_load.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib_refresh/lib_refresh.iml" filepath="$PROJECT_DIR$/lib_refresh/lib_refresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/mfdemotest/mfdemotest.iml" filepath="$PROJECT_DIR$/mfdemotest/mfdemotest.iml" />
       <module fileurl="file://$PROJECT_DIR$/mode_home/mode_home.iml" filepath="$PROJECT_DIR$/mode_home/mode_home.iml" />
       <module fileurl="file://$PROJECT_DIR$/mode_pinnedhead/mode_pinnedhead.iml" filepath="$PROJECT_DIR$/mode_pinnedhead/mode_pinnedhead.iml" />
       <module fileurl="file://$PROJECT_DIR$/mode_user/mode_user.iml" filepath="$PROJECT_DIR$/mode_user/mode_user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model_component/model_component.iml" filepath="$PROJECT_DIR$/model_component/model_component.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvc/mvc.iml" filepath="$PROJECT_DIR$/mvc/mvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvp/mvp.iml" filepath="$PROJECT_DIR$/mvp/mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvm/mvvm.iml" filepath="$PROJECT_DIR$/mvvm/mvvm.iml" />
