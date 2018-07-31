@@ -1,5 +1,11 @@
 package com.lzw.mode_user.login;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
 import com.zje.iot.model_component.service.AccountService;
 
 /**
@@ -17,5 +23,15 @@ public class LoginService implements AccountService {
     @Override
     public String getAccountId() {
         return new LoginModel().getAccountId() == null ? "123" : "321";
+    }
+
+
+    @Override
+    public Fragment newLoginFragment(Activity activity, int contrinerId, FragmentManager fragmentManager, Bundle bundle, String tag) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        Fragment loginFragment = new LoginFragment();
+        transaction.add(contrinerId, loginFragment, tag);
+        transaction.commit();
+        return loginFragment;
     }
 }

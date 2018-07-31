@@ -18,6 +18,14 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getHomeData();
+        getLoginFragment();
+    }
+
+    private void getLoginFragment() {
+        /**
+         * 通过ServiceFactory获取用户的Fragment的实例化对象
+         */
+        ServiceFactory.getInstance().getAccountService().newLoginFragment(getActivity(), 0, getChildFragmentManager(), null, "");
     }
 
     private void getHomeData() {
