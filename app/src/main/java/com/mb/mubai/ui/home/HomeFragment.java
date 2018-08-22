@@ -64,7 +64,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> impleme
 
     @Override
     protected int getLayoutId() {
-        return R.layout.aaaaaa;
+        return R.layout.fragment_home;
     }
 
     @Override

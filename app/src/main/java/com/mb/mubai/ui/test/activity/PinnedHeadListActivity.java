@@ -5,14 +5,14 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-import com.lzw.pinnedhead.IndexBar;
-import com.lzw.pinnedhead.PinnedHeaderListView;
-import com.lzw.pinnedhead.TestSectionedAdapter;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.ui.test.contract.PinnedHeadContract;
 import com.mb.mubai.ui.test.model.PinnedHeadModel;
 import com.mb.mubai.ui.test.presenter.PinnedHeadPresenter;
+import com.mb.mubai.view.widget.pinnedheader.IndexBar;
+import com.mb.mubai.view.widget.pinnedheader.PinnedHeaderListView;
+import com.mb.mubai.view.widget.pinnedheader.TestSectionedAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

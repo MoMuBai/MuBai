@@ -231,8 +231,6 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
 
         FlyInterface BflyInterface = new BFlyFactory().produce();
         BflyInterface.fly();
-
-
     }
 
     private void getCode() {

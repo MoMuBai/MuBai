@@ -14,7 +14,10 @@ import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.lzw.library.processor.HttpHelper;
+import com.lzw.library.processor.XUtilProcessor;
 import com.lzw.library.utils.L;
 import com.lzw.library.utils.OkHttpClientUtil;
 import com.lzw.library.utils.SpUtils;
@@ -110,6 +113,9 @@ public class App extends MultiDexApplication {
             }
         });
         alyunSopHix();
+
+        HttpHelper.init(new XUtilProcessor(this));
+
     }
 
 

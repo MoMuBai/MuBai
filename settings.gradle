@@ -1,1 +1,1 @@
-include ':app', ':mode_pinnedhead', ':lib_library', ':mvvm', ':kotlin', ':refresh', ':mvc', ':mvp', ':ys7', ':mode_home', ':mode_user', ':mfdemotest', ':netty', ':model_component'
+include ':app', ':library', ':mvvm', ':kotlin', ':mvp', ':netty'

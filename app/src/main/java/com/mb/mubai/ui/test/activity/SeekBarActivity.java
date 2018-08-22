@@ -5,19 +5,19 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.lzw.library.processor.HttpCallBack;
+import com.lzw.library.processor.HttpHelper;
 import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
-import com.mb.mubai.base.util.PermissionUtils;
+import com.mb.mubai.data.ResultData;
 import com.mb.mubai.ui.test.contract.SeekBarContract;
 import com.mb.mubai.ui.test.model.SeekBarModel;
 import com.mb.mubai.ui.test.presenter.SeekBarPresenter;
@@ -27,8 +27,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -55,26 +56,17 @@ import butterknife.OnClick;
 
 public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel> implements SeekBarContract.View {
 
-    @Bind(R.id.img1)
-    ImageView img1;
-    @Bind(R.id.txt1)
-    TextView txt1;
-    @Bind(R.id.back)
-    RelativeLayout back;
-    @Bind(R.id.img2)
-    TextView img2;
-    @Bind(R.id.rl)
-    RelativeLayout rl;
+
     @Bind(R.id.seek_bar)
     SeekBar seekBar;
     @Bind(R.id.seek_bar_other)
     SeekBar seekBarOther;
-    @Bind(R.id.activity_second)
-    LinearLayout activitySecond;
     @Bind(R.id.image)
     ShapedImageView image;
     @Bind(R.id.camera_text)
     TextView cameraText;
+    @Bind(R.id.activity_second)
+    LinearLayout activitySecond;
 
     @Override
     protected SeekBarModel getModel() {
@@ -96,10 +88,21 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
         cameraText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (PermissionUtils.isCameraPermission(SeekBarActivity.this, 0x007)) {
-                    Intent intent = new Intent(mContext, CameraActivity.class);
-                    startActivityForResult(intent, 10);
-                }
+                String url = "http://v.juhe.cn/toutiao/index";
+                HashMap<String, Object> params = new HashMap<>();
+                params.put("type", "top");
+                params.put("key", "APPKEY");
+                HttpHelper.obtain().post(url, params, new HttpCallBack<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData data) {
+                        Toast.makeText(mContext, data.getResultcode(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+//                if (PermissionUtils.isCameraPermission(SeekBarActivity.this, 0x007)) {
+//                    Intent intent = new Intent(mContext, CameraActivity.class);
+//                    startActivityForResult(intent, 10);
+//                }
             }
         });
     }
@@ -126,11 +129,6 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
         }
         String json = gson.toJson(jsonObject);
         Log.d("SeekBarActivity", json);
-    }
-
-    @OnClick(R.id.back)
-    void back() {
-        finish();
     }
 
     @Override
@@ -178,5 +176,4 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
 }
