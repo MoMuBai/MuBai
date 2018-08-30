@@ -4,8 +4,7 @@ import android.content.Context;
 import android.os.Looper;
 import android.widget.Toast;
 
-
-import com.lzw.library.utils.FileUtil;
+import com.lzw.library.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -76,7 +75,7 @@ public class LocalFileHandler extends BaseExceptionHandler {
     private void saveLog(Throwable ex) {
         try {
 
-            File path = new File(FileUtil.getDiskCacheDir(context) + "/log");
+            File path = new File(FileUtils.getDiskCacheDir(context) + "/log");
             if (!path.exists()) {
                 path.mkdirs();
             }

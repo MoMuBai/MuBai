@@ -105,6 +105,11 @@ android {
         }
         maven { url "https://jitpack.io" }
     }
+
+    packagingOptions {
+        exclude 'lib/mips64/*.so'
+        exclude 'lib/mips/*.so'
+    }
 }
 
 dependencies {

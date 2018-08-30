@@ -4,9 +4,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.lzw.library.utils.L;
 import com.lzw.library.utils.OkHttpClientUtil;
@@ -22,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -49,6 +45,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
 
+
     @Bind(R.id.et_name)
     EditText etName;
     @Bind(R.id.text_input_name)
@@ -59,16 +56,6 @@ public class LoginActivity extends BaseActivity {
     TextInputLayout textInputPass;
     @Bind(R.id.float_btn)
     FloatingActionButton floatBtn;
-    @Bind(R.id.img1)
-    ImageView img1;
-    @Bind(R.id.txt1)
-    TextView txt1;
-    @Bind(R.id.back)
-    RelativeLayout back;
-    @Bind(R.id.img2)
-    TextView img2;
-    @Bind(R.id.rl)
-    RelativeLayout rl;
     private String BASE_URL = "http://webim.demo.rong.io/";
     private String token;
 
@@ -113,11 +100,6 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.back)
-    void back() {
-        finish();
-    }
-
 
     /**
      * 用户登录，用户登录成功，获得 cookie，将cookie 保存
@@ -160,4 +142,5 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+
 }

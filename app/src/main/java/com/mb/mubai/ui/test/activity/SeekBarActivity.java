@@ -92,6 +92,8 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
                 HashMap<String, Object> params = new HashMap<>();
                 params.put("type", "top");
                 params.put("key", "APPKEY");
+
+
                 HttpHelper.obtain().post(url, params, new HttpCallBack<ResultData>() {
                     @Override
                     public void onSuccess(ResultData data) {
@@ -160,6 +162,7 @@ public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel
     public void showStop() {
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
