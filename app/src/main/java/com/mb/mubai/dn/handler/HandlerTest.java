@@ -14,7 +14,7 @@ import java.util.UUID;
  * Description: This is HandlerTest
  */
 
-public class HandlerTest extends BaseActivity{
+public class HandlerTest extends BaseActivity {
     public static void main() {
         new Thread() {
             @Override
