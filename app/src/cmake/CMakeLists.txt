@@ -4,6 +4,15 @@
 # 指定cmake最小支持版本的方法 VERSION 3.8
 cmake_minimum_required(VERSION 3.6);
 
+#引入XXX目录的cmakelist
+add_subdirectory(XXX)
+
+#为了能在.c文件里以<test.h>引入头文件 相当于-I
+include_directories(src/main/cmake/include)
+
+#这里指定了所有这个目录下的.c都会被引入到这边
+file(GLOB source src/main/cmake/*.c..*.cpp)
+
 
 #hello-jni:变量名，最终生成的so名称
 #SHARED 动态库，STATIC：静态库
@@ -48,6 +57,11 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -LXXX -LXXX -L${CMAKE_SOURCE_DIR}/src/cmake/
 find_library(log-lib log)
 message("log-lib的路径：${lob-lib}")
 
+#无法达到去指定的路径下找库名
+find_library(test Test "/path/....")
+#这里会提示test NotFound
+message(${test})
+
 #==========================================================================
 #输出日志的方法
 message("CMAKE_SOURCE_DIR：${CMAKE_SOURCE_DIR}")
@@ -58,4 +72,5 @@ message("ANDROID_ABI：${ANDROID_ABI}")
 
 #将libTest.a链接到libhello-jni.so
 #hello-jni：要生成的so，Test：需要依赖的a
+#这里的${log-lib}实际上也不需要这么写，可以直接用log,系统默认会去ndk中找
 target_link_libraries(hello-jni Test ${log-lib})
