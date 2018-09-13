@@ -74,4 +74,10 @@
     <color name="purple_normal">#9932CC</color>
     <color name="purple_pressed">#9F79EE</color>
 
+    <color name="green4">#C6E2FF</color>
+    <color name="green1">#B0E2FF</color>
+    <color name="green2">#63B8FF</color>
+    <color name="green3">#6495ED</color>
+
+
 </resources>

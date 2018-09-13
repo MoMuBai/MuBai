@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.Map;
+
 /**
  * //////////////////////////////////////////////////////////////////////////////
  * //
@@ -28,165 +30,134 @@ import android.preference.PreferenceManager;
  */
 public final class SpUtils {
     private static SharedPreferences mSharedPreferences;
+    private static SharedPreferences.Editor editor;
 
     public static void init(Context context) {
         if (mSharedPreferences == null) {
             mSharedPreferences = PreferenceManager
                     .getDefaultSharedPreferences(context);
+            editor = mSharedPreferences.edit();
         }
     }
 
     /**
-     * 添加Int类型
-     *
-     * @param context
-     * @param key
-     * @param value
+     * 存储String
      */
-    public static void setSharedIntData(Context context, String key, int value) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        mSharedPreferences.edit().putInt(key, value).commit();
+    public static void putString(String key, String value) {
+        editor.putString(key, value);
+        editor.commit();
     }
 
     /**
-     * 获取Int类型
-     *
-     * @param context
-     * @param key
-     * @return
+     * 获取保存的数据String
      */
-    public static int getSharedIntData(Context context, String key) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        return mSharedPreferences.getInt(key, -1);
+    public static String getString(String key) {
+        return getString(key, "");
     }
 
     /**
-     * 添加Long类型
-     *
-     * @param context
-     * @param key
-     * @param value
+     * 获取保存的数据String
      */
-    public static void setSharedlongData(Context context, String key, long value) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        mSharedPreferences.edit().putLong(key, value).commit();
-    }
-
-    /**
-     * 获取Long类型
-     *
-     * @param context
-     * @param key
-     * @return
-     */
-    public static long getSharedlongData(Context context, String key) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        return mSharedPreferences.getLong(key, -1l);
-    }
-
-    /**
-     * 添加Float类型
-     *
-     * @param context
-     * @param key
-     * @param value
-     */
-    public static void setSharedFloatData(Context context, String key,
-                                          float value) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        mSharedPreferences.edit().putFloat(key, value).commit();
-    }
-
-    /**
-     * 获取Float类型
-     *
-     * @param context
-     * @param key
-     * @return
-     */
-    public static Float getSharedFloatData(Context context, String key) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        return mSharedPreferences.getFloat(key, -1f);
-    }
-
-    /**
-     * 添加Boolean类型
-     *
-     * @param context
-     * @param key
-     * @param value
-     */
-    public static void setSharedBooleanData(Context context, String key,
-                                            boolean value) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        mSharedPreferences.edit().putBoolean(key, value).commit();
-    }
-
-    /**
-     * 获取Boolean类型
-     *
-     * @param context
-     * @param key
-     * @return
-     */
-    public static Boolean getSharedBooleanData(Context context, String key) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        return mSharedPreferences.getBoolean(key, true);
-    }
-
-    /**
-     * 添加String类型
-     *
-     * @param context
-     * @param key
-     * @param value
-     */
-    public static void setSharedStringData(Context context, String key,
-                                           String value) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        mSharedPreferences.edit().putString(key, value).commit();
-    }
-
-    /**
-     * 获取String类型
-     *
-     * @param context
-     * @param key
-     * @return
-     */
-    public static String getSharedStringData(Context context, String key) {
-        if (mSharedPreferences == null) {
-            init(context);
-        }
-        return mSharedPreferences.getString(key, null);
+    public static String getString(String key, String value) {
+        return mSharedPreferences.getString(key, value);
     }
 
 
     /**
-     * 清空所有共享参数
-     *
-     * @param context
-     * @return 是否清空共享参数
+     * 存储Int
      */
-    public static boolean clearAllPrefer(Context context) {
-        return mSharedPreferences.edit().clear().commit();
+    public static void putInt(String key, int value) {
+        editor.putInt(key, value);
+        editor.commit();
+    }
+
+    /**
+     * 获取保存的数据Int
+     */
+    public static int getInt(String key) {
+        return getInt(key, -1);
+    }
+
+    /**
+     * 获取保存的数据Int
+     */
+    public static int getInt(String key, int value) {
+        return mSharedPreferences.getInt(key, value);
+    }
+
+
+    /**
+     * 存储Float
+     */
+    public static void putFloat(String key, float value) {
+        editor.putFloat(key, value);
+        editor.commit();
+    }
+
+    /**
+     * 获取保存的数据Float
+     */
+    public static float getFloat(String key) {
+        return getFloat(key, -1f);
+    }
+
+    /**
+     * 获取保存的数据Float
+     */
+    public static float getFloat(String key, float value) {
+        return mSharedPreferences.getFloat(key, value);
+    }
+
+    /**
+     * 存储Boolean
+     */
+    public static void putBoolean(String key, boolean value) {
+        editor.putBoolean(key, value);
+        editor.commit();
+    }
+
+    /**
+     * 获取保存的数据Boolean
+     */
+    public static boolean getBoolean(String key) {
+        return getBoolean(key, false);
+    }
+
+    /**
+     * 获取保存的数据Boolean
+     */
+    public static boolean getBoolean(String key, boolean value) {
+        return mSharedPreferences.getBoolean(key, value);
+    }
+
+
+    /**
+     * 移除某个key值已经对应的值
+     */
+    public void remove(String key) {
+        editor.remove(key);
+        editor.commit();
+    }
+
+    /**
+     * 清除所有数据
+     */
+    public void clear() {
+        editor.clear();
+        editor.commit();
+    }
+
+    /**
+     * 查询某个key是否存在
+     */
+    public Boolean contain(String key) {
+        return mSharedPreferences.contains(key);
+    }
+
+    /**
+     * 返回所有的键值对
+     */
+    public Map<String, ?> getAll() {
+        return mSharedPreferences.getAll();
     }
 }

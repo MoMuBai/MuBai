@@ -8,7 +8,6 @@ import android.widget.EditText;
 import com.lzw.library.utils.L;
 import com.lzw.library.utils.OkHttpClientUtil;
 import com.lzw.library.utils.SpUtils;
-import com.mb.mubai.App;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.base.BaseModel;
@@ -138,7 +137,7 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(String response) {
                 token = response;
                 L.d(TAG, token);
-                SpUtils.setSharedStringData(App.getInstance(), "token", "token");
+                SpUtils.putString("token", "token");
             }
         });
     }

@@ -467,8 +467,7 @@ public class OkHttpClientUtil {
 
                 } catch (IOException e) {
                     sendFailedStringCallback(response.request(), e, callback);
-                } catch (com.google.gson.JsonParseException e)//Json解析的错误
-                {
+                } catch (com.google.gson.JsonParseException e) {//Json解析的错误
                     sendFailedStringCallback(response.request(), e, callback);
                 }
 

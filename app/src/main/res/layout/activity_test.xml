@@ -4,8 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <!--<HorizontalScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:scrollbars="none">-->
+
+    <com.mb.mubai.view.widget.BrokenLineCusVisitView
+        android:id="@+id/brokenline"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="200dp" />
+    <!--</HorizontalScrollView>-->
+
+    <!--<HorizontalScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:scrollbars="none">-->
+
+    <com.mb.mubai.view.widget.BrokenLineCusVisitView2
+        android:id="@+id/brokenline2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <!--</HorizontalScrollView>-->
+
 </LinearLayout>
