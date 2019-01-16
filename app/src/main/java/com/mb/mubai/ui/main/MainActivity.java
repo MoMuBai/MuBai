@@ -166,7 +166,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
             }
             return true;
         });
-        isFirst = SpUtils.getBoolean("isFirst");
+        isFirst = SpUtils.getSharedBooleanData(mContext, "isFirst");
         if (isFirst) {
             firstLayout.setVisibility(View.VISIBLE);
             tvFirst.setVisibility(View.VISIBLE);
@@ -365,7 +365,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                 underLayout.setClickable(true);
                 underLayout.setEnabled(true);
                 tvFirst.setVisibility(View.GONE);
-                SpUtils.putBoolean("isFirst", false);
+                SpUtils.setSharedBooleanData(mContext, "isFirst", false);
                 break;
             default:
                 break;

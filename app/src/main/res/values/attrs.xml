@@ -41,7 +41,4 @@
         <attr name="my_view_3" format="boolean" />
         <attr name="my_view_4" format="float" />
     </declare-styleable>
-
-    <declare-styleable name="PulseView"></declare-styleable>
-
 </resources>
