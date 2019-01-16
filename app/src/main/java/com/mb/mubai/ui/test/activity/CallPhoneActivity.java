@@ -88,6 +88,11 @@ public class CallPhoneActivity extends BaseActivity implements ZXingScannerView.
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_callPhone1:
+
+
+
+
+
 //                Intent intent1 = new Intent(Intent.ACTION_CALL);
 //                Uri data1 = Uri.parse("tel:10101688" + PhoneNumberUtils.PAUSE + "18662");
 //                intent1.setData(data1);
