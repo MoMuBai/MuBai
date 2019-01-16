@@ -108,7 +108,6 @@ public class CallPhoneActivity extends BaseActivity {
 //                    }
 //                    startActivity(intent1);
 //                }
-
                 Intent intent1 = new Intent(Intent.ACTION_CALL);
                 Uri data1 = Uri.parse("tel:10101688" + PhoneNumberUtils.PAUSE + "18662");
                 intent1.setData(data1);
