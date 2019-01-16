@@ -87,6 +87,8 @@
 
         <activity android:name=".ui.test.activity.TestActivity" />
 
+        <activity android:name=".ui.test.activity.ViewTestActivity" />
+
         <!--阿里云热修复-->
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"

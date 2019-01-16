@@ -28,8 +28,7 @@ import com.mb.mubai.ui.test.activity.ExpandableActivity;
 import com.mb.mubai.ui.test.activity.PinnedHeadListActivity;
 import com.mb.mubai.ui.test.activity.RecyclerViewMoveActivity;
 import com.mb.mubai.ui.test.activity.SeekBarActivity;
-import com.mb.mubai.ui.test.activity.TestActivity;
-import com.mb.mubai.ui.test.activity.WebViewActivity;
+import com.mb.mubai.ui.test.activity.ViewTestActivity;
 import com.mb.mubai.ui.test.fly.AFlyFactory;
 import com.mb.mubai.ui.test.fly.BFlyFactory;
 import com.mb.mubai.ui.test.fly.FlyInterface;
@@ -154,11 +153,13 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     startActivity(intent);
                     break;
                 case R.id.g9:
-                    intent.setClass(mActivity, WebViewActivity.class);
+                    intent.setClass(mActivity, ViewTestActivity.class);
+                    intent.putExtra("url", "http://192.168.1.113:8082/visitorTraffic");
                     startActivity(intent);
                     break;
                 case R.id.g10:
-                    intent.setClass(mActivity, TestActivity.class);
+                    intent.setClass(mActivity, ViewTestActivity.class);
+                    intent.putExtra("url", "http://10.0.207.242/webtest/aaa.html");
                     startActivity(intent);
                     break;
                 default:
