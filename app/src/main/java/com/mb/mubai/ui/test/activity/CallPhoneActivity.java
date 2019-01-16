@@ -87,7 +87,6 @@ public class CallPhoneActivity extends BaseActivity {
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_callPhone1:
-<<<<<<< HEAD
 
 
 
@@ -110,7 +109,6 @@ public class CallPhoneActivity extends BaseActivity {
 //                    startActivity(intent1);
 //                }
 
-=======
                 Intent intent1 = new Intent(Intent.ACTION_CALL);
                 Uri data1 = Uri.parse("tel:10101688" + PhoneNumberUtils.PAUSE + "18662");
                 intent1.setData(data1);
@@ -127,7 +125,6 @@ public class CallPhoneActivity extends BaseActivity {
                     }
                     startActivity(intent1);
                 }
->>>>>>> parent of 231f587... fea 修改
                 break;
             case R.id.btn_callPhone2:
                 Intent intent2 = new Intent(Intent.ACTION_DIAL);
