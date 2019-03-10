@@ -1,6 +1,5 @@
 package com.mb.mubai.ui.test.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,8 +16,7 @@ import com.mb.mubai.view.widget.DownListView;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -30,17 +28,17 @@ import butterknife.OnClick;
  */
 
 public class DownListActivity extends BaseActivity<DownListPresenter, DownListModel> implements DownListContract.View, DownListHelper {
-    @Bind(R.id.text1)
+    @BindView(R.id.text1)
     TextView text1;
-    @Bind(R.id.text2)
+    @BindView(R.id.text2)
     TextView text2;
-    @Bind(R.id.text3)
+    @BindView(R.id.text3)
     TextView text3;
-    @Bind(R.id.text4)
+    @BindView(R.id.text4)
     TextView text4;
-    @Bind(R.id.down_list_view)
+    @BindView(R.id.down_list_view)
     DownListView downListView;
-    @Bind(R.id.list_view)
+    @BindView(R.id.list_view)
     ListView listView;
 
     private ListViewAdapter adapter;

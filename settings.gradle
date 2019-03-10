@@ -1,1 +1,1 @@
-include ':app', ':library', ':mvvm', ':kotlin', ':mvp', ':netty'
+include ':app', ':library', ':kotlin', ':netty'

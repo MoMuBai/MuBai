@@ -3,7 +3,6 @@ package com.mb.mubai.ui.test.adapter;
 import android.content.Context;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.ExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import com.lzw.library.base.BaseAdapter;
 import com.mb.mubai.R;
 import com.mb.mubai.view.widget.ExpandableTextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -47,11 +46,11 @@ public class ExpandableAdapter extends BaseAdapter<String, ExpandableAdapter.Vie
     }
 
     static class ViewHolder extends BaseAdapter.ViewHolder {
-        @Bind(R.id.tvAnswer)
+        @BindView(R.id.tvAnswer)
         TextView tvAnswer;
-        @Bind(R.id.ivImg)
+        @BindView(R.id.ivImg)
         ImageButton ivImg;
-        @Bind(R.id.expand_text_view)
+        @BindView(R.id.expand_text_view)
         ExpandableTextView expandTextView;
 
         ViewHolder(View view) {

@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseRecyclerAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends BaseRecyclerAdapter<String, RecyclerVie
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView text;
 
         public MyViewHolder(View itemView) {

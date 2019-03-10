@@ -11,7 +11,7 @@ import com.mb.mubai.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -148,7 +148,7 @@ public abstract class BaseLoadMoreAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     public static class HeadViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.houseNum)
+        @BindView(R.id.houseNum)
         TextView houseNum;
 
         public HeadViewHolder(View itemView) {
@@ -158,9 +158,9 @@ public abstract class BaseLoadMoreAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     public static class FootViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.progress_view)
+        @BindView(R.id.progress_view)
         ProgressBar progressBar;
-        @Bind(R.id.tv_content)
+        @BindView(R.id.tv_content)
         TextView textView;
 
         public FootViewHolder(View itemView) {

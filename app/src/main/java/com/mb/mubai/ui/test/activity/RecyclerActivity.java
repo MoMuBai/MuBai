@@ -26,7 +26,8 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -54,7 +55,7 @@ import butterknife.Bind;
 public class RecyclerActivity extends BaseActivity<RecyclerPresenter, RecyclerModel> implements RecyclerContract.View {
 
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     SwipeMenuRecyclerView recyclerView;
 
     private MenuViewTypeAdapter menuAdapter;

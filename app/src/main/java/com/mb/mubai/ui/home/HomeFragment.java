@@ -14,7 +14,7 @@ import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 /**
@@ -41,9 +41,9 @@ import butterknife.Bind;
  */
 public class HomeFragment extends BaseFragment<HomePresenter, HomeModel> implements HomeContract.View {
 
-    @Bind(R.id.text)
+    @BindView(R.id.text)
     TextView text;
-    @Bind(R.id.seek_bar)
+    @BindView(R.id.seek_bar)
     SeekBar seekBar;
     private int DEFAULT_COLOR = Color.parseColor("#319bd2");
 

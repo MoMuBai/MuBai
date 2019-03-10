@@ -53,6 +53,10 @@
 # 这个过滤器是谷歌推荐的算法，一般不做更改
 -optimizations !code/simplification/cast,!field/*,!class/merging/*
 
+-obfuscationdictionary ../proguard-socialism.txt
+-classobfuscationdictionary ../proguard-socialism.txt
+-packageobfuscationdictionary ../proguard-socialism.txt
+
 #############################################
 #
 # Android开发中一些需要保留的公共部分
@@ -172,6 +176,9 @@
 # 处理第三方依赖库
 #
 #############################################
+
+#retrolambda
+-dontwarn java.lang.invoke.*
 
 #butterknife
 -keep class butterknife.** { *; }

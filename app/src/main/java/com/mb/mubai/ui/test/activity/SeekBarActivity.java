@@ -29,7 +29,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -57,15 +58,15 @@ import butterknife.Bind;
 public class SeekBarActivity extends BaseActivity<SeekBarPresenter, SeekBarModel> implements SeekBarContract.View {
 
 
-    @Bind(R.id.seek_bar)
+    @BindView(R.id.seek_bar)
     SeekBar seekBar;
-    @Bind(R.id.seek_bar_other)
+    @BindView(R.id.seek_bar_other)
     SeekBar seekBarOther;
-    @Bind(R.id.image)
+    @BindView(R.id.image)
     ShapedImageView image;
-    @Bind(R.id.camera_text)
+    @BindView(R.id.camera_text)
     TextView cameraText;
-    @Bind(R.id.activity_second)
+    @BindView(R.id.activity_second)
     LinearLayout activitySecond;
 
     @Override

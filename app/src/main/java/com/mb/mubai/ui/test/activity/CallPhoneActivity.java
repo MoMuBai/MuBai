@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
@@ -18,11 +17,9 @@ import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.base.BaseModel;
 import com.mb.mubai.base.BasePresenter;
 
-import java.util.List;
 import java.util.Set;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -48,9 +45,9 @@ import butterknife.OnClick;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public class CallPhoneActivity extends BaseActivity {
-    @Bind(R.id.btn_callPhone1)
+    @BindView(R.id.btn_callPhone1)
     Button btnCallPhone1;
-    @Bind(R.id.btn_callPhone2)
+    @BindView(R.id.btn_callPhone2)
     Button btnCallPhone2;
 
     @Override
