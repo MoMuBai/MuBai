@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.lzw.library.utils.AppManager;
 import com.mb.mubai.App;
 import com.mb.mubai.R;
@@ -193,7 +192,6 @@ public abstract class BaseFragment<T extends BasePresenter, V extends BaseModel>
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
         if (mPresenter != null) mPresenter.onDestory();
         AppManager.getAppManager().removeFragment(this);
     }

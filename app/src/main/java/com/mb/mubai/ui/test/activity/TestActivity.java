@@ -12,7 +12,8 @@ import com.mb.mubai.ui.test.adapter.TestAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Author: lzw
@@ -21,7 +22,7 @@ import butterknife.Bind;
  */
 
 public class TestActivity extends BaseActivity {
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
     private TestAdapter adapter;

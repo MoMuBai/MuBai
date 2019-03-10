@@ -1,12 +1,9 @@
 package com.mb.mubai.ui.found;
 
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +12,7 @@ import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 
 /**
@@ -46,11 +42,11 @@ public class FoundFragment extends BaseFragment<FoundPresenter, FoundModel> impl
 
     private boolean isHide = true;
 
-    @Bind(R.id.img)
+    @BindView(R.id.img)
     ImageView img;
-    @Bind(R.id.text)
+    @BindView(R.id.text)
     TextView text;
-    @Bind(R.id.toggle)
+    @BindView(R.id.toggle)
     AppCompatButton toggle;
 
     public static Fragment getFragment() {

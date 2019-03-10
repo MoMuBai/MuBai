@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -44,11 +44,11 @@ import butterknife.Bind;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public class PinnedHeadListActivity extends BaseActivity<PinnedHeadPresenter, PinnedHeadModel> implements PinnedHeadContract.View {
-    @Bind(R.id.pinned_head)
+    @BindView(R.id.pinned_head)
     PinnedHeaderListView pinnedHead;
-    @Bind(R.id.index_bar)
+    @BindView(R.id.index_bar)
     IndexBar indexBar;
-    @Bind(R.id.tv_search)
+    @BindView(R.id.tv_search)
     TextView tvSearch;
 
     private TestSectionedAdapter mAdapter;

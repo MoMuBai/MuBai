@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
@@ -12,6 +12,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true//Vector支持
+        //必须要保证所有的flavor 都属于同一个维度
+        flavorDimensions "default"
+        javaCompileOptions { //butterknife在studio3.0导入错误的问题
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
     }
 
     //直接写在gradle不安全 这里在混淆文件中写入
@@ -87,9 +94,12 @@ android {
     }
 
     productFlavors {
-        lzg {}
-        zjy {}
-        lzw {}
+        lzg {
+        }
+        zjy {
+        }
+        lzw {
+        }
 
         productFlavors.all { flavor ->
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
@@ -110,6 +120,11 @@ android {
         exclude 'lib/mips64/*.so'
         exclude 'lib/mips/*.so'
     }
+    buildToolsVersion '26.0.2'
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -125,7 +140,8 @@ dependencies {
     //    compile dependencies.recyclerview
     //Helper Library
     compile 'com.android.support:multidex:1.0.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.nineoldandroids:library:2.4.0'
     //Data Library
     compile 'com.alibaba:fastjson:1.2.22'
@@ -145,12 +161,10 @@ dependencies {
     //Third Party Library
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.2'
     compile(name: 'refreshAndLoad', ext: 'aar')
-    compile 'com.kelin.mvvmlight:library:1.0.0'
     compile 'com.airbnb.android:lottie:1.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //    testCompile 'com.mubai:library:1.0.2'
     //import lib
-    compile project(':library')
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.1'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.1'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
@@ -160,5 +174,6 @@ dependencies {
     provided 'com.android.support:recyclerview-v7:25.1.0'
     provided 'com.android.support:design:25.1.0'
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.8'
+    compile project(':library')
 }
 

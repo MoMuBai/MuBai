@@ -1,7 +1,6 @@
 package com.mb.mubai.ui.test.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AbsListView;
@@ -16,8 +15,7 @@ import com.mb.mubai.ui.test.presenter.ExpandablePresenter;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 /**
  * @author: lzw
@@ -28,9 +26,9 @@ import butterknife.ButterKnife;
  */
 
 public class ExpandableActivity extends BaseActivity<ExpandablePresenter, ExpandableModel> implements ExpandableContract.View {
-    @Bind(R.id.list_view)
+    @BindView(R.id.list_view)
     ListView listView;
-    @Bind(R.id.swipeRefresh)
+    @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
 
     private ExpandableAdapter expandableAdapter;

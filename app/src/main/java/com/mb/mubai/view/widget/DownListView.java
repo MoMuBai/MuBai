@@ -4,22 +4,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.lzw.library.base.BaseAdapter;
 import com.mb.mubai.R;
 import com.mb.mubai.base.listener.DownListHelper;
 import com.mb.mubai.ui.test.adapter.ListViewAdapter;
-import com.mb.mubai.view.banner.ViewFlow;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import retrofit2.http.PUT;
 
 /**
  * @author: lzw
@@ -82,8 +75,6 @@ public class DownListView extends LinearLayout {
     }
 
     private void onItemClick() {
-        mListView.setOnItemClickListener((parent, view, position, id) -> {
-            mDownListHelper.onSelectionChanged(position);
-        });
+
     }
 }

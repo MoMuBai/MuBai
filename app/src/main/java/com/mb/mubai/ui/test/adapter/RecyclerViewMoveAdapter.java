@@ -12,12 +12,11 @@ import android.widget.Toast;
 import com.mb.mubai.R;
 import com.mb.mubai.base.listener.ItemTouchMoveListener;
 import com.mb.mubai.base.listener.StartDragListener;
-import com.mb.mubai.view.widget.MyItemTouchHelperCallback;
 
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -80,7 +79,7 @@ public class RecyclerViewMoveAdapter extends RecyclerView.Adapter<RecyclerViewMo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView text;
 
         ViewHolder(View view) {

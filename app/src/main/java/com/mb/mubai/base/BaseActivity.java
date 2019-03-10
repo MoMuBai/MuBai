@@ -11,6 +11,7 @@ import com.lzw.library.utils.AppManager;
 import com.mb.mubai.App;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author lzw
@@ -29,6 +30,8 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
 
     public Activity mActivity;
 
+    protected Unbinder bind;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
 //                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(getLayout());
         AppManager.getAppManager().addActivity(this);
-        ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
         mContext = App.getInstance();
         mActivity = this;
         mPresenter = getPresenter();
@@ -70,6 +73,7 @@ public abstract class BaseActivity<T extends BasePresenter, M extends BaseModel>
         if (mPresenter != null) {
             mPresenter.onDestory();
         }
+        bind.unbind();
         AppManager.getAppManager().removeActivity(this);
     }
 

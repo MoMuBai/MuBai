@@ -18,7 +18,8 @@ import com.squareup.okhttp.Request;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -46,15 +47,15 @@ import butterknife.Bind;
 public class LoginActivity extends BaseActivity {
 
 
-    @Bind(R.id.et_name)
+    @BindView(R.id.et_name)
     EditText etName;
-    @Bind(R.id.text_input_name)
+    @BindView(R.id.text_input_name)
     TextInputLayout textInputName;
-    @Bind(R.id.et_pass)
+    @BindView(R.id.et_pass)
     EditText etPass;
-    @Bind(R.id.text_input_pass)
+    @BindView(R.id.text_input_pass)
     TextInputLayout textInputPass;
-    @Bind(R.id.float_btn)
+    @BindView(R.id.float_btn)
     FloatingActionButton floatBtn;
     private String BASE_URL = "http://webim.demo.rong.io/";
     private String token;

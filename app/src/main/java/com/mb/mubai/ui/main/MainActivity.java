@@ -2,6 +2,7 @@ package com.mb.mubai.ui.main;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Process;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
@@ -43,7 +44,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -69,28 +71,28 @@ import butterknife.OnClick;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public class MainActivity extends BaseActivity<MainPresenter, MainModel> implements MainContract.View {
-    @Bind(R.id.navigation_view)
+    @BindView(R.id.navigation_view)
     NavigationView navigationView;
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @Bind(R.id.tab1)
+    @BindView(R.id.tab1)
     TextView tab1;
-    @Bind(R.id.tab2)
+    @BindView(R.id.tab2)
     TextView tab2;
-    @Bind(R.id.tab3)
+    @BindView(R.id.tab3)
     TextView tab3;
-    @Bind(R.id.tab4)
+    @BindView(R.id.tab4)
     TextView tab4;
     //    @Bind(R.id.tab5)
 //    TextView tab5;
-    @Bind(R.id.underLayout)
-    LinearLayout underLayout;
-    @Bind(R.id.iv_first)
+    @BindView(R.id.iv_first)
     ImageView ivFirst;
-    @Bind(R.id.tv_first)
+    @BindView(R.id.tv_first)
     TextView tvFirst;
-    @Bind(R.id.firstLayout)
+    @BindView(R.id.firstLayout)
     RelativeLayout firstLayout;
+    @BindView(R.id.underLayout)
+    LinearLayout underLayout;
     private MainAdapter mainAdapter;
     private int backPressTimes;
 
@@ -387,5 +389,12 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

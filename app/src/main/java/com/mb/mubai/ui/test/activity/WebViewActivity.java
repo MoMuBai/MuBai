@@ -25,8 +25,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 /**
  * @author: lzw
@@ -37,9 +36,9 @@ import butterknife.ButterKnife;
  */
 
 public class WebViewActivity extends BaseActivity {
-    @Bind(R.id.title_text)
+    @BindView(R.id.title_text)
     TextView titleText;
-    @Bind(R.id.main_view)
+    @BindView(R.id.main_view)
     LinearLayout mainView;
     private WebView webView;
 

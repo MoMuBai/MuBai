@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
@@ -18,11 +17,9 @@ import com.mb.mubai.base.BaseActivity;
 import com.mb.mubai.base.BaseModel;
 import com.mb.mubai.base.BasePresenter;
 
-import java.util.List;
 import java.util.Set;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -48,9 +45,9 @@ import butterknife.OnClick;
  * /////////////////////////////////////////////////////////////////////////////
  */
 public class CallPhoneActivity extends BaseActivity {
-    @Bind(R.id.btn_callPhone1)
+    @BindView(R.id.btn_callPhone1)
     Button btnCallPhone1;
-    @Bind(R.id.btn_callPhone2)
+    @BindView(R.id.btn_callPhone2)
     Button btnCallPhone2;
 
     @Override
@@ -87,6 +84,27 @@ public class CallPhoneActivity extends BaseActivity {
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_callPhone1:
+
+
+
+
+
+//                Intent intent1 = new Intent(Intent.ACTION_CALL);
+//                Uri data1 = Uri.parse("tel:10101688" + PhoneNumberUtils.PAUSE + "18662");
+//                intent1.setData(data1);
+//                if (Build.VERSION.SDK_INT > 22) {
+//                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//                        // TODO: Consider calling
+//                        //    ActivityCompat#requestPermissions
+//                        // here to request the missing permissions, and then overriding
+//                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                        //                                          int[] grantResults)
+//                        // to handle the case where the user grants the permission. See the documentation
+//                        // for ActivityCompat#requestPermissions for more details.
+//                        return;
+//                    }
+//                    startActivity(intent1);
+//                }
                 Intent intent1 = new Intent(Intent.ACTION_CALL);
                 Uri data1 = Uri.parse("tel:10101688" + PhoneNumberUtils.PAUSE + "18662");
                 intent1.setData(data1);

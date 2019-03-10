@@ -15,7 +15,7 @@ import com.mb.mubai.base.service.UpdateService;
 import com.mb.mubai.ui.main.MainActivity;
 import com.mb.mubai.view.dialog.MyDialog;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 /**
@@ -43,7 +43,7 @@ import butterknife.Bind;
 
 public class SplashActivity extends BaseActivity {
 
-    @Bind(R.id.iv_splash)
+    @BindView(R.id.iv_splash)
     ImageView ivSplash;
 
 

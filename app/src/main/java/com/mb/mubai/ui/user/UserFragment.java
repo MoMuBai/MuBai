@@ -3,20 +3,16 @@ package com.mb.mubai.ui.user;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.lzw.library.utils.To;
 import com.mb.mubai.R;
 import com.mb.mubai.base.BaseFragment;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -52,9 +48,9 @@ import permissions.dispatcher.RuntimePermissions;
 public class UserFragment extends BaseFragment<UserPresenter, UserModel> implements UserContract.View {
 
 
-    @Bind(R.id.btn_take)
+    @BindView(R.id.btn_take)
     Button btnTake;
-    @Bind(R.id.btn_get)
+    @BindView(R.id.btn_get)
     Button btnGet;
 
     public static Fragment getFragment() {

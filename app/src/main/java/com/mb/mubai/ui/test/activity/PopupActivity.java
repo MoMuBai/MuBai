@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ import com.mb.mubai.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -32,7 +31,7 @@ import butterknife.ButterKnife;
 public class PopupActivity extends AppCompatActivity {
 
 
-    @Bind(R.id.list_view)
+    @BindView(R.id.list_view)
     GridView listView;
     private PopupWindow mPopupWindow, mPopupWindow2;
     /**
@@ -91,7 +90,6 @@ public class PopupActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
     }
 
     private List<String> data;
@@ -124,7 +122,7 @@ public class PopupActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends BaseAdapter.ViewHolder {
-            @Bind(R.id.text)
+            @BindView(R.id.text)
             TextView text;
 
             ViewHolder(View view) {

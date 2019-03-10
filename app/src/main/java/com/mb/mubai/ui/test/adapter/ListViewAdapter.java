@@ -6,9 +6,8 @@ import android.widget.TextView;
 
 import com.lzw.library.base.BaseAdapter;
 import com.mb.mubai.R;
-import com.mb.mubai.view.widget.DownListView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -42,7 +41,7 @@ public class ListViewAdapter extends BaseAdapter<String, ListViewAdapter.ViewHol
 
     public class ViewHolder extends BaseAdapter.ViewHolder {
 
-        @Bind(R.id.test_text)
+        @BindView(R.id.test_text)
         TextView mTextView;
 
         public ViewHolder(View view) {
